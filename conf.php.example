@@ -1,0 +1,12 @@
+<?php
+// Database connection settings
+define("DB_HOST", "localhost");
+define("DB_NAME", "");
+define("DB_USER", "");
+define("DB_PASS", "");
+
+// name of admin user
+define("ADMIN_USER", "");
+// MD5 hash of admin password
+define("ADMIN_PASS", "");
+?>

@@ -1,0 +1,29 @@
+body {
+    font-size: 10pt;
+    font-family: "Times New Roman", serif;
+} 
+
+p {
+    margin: 0;
+    text-indent: 1em;
+}
+
+#yldinfo, #peamenyy, #alammenyy { display: none }
+
+acronym, abbr { border-bottom: dashed 1px #36c }
+del { text-decoration: line-through }
+
+/* pildid, joonised ja tabelid */
+div.pilt{ float: left; clear: left }
+div.pilt, div.joonis { text-align: center}
+
+div.pilt p, div.joonis p, div.tabel p { font-size: smaller }
+div.joonis p { text-align: left }
+div.pilt span.nr, div.joonis span.nr, div.tabel span.nr { font-weight: bold }
+div.joonis, div.tabel { margin: 1em 0 }
+
+div.blokk div { float: none }
+a img { border: none } 
+
+/* ladinakeelne tekst */
+.latin { font-style: oblique }

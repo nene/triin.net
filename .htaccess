@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule  ^(teadmiseks|looming|arhiiv|kontakt|datum)$ $1.php
+RewriteRule  ^(feed|comment-feed).xml$ $1.php
+RewriteRule  ^([0-9]{4})/([0-9]{2})/([0-9]{2})/(.*)$ datum.php?date=$1-$2-$3&document_name=$4
+</IfModule>

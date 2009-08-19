@@ -1,0 +1,377 @@
+
+body {
+    color: #000;
+    font-family: verdana, arial, sans-serif; /* vajab täiendamist */
+    padding: 100px 1em 0 165px;
+    margin: 0;
+    background: #fff url("../kujundus/pageheading_middle.png") repeat-x;
+}
+
+
+/* Peidame ebavajaliku */
+
+#yldinfo h1, 
+#yldinfo #asutuse_nimi, 
+#yldinfo #deviis,
+#peamenyy h2 { 
+    display: none;
+}
+
+
+
+/* Üldinfo */
+
+#yldinfo {
+    background: url("../kujundus/trinoloogialeht.png") no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 668px;
+    height: 81px;
+}
+
+
+#yldinfo a { 
+    position: absolute;
+    left: 170px;
+    top: 69px;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+}
+
+#yldinfo a:hover { 
+    color: #fc3;
+}
+
+
+
+/* Peamenüü */
+
+#peamenyy {
+    position: absolute;
+    top: 39px;
+    left: 300px;
+    width: 370px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#peamenyy,
+#peamenyy ul,
+#peamenyy ul li {
+    margin: 0;
+    padding: 0;
+}
+
+#peamenyy ul {
+    list-style-type: none;
+}
+
+#peamenyy ul li {
+    float: left;
+    padding-right: 10px;
+}
+
+#peamenyy a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#peamenyy a:hover { 
+    color: #fc3;
+}
+
+#peamenyy strong { 
+    color: #fc3;
+}
+
+
+/* Alammenüü */
+
+#alammenyy {
+    position: absolute;
+    top: 81px;
+    left: 0;
+    width: 160px;
+    background: url("../kujundus/pageheading_bottom.png") no-repeat;
+    font-size: 12px;
+}
+
+#alammenyy h2 {
+    background: url("/kujundus/trans2.png");
+    margin:0;
+    color: #fff;
+    font-size: small;
+    padding: 6px 0px;
+    text-align:center;
+}
+
+
+
+#alammenyy,
+#alammenyy ul,
+#alammenyy ul li {
+    margin: 0;
+    padding: 0;
+}
+
+#alammenyy ul {
+    list-style-type: none;
+}
+
+#alammenyy ul li {
+    border-bottom: #36c solid 1px;
+}
+
+#alammenyy ul li a, #alammenyy ul li strong {
+    display: block;
+    font-weight: bold;
+    padding: 5px 0 5px 10px;
+    color: #36c;
+    /*line-height: 1.7em;*/
+    text-decoration: none;
+    width: 160px;
+    voice-family: "\"}\""; 
+    voice-family: inherit;    
+    width: 150px;
+}
+
+#alammenyy ul li a:visited {
+    color: #669;
+}
+
+#alammenyy ul li a:hover {
+    background: #fc3;
+}
+
+#alammenyy ul li strong {
+    background: url("/kujundus/trans.png");
+    color: #fff;
+}
+
+
+#alammenyy ul li ul li a, #alammenyy ul li ul li strong {
+    font-weight: normal;
+    padding-left: 2em;
+}
+
+
+
+#navigatsioon { margin-left: 90px; text-align: center; clear: both}
+
+
+#markup {
+    color: #36c;
+    font-size: smaller;
+    margin-left: 90px;
+    border-top: solid 1px #36c;
+    max-width: 55em;
+    clear: both;
+}
+#markup p {
+    padding: 1em;
+    margin: 0;
+    text-align: center;
+}
+#markup a {
+    color: #36c;
+    font-weight: bold;
+}
+#markup a:visited {
+    color: #969;
+}
+#markup a:hover {
+    background: #fc3;
+    color: #000;
+}
+
+
+#kommentaarid p.autor { font-size: smaller; color: gray; font-weight: normal }
+#kommentaarid div { margin-bottom: 2em }
+#kommentaarid p.input { position: relative }
+#kommentaarid p.input input { position: absolute; left: 100px; top: 0px }
+
+span.date { font-style: italic; color: gray; font-weight: normal }
+
+#sisu { max-width: 50em }
+
+#sisu div.peatykk {
+  background: url("../kujundus/peatyki_karikakar.png") no-repeat;
+  padding-left: 90px;
+  margin-bottom: 5em;
+  clear: both;
+  min-height: 150px;
+}
+
+/* kõik pealkirjad ühte värvi */
+#sisu h1, #sisu h2, #sisu h3, #sisu h4, #sisu h5, #sisu h6 {
+  color: #36c;
+}
+
+#sisu h1 {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: solid #3366CC 1px;
+}
+
+#sisu .autor { color: #36c; font-weight: bold }
+
+
+
+/* Loendid */
+#sisu ul, #sisu ol {
+    padding-left: 0;
+    margin-left: 40px;
+    line-height: 1.5em;
+}
+
+#sisu ul {
+    list-style: square url("../kujundus/bullet2.png");
+}
+
+#sisu ul li {
+    padding-left: 0px;
+    margin-left: 0;
+}
+
+
+#sisu li {
+    color: #000;
+}
+
+#sisu li.standalone {
+    list-style-image: url("../kujundus/standalone.png");
+}
+
+#sisu li.file {
+    list-style-image: url("../kujundus/file.png");
+}
+
+#sisu li.css {
+    list-style-image: url("../kujundus/css.png");
+}
+
+
+#sisu dt {
+    font-weight: bold;
+}
+
+#sisu ol ol{
+    list-style-type: lower-latin;
+}
+
+
+/* Lingid */
+
+#sisu a {
+    color: #36c;
+}
+#sisu a:visited {
+    color: #969;
+}
+#sisu a:hover {
+    background-color: #fc3;
+    color: #000;
+}
+#sisu a img {
+    border: none;
+}
+
+
+/* lühendid */
+
+#sisu acronym, #sisu abbr {
+    border-bottom: dashed 1px #36c;
+}
+
+
+/* sisestatud ja eemaldatud tekst */
+
+#sisu ins {
+    text-decoration: underline overline;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+#sisu del {
+    text-decoration: line-through;
+}
+
+
+
+/* pildid, joonised ja tabelid */
+
+div.blokk {
+    width: 100%;
+    margin-top: 1em;
+    float: left;
+}
+
+div.pilt{
+    margin: 0.5em;
+    float: left;
+    clear: left;
+    text-align: center;
+}
+
+div.joonis, div.tabel {
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+div.pilt p, div.joonis p, div.tabel p {
+    margin: 1em 0;
+    padding: 0;
+    font-size: smaller;
+}
+
+div.joonis img {
+    display: block;
+    margin: 0 auto;
+}
+
+div.pilt span.nr, div.joonis span.nr, div.tabel span.nr {
+    font-weight: bold;
+}
+
+td.nr {text-align:right}
+
+table { border-collapse: collapse; margin: 0 auto; border: 1px solid #000 }
+td, th { border: 1px solid #000; padding: 0.2em 0.5em }
+thead { background: #ccc }
+thead th { text-align: center }
+th { text-align: left }
+
+
+/* muukeelne tekst */
+
+.latin,.en,.ru,span[lang="lt"],span[lang="en"],span[lang="ru"] { font-style: italic }
+div.latin,div.en,div.ru { font-style: normal }
+
+/* veateated */
+
+strong.error { color: red }
+
+/* subheading */
+
+div.preambula{
+   border: 1px solid #36c;
+   font-size:smaller;
+   padding:5px;
+}
+
+
+/* admin */
+
+fieldset {
+    padding:1em;
+    margin:1em;
+}
+
+fieldset ul li{
+    list-style:none;
+}
