@@ -16,7 +16,7 @@ $document->AddSubMenu();
 $chapter = <<<EOHTML
 <h1>Admin: Uue artikli lisamine</h1>
 
-<form action="addarticle.php" method="post">
+<form action="add-article.php" method="post">
 <fieldset>
 <legend>Nimed</legend>
 <p><label for="af_name">Pealkiri</label>

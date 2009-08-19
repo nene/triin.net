@@ -39,7 +39,7 @@ $logout_link = <<<EOHTML
 <p>Oled sisse logitud. <a href="logout.php">Logi välja.</a></p>
 
 <ul>
-<li><a href="admin.php">Lisa artikkel.</a></li>
+<li><a href="add-article-form.php">Lisa artikkel.</a></li>
 <li><a href="latest-comments.php">Vaata viimaseid kommentaare.</a></li>
 </ul>
 
