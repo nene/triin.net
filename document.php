@@ -1,6 +1,7 @@
 <?php
 require_once("mysqlconnect.php");
 require_once("archive.php");
+require_once("markdown-archive.php");
 require_once("chapter.php");
 require_once("staticdata.php");
 require_once("menu.php");
@@ -58,7 +59,11 @@ class Document
     
     function AddArchive($fileName, $commentCount=0, $url='', $comments='N')
     {
-        $this->mChapters[] = new Archive($fileName, $commentCount, $url, $comments);
+        if (preg_match('/\.text$/', $fileName)) {
+            $this->mChapters[] = new MarkdownArchive($fileName, $commentCount, $url, $comments);
+        } else {
+            $this->mChapters[] = new Archive($fileName, $commentCount, $url, $comments);
+        }
         $this->mChapters[count($this->mChapters)-1]->Load();
         $this->mArchiveCount++;
     }
