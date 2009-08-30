@@ -1,4 +1,6 @@
 <?php
+require_once('conf.php');
+require_once('recaptchalib.php');
 require_once('htmlvalidator.php');
 
 class Commentator
@@ -8,7 +10,8 @@ class Commentator
     var $mName;
     var $mEmail;
     var $mHomepage;
-    var $mSpam;
+    var $mRcChallenge;
+    var $mRcResponse;
     
     var $mError;
     
@@ -19,7 +22,8 @@ class Commentator
         $this->mName = trim($request['name']);
         $this->mEmail = trim($request['email']);
         $this->mHomepage = trim($request['homepage']);
-        $this->mSpam = trim($request['spam']);
+        $this->mRcChallenge = $request['recaptcha_challenge_field'];
+        $this->mRcResponse = $request['recaptcha_response_field'];
     }
     
     function CheckName($name)
@@ -70,11 +74,17 @@ class Commentator
         return $err;
     }
     
-    function CheckSpam($spam)
+    function CheckSpam($challenge, $response)
     {
-        if (! (preg_match("/^ *abrakadabra *$/i", $spam) || preg_match("/^ *see +pole +spämm *$/i", $spam)) )
+        $resp = recaptcha_check_answer(
+            RECAPTCHA_PRIVATE_KEY,
+            $_SERVER["REMOTE_ADDR"],
+            $challenge,
+            $response
+        );
+        if (!$resp->is_valid)
         {
-            $err.= "<p>Teil on korrektselt täitmata spämmi-vastane lahter.</p>";
+            $err = "<p>Teil on korrektselt täitmata reCAPTCHA spämmi-vastane lahter.</p>";
         }
         return $err;
     }
@@ -84,7 +94,7 @@ class Commentator
         $err.=$this->CheckName($this->mName);
         $err.=$this->CheckHomepage($this->mHomepage);
         $err.=$this->CheckEmail($this->mEmail);
-        $err.=$this->CheckSpam($this->mSpam);
+        $err.=$this->CheckSpam($this->mRcChallenge, $this->mRcResponse);
         $this->mError.= $err;
         return (strlen($err)==0);
     }

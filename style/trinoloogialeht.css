@@ -195,6 +195,8 @@ body {
 #kommentaarid p.input { position: relative }
 #kommentaarid p.input input { position: absolute; left: 100px; top: 0px }
 
+#recaptcha_area, #recaptcha_area div { margin-bottom: 0 }
+
 span.date { font-style: italic; color: gray; font-weight: normal }
 
 #sisu { max-width: 50em }
@@ -340,11 +342,11 @@ div.pilt span.nr, div.joonis span.nr, div.tabel span.nr {
 
 td.nr {text-align:right}
 
-table { border-collapse: collapse; margin: 0 auto; border: 1px solid #000 }
-td, th { border: 1px solid #000; padding: 0.2em 0.5em }
-thead { background: #ccc }
-thead th { text-align: center }
-th { text-align: left }
+.archive-chapter table { border-collapse: collapse; margin: 0 auto; border: 1px solid #000 }
+.archive-chapter td, .archive-chapter th { border: 1px solid #000; padding: 0.2em 0.5em }
+.archive-chapter thead { background: #ccc }
+.archive-chapter thead th { text-align: center }
+.archive-chapter th { text-align: left }
 
 
 /* muukeelne tekst */

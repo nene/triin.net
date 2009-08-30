@@ -219,6 +219,11 @@ EOHTML;
         return str_replace('~','',UrlVars::real2url($this->mTitle));
     }
     
+    function GetClass()
+    {
+        return "archive-chapter";
+    }
+    
     
     /* Private: */
     

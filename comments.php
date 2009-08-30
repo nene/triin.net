@@ -1,5 +1,7 @@
 <?php
-
+require_once("conf.php");
+require_once('recaptchalib.php');
+  
 class Comments
 {
     var $mContent;
@@ -57,7 +59,8 @@ EOHTML;
 
     
     function GetCommentForm()
-    {    
+    {
+        $reCAPTCHA = recaptcha_get_html(RECAPTCHA_PUBLIC_KEY);
 return <<<EOHTML
 <form action="/comment.php" method="post" id="commentform">
 <h1>Lausu oma mõtteid</h1>
@@ -74,12 +77,10 @@ aadress on valikulised, kusjuures e-posti aadressi
 lehele üles ei panda - see on vaid selleks, kui te
 kohe mitte ilma selle lisamiseta ei saa.
 </p>
-<p>
-  Et võidelda spämmiga, palun sisesta siia lahtrisse tekst "see pole spämm",
-  <span lang="en">(to fight spam, please enter text "abrakadabra")</span>:
-  <input type="text" name="spam" value="{$this->mForm[spam]}" />
-</p>
 <p><textarea rows="20" cols="50" name="comment">{$this->mForm[comment]}</textarea></p>
+<p>Et võidelda spämmiga, tõesta, et oled inimene
+  <span lang="en">(to fight spam, prove that you are human being)</span>:</p>
+$reCAPTCHA
 <p><input type="submit" name="submit" value="Ütle!" />
 <input type="submit" name="submit" value="Eelvaade" />
 <input type="hidden" name="id" value="{$this->mArticleId}" /></p>
@@ -141,6 +142,11 @@ EOHTML;
     function GetId()
     {
         return "kommentaarid";
+    }
+
+    function GetClass()
+    {
+        return "comments-chapter";
     }
 
     function GetLanguage()

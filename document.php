@@ -170,9 +170,10 @@ class Document
             {
                 $lang = $this->mChapters[$i]->GetLanguage();
                 $id = $this->mChapters[$i]->GetId();
+                $class = $this->mChapters[$i]->GetClass();
                 $content = $this->mChapters[$i]->GetContent();
                 echo <<<EOHTML
-<div class="peatykk" id="$id" lang="$lang" xml:lang="$lang">
+<div class="peatykk $class" id="$id" lang="$lang" xml:lang="$lang">
 $content
 </div>
 EOHTML;

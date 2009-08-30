@@ -9,4 +9,9 @@ define("DB_PASS", "");
 define("ADMIN_USER", "");
 // MD5 hash of admin password
 define("ADMIN_PASS", "");
+
+// reCAPTCHA keys
+define("RECAPTCHA_PUBLIC_KEY", "");
+define("RECAPTCHA_PRIVATE_KEY", "");
+
 ?>

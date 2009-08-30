@@ -23,6 +23,11 @@ class Chapter
         return $this->mId;
     }
 
+    function GetClass()
+    {
+        return "basic-chapter";
+    }
+    
     function GetLanguage()
     {
         return $this->mLang;
