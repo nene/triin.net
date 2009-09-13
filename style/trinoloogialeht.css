@@ -303,6 +303,13 @@ span.date { font-style: italic; color: gray; font-weight: normal }
     text-decoration: line-through;
 }
 
+/* kood */
+#sisu pre {
+    border-left: 2px solid #3366CC;
+    padding-left: 1em;
+    background: #eee;
+}
+
 
 
 /* pildid, joonised ja tabelid */
@@ -342,12 +349,11 @@ div.pilt span.nr, div.joonis span.nr, div.tabel span.nr {
 
 td.nr {text-align:right}
 
-.archive-chapter table { border-collapse: collapse; margin: 0 auto; border: 1px solid #000 }
-.archive-chapter td, .archive-chapter th { border: 1px solid #000; padding: 0.2em 0.5em }
-.archive-chapter thead { background: #ccc }
-.archive-chapter thead th { text-align: center }
-.archive-chapter th { text-align: left }
-
+#sisu table { border-collapse: collapse; margin: 0 auto; border: 1px solid #000 }
+#sisu td, #sisu th { border: 1px solid #000; padding: 0.2em 0.5em }
+#sisu thead { background: #ccc }
+#sisu thead th { text-align: center }
+#sisu th { text-align: left }
 
 /* muukeelne tekst */
 
@@ -377,3 +383,4 @@ fieldset {
 fieldset ul li{
     list-style:none;
 }
+
