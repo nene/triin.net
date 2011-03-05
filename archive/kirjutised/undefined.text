@@ -1,0 +1,140 @@
+2010-01-27
+Undefined
+=========
+
+Every now and then [some][1] [people][2] will come out and say, that
+you shouldn't use the keyword `undefined` in your JavaScript code.
+Because `undefined` isn't actually a real keyword, just a global
+variable.  So while the following code might seem to work:
+
+    var message;
+    if (message === undefined) {
+      message = "Hello";
+    }
+    alert(message);  // prints Hello
+
+It can easily fail when somebody happens to assign some value to
+`undefined`:
+
+    var undefined = "blah";
+    ...
+    var message;
+    if (message === undefined) {
+      message = "Hello";
+    }
+    alert(message);  // prints undefined
+
+Therefore it's safer to use the `typeof` operator to check for
+undefined:
+    
+    var undefined = "blah";
+    ...
+    var message;
+    if (typeof message === "undefined") {
+      message = "Hello";
+    }
+    alert(message);  // prints Hello
+    
+Or something like that the argument goes... but I don't buy it.
+
+
+## typeof is not a solution
+
+The often-suggested solution to use `typeof` operator isn't really the
+same as comparing to `undefined`:
+
+    var foo;
+    alert(foo === undefined); // true
+    alert(typeof foo === "undefined"); // true
+    
+    alert(bar === undefined); // ERROR!
+    alert(typeof bar === "undefined"); // true
+
+The `typeof` operator will return `"undefined"` also when the variable
+itself is not even declared.  This can be useful in some situations,
+but most of the time you would instead like to know when you are
+mistakenly trying to access an undeclared variable - using `typeof`
+will hide those errors from you.
+
+
+## It's going to be hard without using undefined
+
+Sometimes you really are better off without using `undefined`.  The
+code example at the beginning of this post would be better written
+without no comparison at all:
+
+    var message;
+    if (message) {
+      message = "Hello";
+    }
+    alert(message);  // prints Hello
+
+But sometimes it's really-really hard to not use `undefined`:
+
+    var person = {
+      name: undefined,
+      age: undefined
+    };
+
+How would you construct this object without using `undefined`?  Here
+the `person` object contains two properties that just don't happen to
+have a value.  Not to be confused with empty object, which doesn't
+even have the keys:
+
+    var person2 = {};
+    
+    alert(name in person); // prints true
+    alert(name in person2); // prints false
+
+One way to achieve this is to exploit the fact that empty function
+always returns undefined:
+
+    var person = {
+      name: (function(){})(),
+      age: (function(){})()
+    };
+
+That's clearly undefined-free, but it's also the kind of code that
+might make you wanna run away screaming.
+
+A better approach is to define your own local undefined variable:
+
+    (function(){
+      var undefined;
+      
+      var person = {
+        name: undefined,
+        age: undefined
+      };
+    })();
+
+Here the local `undefined` shadows whatever the value of `undefined`
+happens to be outside the closure.  That's just as readable as using
+global `undefined`, plus it has a nice side-effect, that when you run
+your code through a minimizer, the lenghty `undefined` will be
+replaced by something like `a`, saving you precious bytes:
+
+    (function(){var a;var person={name:a,age:a}})()
+
+
+## Thou shalt not mess with undefined
+
+But in reality there is no reason for anyone to change the value of
+`undefined`.  And when somebody mistakenly changes it, then it should
+be OK that their program comes crashing down as loudly as possible, so
+they can go and fix their mistake.
+
+JavaScript makes it possible to redeclare many global variables - just
+because it is possible for somebody to declare `alert = "foo"` doesn't
+mean that you shouldn't use `alert` in your code.  It's the same with
+`undefined`.
+
+Many well-known JavaScript libraries (e.g. [Prototype][3], [Dojo][4])
+make the assumption that people don't mess with `undefined` - so
+should you.
+
+
+[1]: http://constc.blogspot.com/2008/07/undeclared-undefined-null-in-javascript.html
+[2]: http://www.sitepoint.com/blogs/2009/11/12/google-closure-how-not-to-write-javascript/
+[3]: http://www.prototypejs.org/
+[4]: http://www.dojotoolkit.org/

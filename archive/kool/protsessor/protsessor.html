@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Protsessor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<base href="http://www.triin.net/archive/kool/protsessor/" />
+<link rel="stylesheet" type="text/css" href="protsessor.css" />
+</head>
+<body>
+
+<h1>Protsessor</h1>
+
+<p>Kõik protsessorid, nii erinevad kui nad ka poleks, töötavad ühtel 
+ja samal üldisel põhimõttel. Selleks üldiseks aluseks on kahendloogika.</p>
+
+<h2>Kahendloogika</h2>
+
+<p>Ühtede ja nullide esitamiseks on kasutusel kahte erinevat pinget:
+tavaliselt 0V ning +5V (vastavalt 0 ja 1 tähistuses).
+Põhiliseks ehituskiviks protsessoris on erinevad loogikaväravad (gates),
+mis sooritavad erinevaid loogikatehteid, õigupoolest kõiki tehteid,
+mida üldse arvuti sooritada suudab. Ühte väravasse suubuvad üks või
+kaks juhet ning väljub üks juhe. </p>
+
+<p>Näiteks inverter on värav, kuhu suubub üks juhe (joonis 1).</p>
+
+<div id="joonis1">
+<img src="not.png" alt="inverter" />
+</div>
+
+<p>Kui A on 0, siis Q on 1 ning kui A on 1 siis Q on 0 (tegelikult muidugi
+vastavad pinged +5V ja 0V, kuid lihtsuse huvides räägime edaspidi nullidest
+ja ühtedest.</p>
+
+<p>Näiteks kahe sisendiga väravast võiks olla NAND värav (lühend sõnadest NOT AND)
+(joonis 2):</p>
+
+<div id="joonis2">
+<img src="nand.png" alt="NAND värav" />
+</div>
+
+<p>NAND värava puhul saab Q väärtuseks 0, kui A ja B mõlemad on 1-ed, muudel juhtudel
+on Q väärtuseks 1.</p>
+
+<p>Sarnaste väravatega võib koostada ka kõikvõimalikud ülejäänud loogikatehted nagu
+AND, OR, NOR, NAND, XOR, XNOR ja NOT. Tegelikult saab NAND ja NOR väravate abil 
+konstrueerida kõik teised väravad. Näiteks on lihtne konstrueerida NAND värava
+abil inverter (joonis 3):</p>
+
+<div id="joonis3">
+<img src="not_with_nand.png" alt="NOT kasutades NAND-i" />
+</div>
+
+<p>Baasväravatest/tehetest saab edasi konstrueerida juba mitmesuguseid elektriskeeme, 
+mis juba midagi märksa enamat teevad. Näiteks liitjad (adder), mis liidavad kaks
+arvu ning nn. flip-flop-id, mis suudavad "meelde jätta" ühe biti.</p>
+
+
+<h2>Väravad päriselus</h2>
+
+<p>Kuidas aga ehitada selliseid kahend-väravaid ka reaalselt?</p>
+
+<p>Kõige lihtsam moodus, millega alustesid ka esimeste loogikaskeemide ehitajad,
+on kasutada releesid (elektromagneteid). Väga lihtsalt saame ehitada näiteks
+inverteri (joonis 4):</p>
+
+<div id="joonis4">
+<img src="inverter.png" alt="inverter" />
+</div>
+ 
+<p>Jooniselt on näha, et kui juhtmes A on pinge 0V, siis magnet ei hakka
+tööle ning Q-sse jõuab pinge +5V, kui aga juhtmes A on pinge, siis 
+hakkab magnet tööle ning katkestab voolu jõudmise väljundisse Q.</p>
+
+<p>Analoogselt saab implementeerida ka AND, OR ja kõiki teisi väravaid.
+Releede kasutamisest loobuti arvutite loomisel kiiresti ning võeti
+kasutusele lambid. Kuid ka lambid polnud eriti efektiivsed ning
+seetõttu kasutatakse tänapäeval protsessorites imetillukesi ja
+imeväikse voolutarbega transistoreid.</p>
+
+
+<h2>Protsessori ülesehitus</h2>
+
+<p>Protsessori õlul lasuvad peamiselt kaht liiki ülesanded: info
+liigutamine mälu ja protsessori vahel ning selle info töötlemine.</p>
+
+
+<h3>Kell</h3>
+
+<p>Süsteemne kell dikteerib protsessori taktsageduse ja määrab
+sellega osaliselt viimase töökiiruse. Kella töö on äärmiselt lihtne:
+kindlate ajavahemike tagant vahetatakse protsessorile antavat
+pinget 0V, 5V, 0V, 5V jne jne... Kell on protsessori töötamiseks
+fundamentaalse tähtsusega, võimaldades protsessoril täita
+kordamööda erinevaid operatsioone - ilma kellata saaks protsessor
+hakkama vaid ühe tehtega.</p>
+
+
+<h3>Siinid</h3>
+
+<p>Info liigutamiseks on protsessor ühendatud mäluga läbi
+siinide. Peamised siinid on andmesiin (data bus) ning aadressi siin
+(address bus). Aadressi siinile pannakse mäluaadress, mille poole
+protsessor pöördub ning andmesiinile informatsioon, mida saadetakse.
+Lisaks on väike ühebitine siin, mis määrab, kas andmeid loetakse
+mälust või kirjutatakse sinna.</p>
+
+
+<h3>Registrid</h3>
+
+<p>Kui info jõuab mälust protsessorisse, siis ei lähe ta otsekohe töötlemisele
+vaid kirjutatakse esmalt registrisse. Registrid on protsessori kiibil
+paiknevad erilised mälupesad, mis koosnevad eelpool mainitud flip-floppidest
+ja töötavad protsessoriga samal
+taktsagedusel - olles seega kõige kiiremad info talletamise paigad.
+(Registrite mälu kutsutakse tihti zero-wait-state memory-ks, rõhutamaks
+selle erinevust harilikust mälust, mis töötab protsessorist hulka
+aeglasemalt ja mille järgi viimane tihti ootama peab.)</p>
+
+<p>Registrid jagunevad üldkasutatavateks (need millele näiteks programmeerija
+oma programmiga ligi pääseb) ning spetsiaalseteks, mis hoolitsevad süsteemi
+toimimise eest. Nii näiteks ühel lihtsustatud x86 protsessoril on
+4 üldkasutatavat registrit AX, BX,
+CX ja DX ning süsteemseteks registriteks on IP (Instruction Pointer), kus
+hoitakse järgmise instruktsiooni mäluaadressi ning Flags register, kus
+on kirjas mitmesugused süsteemsed staatused (lipud), teiste seas näiteks
+eelmise võrdlustehte tulemus.</p>
+
+
+<h3>Täis- ja ujukomaarvudega arvutused</h3>
+
+<p>Lisaks registritele on ühes korralikus protsessoris kindlasti ka osa,
+mis tegeleb arvutamisega. Päris kindlasti on olemas täisarvudega
+arvutuste tegemise moodul, aga praktiliselt kõigil tänapäeva 
+protsessoritel on ka integreeritud ujukomaarvudega opereerimise moodul
+(FPU - Floating Point Unit). Vanematel protsessoritel polnud see
+sugugi alati nõnda. Esialgu tuli teha reaalarvulisi arvutusi kasutades
+harilikku täisarvumoodulit, sellised arvutused pole aga kaugeltki kiired.
+Edasi võeti kasutusele eraldiseisev lisaprotsessor nn. Math-coprocessor
+ehk matemaatikaprotsessor.</p>
+
+
+<h3>Dekooder</h3>
+
+<p>Kui lisada eelpoolmainitutele ka instruktsioonide dekodeerimisega
+tegelev moodul, siis saamegi juba midagi töötava protsessori taolist.
+Dekooder, nagu nimigi arvata võib, dekodeerib instruktsioonid ja "ütleb"
+protsessorile, mida ta tegema peab.</p>
+
+
+<h3>Kontroll-moodul</h3>
+
+<p>Protsessor juhib arvuti tööd, aga protsessori tööd juhib omakorda
+protsessori sisene kontroll-moodul (control unit). Selle ülesanne
+on organiseerida, et kõik toimuks korrapäraselt - dekodeerimine, andmete
+lugemine, arvutamine ja salvestamine. Kontroll-moodul juhib kõiki
+teisi protsessori osasid.</p>
+
+
+<h3>Puhvrid</h3>
+
+<p>Nagu juba mainitud, on protsessori vaatevinklist mälu alati ääretult aeglane,
+aga suure osa protsessori tegevusest muudustab mälusse kirjutamine ning
+sealt lugemine. Niiviisi peab protsessor pidevalt mälu järgi ootama.
+Programmidel on aga tendents kasutada korduvalt ühtesid ja samu mäluaadresse.</p>
+ 
+<p>Kujutage ette raamatukoguhoidjat, kes töötab raamatukogus, kus on 1000
+erinevat köidet. Raamatukogust võidakse küsida suvalist raamatut ning siis
+kaob too isik pikaks ajaks riiulite vahele ning väljub lõpuks koos soovitud
+eksemplariga. Mõned raamatud on aga populaarsemad kui teised ning saab
+selgeks, et pole mõtet viia alati raamatut kohe tagasi tema esialgsele kohale,
+kui juba järgmine külastaja suure tõenäosusega sedasama raamatut soovib.
+Niiviisi moodustab raamatukoguhoidja endale väikese riiuli, kuhu paneb alguses
+kõik tagastatud raamatud, et neid oleks vajadusel sealt jälle hea ja kerge võtta.</p>
+
+<p>Samamoodi toimivad ka protsessori puhvrid. Protsessori "lähedal" asub väikene
+hulk mälu, kus talletatakse viimati kasutatud andmed. Kui protsessor saab
+instruktsiooni lugeda registrisse AX bait aadressilt 234, siis ei pöördu
+ta kohe mälu poole vaid "küsib" alguses puhvrist, ega sellel aadressil asuv
+bait juba seal olemas pole ning alles siis, kui puhvris soovitud andmed
+puuduvad, pöördutakse mälu poole.</p>
+
+<p>Tänapäeaval kasutavad protsessorid reeglina koguni kahte puhvrit (primary
+cache ja secondary cache), millest esimene on väiksem ja kiirem ning teine
+natukene suurem ja aeglasem. Sellisel juhul pöördub protsessor alguses
+primaarse puhvri poole, siis teise puhvri poole ning alles seejärel mälu
+juurde.</p>
+
+
+
+<h2>Iseloomulikud parameetrid</h2>
+
+<p>Kõige olulisem protsessori omadus on tema töökiirus ehk see, kui
+palju instruktsioone ta suudab ühe ajaühiku jooksul täita. Kaks olulist
+komponenti, mis määravad töökiiruse on:</p>
+
+<ol>
+<li>protsessori taktsagedus (mõõdetakse Hertsides)</li>
+<li>protsessori arhitektuur (praktiliselt mittemõõdetav)</li>
+</ol>
+
+
+<h3>Taktsagedus</h3>
+
+<p>Taktsagedusega on lihtne, kui protsessoritel on sama arhitektuur, siis
+kõrgema taktsagedusega protsessor on kiirem. Siinkohal ei tohi segamini
+ajada protsessori töökiirust ja süsteemi töökiirust. Kui 2 GHz taktsagedusega protsessor
+on kaks korda kiirem kui sarnane 1 GHz taktsagedusega protsessor, siis
+praktiliselt mitte kunagi ei muutu arvuti kaks korda kiiremaks vaid 
+sellest, kui vahetada välja vaid protsessor topelt kiirema vastu, sest
+kiirusvõit võib kahaneda nullilähedaseks, kui mälu on protsessoriga
+võrreldes väga aeglane ning kiire protsessor peab lihtsalt endamuse ajast
+mälu järele ootama.</p>
+
+<p>Tihtipeale tähtsustatakse protsessori taktsagedust ka liialt üle, sest
+idee poolest ju kiirema taktsagedusega protsessor teeb oma tööd kiiremini,
+aga näiteks AMD protsessorid töötavad üldiselt madalamal sagedusel kui
+sama kiired Inteli protsessorid.</p> 
+
+
+<h3>Arhitektuur</h3>
+
+<p>Arhitektuuriga on märksa keerukamad lood.</p> 
+
+<p>Esmalt võib arhitektuuri järgi jagada
+protsessorid perekondadesse: x86, SPARC, PowerPC, MIPS jpt. Perekondadevahelised
+erinevused on alati piisavalt suured selleks, et sama tarkvara ilma
+ümberkompileerimata erinevate arhitektuuride peal ei jookse. Tihtipeale
+pole abi ka lihtsast ümberkompileerimisest ja programme tuleb vastava süsteemi
+tarbeks spetsiaalselt kohandada.</p>
+
+<p>Aga ka ühe arhitektuuri siseselt võivad olla suured probleemid ühildavusega.
+Eeskätt on see teada-tuntud kõige levinuma x86 perekonna koha pealt, millel
+on vanust juba oma 20 aastat ning esimesed protsessorid olid 16 bitised. 32
+bitistele sama perekonna protsessoritele kirjutatud programm 16 bitisel
+protsessoril aga ei jookse. Üldiselt dikteerib kasutatav tarkvara, millise
+perekonna arhitektuuriga protsessori me endale ostame.</p>
+
+<p>Teine, märksa selgem, tunnus arhitektuuri juures on registrite suurus.
+Kui räägitakse 8, 16, 32 jne bitistest protsessoritest, siis peataksegi silmas
+registrite suurust. Registrite suurus määrab, kui suurte arvudega protsessor
+suudab kiireid arvutusi teha. Reeglina on ka 16 bitine protsessor võimeline ka
+näiteks 32 bitiste arvudega arvutama, aga teeb seda tunduvalt aeglasemini kui
+32 bitine protsessor. Ka 64 bitine protsessor suudab loomulikult 32 bitiste
+arvudega arvutada, kuid jällegi on see aeglasem kui 64 bitiste puhul, õnneks
+sugugi mitte nii aeglane kui 16 bitine masin.</p> 
+
+<p>Loomulikult vajavad näiteks 32 ja 64 bitine protsessor ka just neile mõeldud
+emaplaati ja mälu.</p>
+
+
+<h3>CISC ja RISC</h3>
+
+<p>ON kaks erinevat suunda protsessorite instruktsioonide kodeerimiseks:</p>
+
+<ul>
+<li><strong>CISC</strong> - (Complex Instruction Set Computer) selline
+protsessor võib ühe instruktsiooni raames teha mitu erinevat mikrooperatsiooni.
+CISC protsessorile kirjutatud programmid on mahult väiksemad ning ühtlasi
+on neid masinkoodis ka suhteliselt lihtne kirjutada.</li>
+<li><strong>RISC</strong> - (Reduced Instruction Set Computer) selline
+protsessor aga toimetabki üksnes võimalikult lihtsate mikrooperatsioonidega.
+RISC protsessorile kirjutatud programmid vajavad rohkem mälu, sest kõik
+mikrooperatsioonid tuleb eraldi kirja panna, ühtlasi on selliseid programme
+masinkoodis ka raskem kirjutada kui CISC-le.</li>
+</ul>
+
+<p>Omal ajal oli mälu kokkuhoid väga terav teema ning protsessorite loojad
+üritasid ka oma protsessoreid hõlpsamini programmeeritavaks muuta tuues sisse
+mitmesuguseid kõrgema taseme operatsioone. Aja jooksul sai aga selgeks, et
+aeg mida protsessorid kulutasid keerukate CISC instruktsioonide tõlkimiseks
+polnud seda vaeva väärt. Selleks ajaks oli aga näiteks Inteli x86 perekond
+ennast CISC-i külge aheldanud. Nõnda ongi läinud nii, et uuemad x86 protsessorid,
+nagu näiteks Pentium 4, on oma sisemuses tegelikult RISC arhitektuuriga, ning
+protsessorile antavad CISC käsud tõlgitakse sobivateks RISC instruktsioonideks.</p>
+
+
+<h3>MIPSid ja FLOPSid</h3>
+
+<p>Märksa konkreetsemad kiiruse mõõtühikud kui taktsagedus, on see, kui palju
+operatsioone protsessor suudab ajaühikus täita. Sellise mõõtmise tulemused
+sõltuvad muidugi rangelt arhitektuurist (eelkõige protsessori instruktsioonidest
+(instruction-set)). Kasutusel on kaks mõõtu:</p>
+
+<ul>
+<li><strong>MIPS</strong> - (Million Instructions Per Second - miljonit instruktsiooni sekundis)
+Kirjeldab, kui palju operatsioone täisarvudega suudab protsessor sekundis täita.
+Intelil näiteks on 4004 protsessor 0.06 MIPS ning Pentium 4 protsessor kuni 11000 MIPS.</li>
+<li><strong>FLOPS</strong> - (FLoating-point Operations Per Second - Ujukomaarvutusi sekundis)
+Erinevalt MIPS-ist väljendab protsessori jõudlust ujukomaarvutuste teostamisel.</li>
+</ul>
+
+<p>FLOPS-e kasutatakse rohkem teadusarvutite võrdlemisel (näiteks koostatakse nende
+põhjal Superarvutite edetabeleid), harilike personaalarvutite puhul pole see näitaja
+niivõrd oluline - märksa olulisem on nende puhul MIPS-ide hulk.</p>
+
+
+<h3>Protsessorite võimekuse testimine</h3>
+
+<p>Üldiselt annavad parima võrdluse erinevate protsessorite kiirusest ja võimekusest
+mitmesugused jõudlustestid (benchmark). Samas mõõdavad erinevad jõudlustestid
+erinevaid parameetreid, ning protsessor, mis tõuseb esimeseks täisarvudega
+arvutamises langeb viimaseks ujukomaarikmeetikas. Siinkohal tuleb muidugi vaadata,
+millist protsessorit tegelikult vajatakse - ujukomaarvutused leiavad massiivset
+kasutamist mitmesugustes multimeediaprogrammides, märksa väheb aga harilikus 
+kontoritarkvaras.</p>
+
+
+<h2>Protsessoritootjad</h2>
+
+<h3>Intel</h3>
+
+<p>Intel on kõige suurem protsessoritootja ning ühtlasi ka kõige esimese
+protsessori looja. Selleks oli Intel 4004, mis suutis vaid liita ja lahutada
+ning sedagi kõigest 4 bitiga. Kuid ometi oli tolle aja kohta hämmastav, et
+kõik see keerukas tehnoloogia asus ühel kiibil. See esimene kiip valmis
+1971 aastal.</p>
+
+<p>Edasi järgnesid juba mitmed märksa populaarsemad protsessorid: 8080, 8086, 
+80286, 80386, 80486, Pentium, P Pro, PII, PIII, P4, Celeron (mõeldud väiksema
+vajadusega masinatele, eelkõige sülearvuteile), Itanium (64 bitine).</p>
+
+<p>Vahepeal praktiliselt ainuvalitses Intel PC protsessoriturgu. Nüüd on aga
+tema praktiliselt ainsaks konkurendiks tõusnud AMD.</p>  
+
+<h3>AMD</h3>
+
+<p>Advanced Microdevices Inc. alustas oma protsessoritootja teekonda sellega,
+et tagurpidi-arendas (reverse-engineered) Inteli 8080 protsessori. Esimene
+AMD päris oma protsessor oli K5, mis loodi võistlemaks Inteli Pentium protsessoriga.
+Järgnesid K6, K6-2, k6-III, Athlon, Duron (samalaadne ideoloogia Inteli Celeroniga).
+AMD praegune põhistrateegia on 64-bitised protsessorid (AMD64, Opteron, Athlon 64)
+mille osas ta tugevasti konkureerib Inteliga.</p>
+
+<h3>Cyrix</h3>
+
+<p>Cyrix alustas Inteli 386 ja 486 protsessoreid matkivate toodetega 486SLC ja
+486DLC. Cyrix konkureeris Intel Pentiumi ning AMD protsessoritega. Cyrixi eluiga
+jäi lühikeseks, ent ometi suutis ta oma odavate protsessoritega sundida Inteli
+turule paiskama oma odavama Celeroni perekonna.</p> 
+
+<h2>Bibliograafia</h2>
+
+<ul>
+<li><a href="http://pcguide.com/">PC Guide</a> > 
+    <a href="http://pcguide.com/ref/index.htm">Reference Guide</a> > 
+        <a href="http://pcguide.com/ref/cpu/index.htm">The Processor</a></li>
+<li><a href="http://www.howstuffworks.com">How Stuff Works</a> > 
+    <a href="http://computer.howstuffworks.com/microprocessor.htm">How Microprocessors Work</a> Marshall Brain</li>
+<li><a href="http://www.howstuffworks.com">How Stuff Works</a> > 
+    <a href="http://computer.howstuffworks.com/boolean.htm">How Boolean Logic Works</a> Marshall Brain</li>
+<li><a href="http://www.howstuffworks.com">How Stuff Works</a> > 
+    <a href="http://electronics.howstuffworks.com/digital-electronics.htm">How Electronic Gates Work</a> Marshall Brain</li>
+<li><a href="http://webster.cs.ucr.edu/AoA/DOS/">Art of Assembly Language Programming and HLA</a> Randall Hyde</li>
+<li><a href="http://en.wikipedia.org">Wikipedia</a></li>
+</ul>
+
+</body>
+</html>

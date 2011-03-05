@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Validating sites of W3C members</title>
+<link rel="stylesheet" type="text/css" href="http://www.triin.net/style/trinoloogialeht.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Survey on the websites of W3C members" />
+<meta name="keywords" content="validation, standards, CSS, HTML, W3C, encodings" />
+<meta name="date" content="2005-03-04" />
+</head>
+<body>
+
+
+<h1>Validating sites of <abbr title="World Wide Web Consortium">W3C</abbr> members</h1>
+
+<h2>Table of Contents</h2>
+
+<ul>
+<li><a href="#four-years-ago">Four years ago...</a></li>
+<li><a href="#has-anything-changed-since-then">Has anything changed since then?</a></li>
+<li><a href="#list-of-valid-sites">List of valid sites</a></li>
+<li><a href="#a-bit-more-statistics">A bit more statistics</a>
+<ul>
+<li><a href="#doctypes">Doctypes</a></li>
+<li><a href="#character-encodings">Character encodings</a></li>
+</ul></li>
+<li><a href="#last-words">Last words</a></li>
+</ul>
+
+
+<h2 id="four-years-ago">Four years ago...</h2>
+
+<p>In 22th of February 2002 <a href="http://www.markokarppinen.com"
+title="The homepage of Marko Karppinen">Marko Karppinen</a> performed
+<a href="http://www.markokarppinen.com/20020222.html">a validation-survey
+on the websites of W3C members</a>. As he said:</p>
+
+<blockquote cite="http://www.markokarppinen.com/20020222.html"><p>it would
+be understandable to assume that the w3c member organizations are on the
+forefront of web standardization efforts.</p></blockquote>
+
+<p>But sadly it turned out, that only <strong>18</strong> sites out of 506
+were using valid <abbr title="Hypertext Markup Language">HTML</abbr>.</p>
+
+<h2 id="has-anything-changed-since-then">Has anything changed since then?</h2>
+
+<p>Obviously I grabbed the opportunity to repeat he’s experiment, and
+performed a validation of all the websites of W3C members. (Which was
+an easy task, as I had my mass-validation scripts left over from previous
+investigations.)</p>
+
+<p>Today W3C has 401 members (interestingly that’s much fewer than about
+500 members they had at 2002). Out of those, 397 had a website (at least
+a one mentioned in <a href="http://www.w3.org/Consortium/Member/List">W3C
+members list</a>). The script was unable to validate 45 of those sites
+for various reasons (the main one being an <code>&lt;meta http-equiv="redirect"</code>
+used in HTML - a damn stupid script, I know). So, 352 sites remained.</p>
+
+<p>And here are the results of validating those compared to the results
+of Marko Karppinen at 2002:</p>
+
+<table summary="This table compares the number and percentage of invalid,
+valid and tentatively valid pages of the W3C members websites from year 2002 to
+the data from year 2006">
+<caption>Comparison of validity of W3C members sites at 2002 to 2006</caption>
+<thead>
+<tr><th rowspan="2">Result</th><th colspan="2">2002 survey</th><th colspan="2">2006 survey</th></tr>
+<tr><th>nr of pages</th><th>percentage</th><th>nr of pages</th><th>percentage</th></tr>
+</thead>
+<tbody>
+<tr><td>Not valid</td><td class="nr">488</td><td class="nr">96%</td><td class="nr">286</td><td class="nr">81%</td></tr>
+<tr><td>Valid</td><td class="nr">18</td><td class="nr">4%</td><td class="nr">61</td><td class="nr">17%</td></tr>
+<tr><td>Tentatively valid</td><td class="nr">0</td><td class="nr">0%</td><td class="nr">5</td><td class="nr">2%</td></tr>
+</tbody>
+</table>
+
+<p>As seen from above, the W3C members are clearly getting better at
+producing valid websites. There are <strong>13% more valid websites</strong>
+then there were at 2002. And it’s not only percentages: at 2002 there were
+43 valid pages less than it is today.</p>
+
+<p>On the sad side: <strong>over 80% of the W3C members still have an invalid
+website</strong>. And these are the members of organisation who’s mission is:</p>
+
+<blockquote cite="http://www.w3.org/Consortium/"><p>To lead the World Wide Web to
+its full potential by developing protocols and guidelines that ensure long-term
+growth for the Web.</p></blockquote>
+
+<h2 id="list-of-valid-sites">List of valid sites</h2>
+
+<p>Here’s a list of all those members who’s website was found to be using valid HTML.
+Note, that only three of those had a valid site back in 2002.</p>
+
+<ul>
+<li><a href="http://www.adobe.com/">Adobe Systems Inc.</a></li>
+<li><a href="http://www.altova.com">Altova GmbH</a></li>
+<li><a href="http://www.ameinfo.com">AME Info FZ LLC</a></li>
+<li><a href="http://www.antennahouse.com">Antenna House, Inc.</a></li>
+<li><a href="http://www.zaragoza.es">Ayuntamiento de Zaragoza</a></li>
+<li><a href="http://www.accessibility.nl">Bartimeus - Accessibility</a></li>
+<li><a href="http://www.cs.unibo.it">University of Bologna</a></li>
+<li><a href="http://www.brainstage.com">Brainstage Research, Inc.</a></li>
+<li><a href="http://www.cwi.nl/">CWI</a></li>
+<li><a href="http://www.ilearn.com.br">Centro de Treinamento iLearn</a></li>
+<li><a href="http://www.cineca.it">CINECA</a></li>
+<li><a href="http://www.cclrc.ac.uk/">Council for the Central Laboratory of the Research Councils (CCL)</a></li>
+<li><a href="http://www.crimsonlogic.com">CrimsonLogic</a></li>
+<li><a href="http://www.csi.it">CSI-Piemonte</a></li>
+<li><a href="http://www.csiro.au">CSIRO</a></li>
+<li><a href="http://www.deri.ie/">DERI Galway at the National University of Ireland, Galway, Ireland</a></li>
+<li><a href="http://www.deri.at/">DERI Innsbruck at the Leopold-Franzens-Universit&auml;t Innsbruck, Austria</a></li>
+<li><a href="http://www.dispal.com">Dispal Astur S.A.</a></li>
+<li><a href="http://www.eds.com">Electronic Data Systems (EDS)</a></li>
+<li><a href="http://www.xfsi.com">Extensible Formatting Systems, Inc</a></li>
+<li><a href="http://www.fundacionctic.org">Fundaci&oacute;n CTIC (Centro Tecnol&oacute;gico para el Desarrollo en Asturias de las Tecnolog&iacute;as de la Informaci&oacute;n y la Comunicaci&oacute;n)</a></li>
+<li><a href="http://www.grupointermark.com">Grupointermark 96, S.L.</a></li>
+<li><a href="http://www.hitachi.co.jp/">Hitachi, Ltd.</a></li>
+<li><a href="http://www.cs.ust.hk/">Hong Kong University of Science &amp; Technology (HKUST)</a></li>
+<li><a href="http://www.image.ntua.gr">Image, Video and Multimedia Systems Lab (IVML-NTUA)</a></li>
+<li><a href="http://www.infopark.com/">Infopark AG</a></li>
+<li><a href="http://www.inria.fr/">Institut National de Recherche en Informatique et en Automatique (INRIA)</a></li>
+<li><a href="http://www.hwg.org">International Webmasters Association / HTML Writers Guild (IWA-HWG)</a></li>
+<li><a href="http://www.icra.org">Internet Content Rating Association</a></li>
+<li><a href="http://www.inventivedesigners.com">Inventive Designers n.v.</a></li>
+<li><a href="http://www.ivisgroup.com">Ivis Group Limited</a></li>
+<li><a href="http://www.ukoln.ac.uk/">Joint Info. Systems Comm. of the UK Higher Ed. Funding Council (JISC)</a> (also at 2002)</li>
+<li><a href="http://www.loc.gov">Library of Congress</a> (also at 2002)</li>
+<li><a href="http://www.lori-sa.com/">Lori Holdings S.A.</a></li>
+<li><a href="http://www.microsoft.com/">Microsoft Corporation</a></li>
+<li><a href="http://www.mindinformatics.org">MIND Center for Interdisciplinary Informatics</a></li>
+<li><a href="http://www.mitsue.co.jp/">Mitsue-Links Co., Ltd.</a></li>
+<li><a href="http://www.mozilla.org/">Mozilla Foundation</a></li>
+<li><a href="http://www.nrc.ca/cisti/">National Research Council Canada</a></li>
+<li><a href="http://www.novell.com/">Novell, Inc.</a></li>
+<li><a href="http://www.omg.org/">Object Management Group, Inc. (OMG)</a></li>
+<li><a href="http://www.open.ac.uk">The Open University</a></li>
+<li><a href="http://www.opera.com">Opera Software</a> (also at 2002)</li>
+<li><a href="http://www.origoservices.com">Origo Services Limited</a></li>
+<li><a href="http://www.pagewise.com">PageWise, Inc.</a></li>
+<li><a href="http://www.picoforms.com">PicoForms</a></li>
+<li><a href="http://www.pint.com">PINT, Inc. (Powell Internet)</a></li>
+<li><a href="http://www.palazzochigi.it">Presidenza del Consiglio dei Ministri</a></li>
+<li><a href="http://www.progeny.net">Progeny Systems</a></li>
+<li><a href="http://www.red.es">Entidad p&uacute;blica empresarial Red.es</a></li>
+<li><a href="http://rewerse.net">REWERSE</a></li>
+<li><a href="http://www.rulespace.com">RuleSpace, LLC</a></li>
+<li><a href="http://www.segala.com">Segala</a></li>
+<li><a href="http://www.serenataflowers.com">Serenata Flowers UK</a></li>
+<li><a href="http://www.sogei.it/">Sogei (Societa Generale D’Informatica)</a></li>
+<li><a href="http://www.top4office.com">Top4Office</a></li>
+<li><a href="http://www.csd.abdn.ac.uk">University of Aberdeen, Computing Science</a></li>
+<li><a href="http://www.kent.ac.uk/">University of Kent</a></li>
+<li><a href="http://www.sunderland.ac.uk">University of Sunderland</a></li>
+<li><a href="http://www.visionaustralia.org.au">Vision Australia</a></li>
+<li><a href="http://www.watchfire.com">Watchfire, Inc.</a></li>
+</ul>
+
+<h2 id="a-bit-more-statistics">A bit more statistics</h2>
+
+<p>I also gathered some information about doctypes and
+encodings used on the websites of W3C members.</p>
+
+<h3 id="doctypes">Doctypes</h3>
+
+<p>When we look at the set of invalid pages (because all valid pages
+<em>must</em> a doctype to be valid at the first place), then only 48%
+included a document type declaration. This is definitely more than
+<a href="/2005/04/27/Web_Standards_in_Estonia#document_types">my 2005 February survey</a>
+found on Estonian pages (35%), but definitely less, than you would
+expect from W3C members.</p>
+
+<table summary="This table lists different doctypes
+and the number of pages using one kind of doctype">
+<caption>Usage of doctypes by W3C members</caption>
+<thead>
+<tr><th>DOCTYPE</th><th>nr of pages</th></tr>
+</thead>
+<tbody>
+<tr><td>HTML 4.01 Transitional</td><td class="nr">100</td></tr>
+<tr><td>XHTML 1.0 Transitional</td><td class="nr">80</td></tr>
+<tr><td>HTML 4.0 Transitional</td><td class="nr">39</td></tr>
+<tr><td>XHTML 1.0 Strict</td><td class="nr">19</td></tr>
+<tr><td>XHTML 1.1</td><td class="nr">4</td></tr>
+<tr><td>HTML 4.01 Strict</td><td class="nr">3</td></tr>
+<tr><td>HTML 4.01 Frameset</td><td class="nr">2</td></tr>
+<tr><td>HTML 4.0 Strict</td><td class="nr">1</td></tr>
+<tr><td>-//W3C//Dtd HTML 4.01 Transitional//EN</td><td class="nr">1</td></tr>
+<tr><td>-//W3C//DTD HTML 3.2//EN</td><td class="nr">1</td></tr>
+<tr><td>HTML 3.2</td><td class="nr">1</td></tr>
+<tr><td>-//W3C//DTD HTML 4.1 Transitional//EN</td><td class="nr">1</td></tr>
+</tbody>
+</table>
+
+<p>As seen from the table above, the most popular are the
+transitional doctypes. Interestingly, compared to my Estonian sites
+survey, <abbr title="Extensible Hypertext Markup Language">XHTML</abbr>
+1.0 Transitional is more popular among the W3C
+members, than in Estonian sites, where it landed on the third place.
+Also, on the fourth place is XHTML 1.0 Strict instead of Estonian
+HTML 3.2.</p>
+
+<table summary="This table lists different doctypes
+and the number of pages using one kind of doctype">
+<caption>Usage of doctypes on valid W3C members sites</caption>
+<thead>
+<tr><th>DOCTYPE</th><th>nr of pages</th></tr>
+</thead>
+<tbody>
+<tr><td>XHTML 1.0 Transitional</td><td class="nr">32</td></tr>
+<tr><td>XHTML 1.0 Strict</td><td class="nr">12</td></tr>
+<tr><td>HTML 4.01 Transitional</td><td class="nr">9</td></tr>
+<tr><td>XHTML 1.1</td><td class="nr">4</td></tr>
+<tr><td>HTML 4.0 Transitional</td><td class="nr">2</td></tr>
+<tr><td>HTML 4.01 Strict</td><td class="nr">1</td></tr>
+<tr><td>HTML 4.01 Frameset</td><td class="nr">1</td></tr>
+</tbody>
+</table>
+
+<p>Doctypes usage on valid pages makes even more clear, that
+W3C members strive towards XHTML. And a strict doctype on the
+second page is definitely a good sign (although a first page would
+be even better, the valid websites of Estonia have a strict
+doctype on the fourth place).</p>
+
+<p>But what about <strong>XHTML 1.1</strong>? W3C says it should be served as
+<code>application/xhtml+xml</code> and definitely not as
+<code>text/html</code>. Are the members following this advice?</p>
+
+<p>Sadly, they’re not. Only one of the four members using XHTML 1.1,
+<a href="http://www.progeny.net/">Progeny Systems</a>, serves it with
+a correct mime-type. Actually, it looks like it’s the only W3C
+member who’s serving he’s website as <abbr title="Extensible Markup Language">XML</abbr>.
+But even they aren’t perfect - they’re markup is missing the XML declaration, and
+they’re using tables for layout.</p>
+
+<h3 id="character-encodings">Character encodings</h3>
+
+<p>111 pages had no encoding specified in HTML. Of course not a requirement,
+but belongs to a good style. the validator had problems with parsing 31 pages
+because either a wrong character encoding was specified, or the page did
+not conform to the standards of UTF-8 (the default character set).</p>
+
+<p>This aside, the most popular encodings were ISO 8859-1 and UTF-8.</p>
+
+<table summary="This table lists different encodings
+and the number of pages using one kind of encoding">
+<caption>Usage of encodings by W3C members</caption>
+<thead>
+<tr><th>Encoding</th><th>nr of pages</th></tr>
+</thead>
+<tbody>
+<tr><td>iso-8859-1</td><td class="nr">151</td></tr>
+<tr><td>utf-8</td><td class="nr">51</td></tr>
+<tr><td>shift_jis</td><td class="nr">9</td></tr>
+<tr><td>windows-1252</td><td class="nr">5</td></tr>
+<tr><td>gb2312</td><td class="nr">5</td></tr>
+<tr><td>euc-kr</td><td class="nr">4</td></tr>
+<tr><td>windows-1251</td><td class="nr">2</td></tr>
+<tr><td>us-ascii</td><td class="nr">2</td></tr>
+<tr><td>big5</td><td class="nr">2</td></tr>
+<tr><td>iso-8859-7</td><td class="nr">2</td></tr>
+<tr><td>iso-8859-2</td><td class="nr">1</td></tr>
+<tr><td>utf-16</td><td class="nr">1</td></tr>
+<tr><td>x-user-defined</td><td class="nr">1</td></tr>
+<tr><td>iso-8859-15</td><td class="nr">1</td></tr>
+<tr><td>iso-2022-jp</td><td class="nr">1</td></tr>
+<tr><td>windows-1253</td><td class="nr">1</td></tr>
+<tr><td>ecu-kr</td><td class="nr">1</td></tr>
+<tr><td>windows-1255</td><td class="nr">1</td></tr>
+</tbody>
+</table>
+
+<h2 id="last-words">Last words</h2>
+
+<p>So, this how good at web standards are the W3C members on year 2006.
+Four years since the original survey. The sites have improved, but
+they could be a lot better.</p>
+
+<p>Maybe at 2008 we have 50% of valid W3C member sites. Maybe...</p>
+
+<p>But what about ordinary sites? Will we have 17% of the World Wide Web
+validate for 2008? 2009? 2010?</p>
+
+<p>Anyway, we don’t know even how many valid websites do we have today.
+<a href="/2005/04/27/Web_Standards_in_Estonia#valid_pages">My own research</a>
+has shown, that it could be as <em>high</em> as 2%, but there were some
+serious flaws, which made the investigated set of sites not very representative.</p>
+
+<p>Further studies will hopefully bring some clarity to the subject,
+until then, we may just happily conclude, that in regards to the standards, at
+least the W3C members are doing better.</p>
+
+</body>
+</html>

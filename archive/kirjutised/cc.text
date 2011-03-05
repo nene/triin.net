@@ -1,0 +1,69 @@
+2009-08-21
+By Attribution
+==============
+
+[Flickr][flickr] lets each user easily choose under which license they
+want to publish their work:
+
+* None (All rights reserved)
+* Attribution-NonCommercial-ShareAlike Creative Commons
+* Attribution-NonCommercial Creative Commons
+* Attribution-NonCommercial-NoDerivs Creative Commons
+* Attribution Creative Commons
+* Attribution-ShareAlike Creative Commons
+* Attribution-NoDerivs Creative Commons
+
+Say, you would like to make your photos to be available as freely as
+possible - make derivative works, use commercially, whatever.  The
+most permissive of these licenses is the Creative Commons Attribution
+license, which only requires that the users of your work attribute
+you.
+
+But what does it mean to attribute?  According to the [Creative
+Commons license][cc-by]:
+
+> You must attribute the work in the manner specified by the author or
+> licensor.
+
+Some Flickr users do specify how to attribute, but most of them don't,
+and that's perfectly ok, as not all of them are lawyers. But still,
+how do you attribute when the author hasn't specified how.  Buried
+deep inside the [legal text][legal] you find that the license does in
+fact say how one should attribute:
+
+> You must [--] keep intact all copyright notices for the Work and
+> provide [--]:
+> 
+> (i) the name of the Original Author (or pseudonym, if applicable)
+> if supplied [--]
+> 
+> (ii) the title of the Work if supplied;
+> 
+> (iii) to the extent reasonably practicable, the URI, if any, that
+> Licensor specifies to be associated with the Work [--]
+> 
+> (iv) [--] in the case of an Adaptation, a credit identifying the use
+> of the Work in the Adaptation (e.g., "French translation of the Work
+> by Original Author," or "Screenplay based on original Work by
+> Original Author"). [--]
+
+Note that I have heavily edited the above text as the original blub of
+legalese is almost impossible to read.  Luckily it all follows a
+common sense.
+
+It's easy to attribute when you just use or adapt a single work.  It's
+not particularly hard to attribute 3, 5 or even 10 works.  But what if
+you want to use hundreds of works?  Say, you would like to create a
+[photographic mosaic][mosaic], that kind of work needs thousands of
+photos to choose from and only few hundreds of those photos get chosen
+by the program.  In that case attributing becomes a far greater
+trouble than the work required to create the mosaic at the first
+place.
+
+I'm sure many people would happlily give their photos away without not
+even attribution required, but Flickr doesn't provide that option.
+
+[flickr]: http://flickr.com/
+[cc-by]: http://creativecommons.org/licenses/by/3.0/
+[legal]: http://creativecommons.org/licenses/by/3.0/legalcode
+[mosaic]: http://en.wikipedia.org/wiki/Photographic_mosaic

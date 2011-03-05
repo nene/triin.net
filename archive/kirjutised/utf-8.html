@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="et" xml:lang="et">
+<head>
+<title>Üleminek UTF-8-le</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="date" content="2004-12-31" />
+</head>
+<body>
+
+<h1>Üleminek UTF-8-le</h1>
+
+<p>Vana aasta viimasel päeval sai otsustatud viimaks ometi Triinuleht
+täielikult <a lang="en" href="http://en.wikipedia.org/wiki/UTF-8" title="Wikipedia artikkel UTF-8 kohta">UTF-8</a> 
+kodeeringu peale üle viia. Nüüd siis saan ma lõpuks kirjutada internatsionaalselt:</p>
+
+<p lang="ru">Жили-были три бандита:<br />
+Гитлер, Сталин и Никита.<br />
+Один резал, другой бил,<br />
+третий голодом морил.</p>
+
+<p>Kuigi jah, vaevalt et nüüdsest hakkavad Triinulehte täitma
+lugematud read hispaania-, araabia- ja koreakeelsed tekstid -
+aga vähemasti pole selle võimalikuks saamine enam takistatud.</p>
+
+<h2>Tehnilisest küljest</h2>
+
+<p>Esimene samm üleminekul
+<a lang="en" href="http://en.wikipedia.org/wiki/ISO_8859-15" title="Wikipedia artikkel ISO 8859-15 kohta">ISO-8859-15</a>
+kodeeringult oli otsida mõni väike programm, mis failide ühest formaadist teise konverteerimise
+enda peale võiks võtta. Peale pisukest otsimist leidsingi täiesti
+sobiliku <a href="http://miscoranda.com/96" 
+title="Pythoni skript iso-8859-1 kodeeringust utf-8-sse konverteerimiseks">Pythoni skripti</a>,
+mis selle ülesande suurepäraselt lahendas.</p>
+
+<p>Andmebaasi poolne külg oli triinulehel õnneks üsna väike
+ning hakkama sai natukese <acronym lang="en" title="PHP Hypertext Preprocessor">PHP</acronym>
+ja paari <em lang="en">copy-paste</em>´ga.
+Siis mõned segased hetked, kus kõik paistis metsa jooksvat, sest tundus
+et andmebaas ei taha sugugi UTF-8 formaadis teksti vastu võtta...
+...kõik lahenes aga kenasti, kui avastasin, et viga oli ikkagi vaid
+minu kiiruga kirjutatud skriptis - selle parandamise järel laabus
+aga kõik suurepäraselt.</p>
+
+<h2>Veel positiivset kirjavahemärkide maailmast</h2>
+
+<p>Ühtlasi sai siis nüüd kõik kirjavahemärgid,
+mis olid seni üles märgitud <acronym lang="en" title="HyperText Markup Language">HTML</acronym>-i
+<code>&amp;xxxx;</code> süntaksit kasutades said nüüd asendatud <span lang="en">unicode</span>´i
+vastetega ning vähe sellest, et tibakene vähenes failide suurus - ka kirutud Netscape&nbsp;4,
+kes polnud kuidagi hakkama saanud minu <code>&amp;ldquot;</code>-ide ja <code>&amp;rdquot;</code>-idega,
+mõistis <span lang="en">unicode</span>´i märke lausa suurepäraselt.</p>
+
+<p>Nüüd said ka jutumärgid eesti keelele sobilikuma vormi (alustav
+jutumärk all ja lõpetav üleval) ja minu süda muutus kergemaks
+ja maailm muutus paremaks ja lapsed Aafrikas jätsid näljakisa ja...</p>
+
+<p>Noh võibolla mitte päris seda kõike, aga igatahes paremal ja
+tublimal moel uude aastasse :)</p>
+
+
+</body>
+</html>

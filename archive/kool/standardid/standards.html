@@ -1,0 +1,490 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Web Standards in Estonia</title>
+<meta http-equiv="Content-type" content="text/html; charset:utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Summary of Webstandards survey in Estonia" />
+<meta name="keywords" content="validation standards CSS HTML W3C encodings" />
+<meta name="date" content="2005-04-27" />
+<meta name="last-modified" content="2005-04-28" />
+</head>
+<body>
+
+<div lang="en">
+
+<h1>Web Standards in Estonia</h1>
+
+<div class="preambula">
+
+<p>This is a shortened English version of survey on Estonian web pages 
+validation. The full survey is unfortunately only 
+<a href="/2005/04/22/Standardid_ja_Eesti_veebimaastiku_olukord_nende_osas">available 
+in Estonian</a>, but I try to include as much core information as possible to
+this English overview.</p>
+
+<ul>
+<li>Proseminar work.</li>
+<li>Tallinn University, Haapsalu Kolledz: Computer Science department.</li>
+<li>Instructor: Jaagup Kippar.</li>
+<li>Haapsalu 2005.</li>
+</ul>
+</div>
+
+
+<h2>Table of Contents</h2>
+
+<ul>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#results">Results</a>
+<ul>
+<li><a href="#excluded_pages">Excluded pages</a></li>
+<li><a href="#valid_pages">Valid pages</a></li>
+<li><a href="#document_types">Document types</a></li>
+<li><a href="#encodings">Encodings</a></li>
+<li><a href="#html_elements">HTML elements</a></li>
+<li><a href="#pages_with_and_without_tables">Pages with and without tables</a></li>
+<li><a href="#validator_error_messages">Validator error messages</a></li>
+</ul>
+</li>
+<li><a href="#comparison">Comparison to previous surveys</a></li>
+<li><a href="#conclusions">Conclusions</a></li>
+</ul>
+
+
+
+<h2 id="methods">Methods</h2>
+
+<p>The purpose of this survey was to check how many web pages in 
+<a href="http://en.wikipedia.org/wiki/Estonia">Estonia</a>
+are valid according to they’re Document Type Declarations. Also information
+about the use of character encodings and 
+<abbr title="HyperText Markup Language">HTML</abbr>-elements was gathered.</p>
+
+<p>The survey was conducted on 21,905 pages, taken from the 
+<a href="http://www.neti.ee/cgi-bin/serverid">Neti.ee Estonian servers list</a>
+at February 11th, 2005. Only addresses with form <code>www.*.ee</code> were
+used, and only the main page was checked.</p>
+
+<p>The validation tool used was <a href="http://validator.w3.org">W3C Markup 
+Validation Service</a>, widely known as the <a href="http://w3.org" 
+title="World Wide Web Consortium">W3C</a> Validator.</p>
+
+<p>To reduce the human work required, an batch-validation application was
+developed. The application requires an *NIX system with Perl and Python, and is
+available for download and free modification: <a 
+href="http://triin.net/2005/04/22/batchval.tar.gz">batchval.tar.gz</a> (a simple 
+user-manual is included with the program.)</p>
+
+<p>The program checked all pages and excluded pages with:</p>
+
+<ul>
+<li>HTML meta-redirect,</li>
+<li>no HTML content,</li>
+<li>error message pattern in page title</li>
+</ul>
+
+<p>The program did not check for HTTP headers. (Everything concerning these was
+handled by Python.)</p>
+
+<p>The program counted statistics of different HTML-elements in page. Sent the
+page for W3C Validator and recorded statistics of Error messages (if there were
+any). If the Validator gave an Fatal Error with Encoding, then the page was 
+resent to validation with encoding-override to force ISO-8859-1.</p> 
+
+<p>The survey was conducted between 2005-02-11 17:37 and 2005-02-13 17:29 
+(Estonian Time).</p>
+
+
+
+<h2 id="results">Results</h2>
+
+<p>All the results of this survey are available in 
+<a href="http://www.triin.net/2005/04/22/tulemused.tar.gz">digital 
+format</a>.</p>
+
+
+<h3 id="excluded_pages">Excluded pages</h3>
+
+<p>The program excluded 2250 pages before validation, so that 19,655 pages 
+only made the W3C Validator test.</p>
+
+<p>The main reason for exclusion was redirecting to another page and the second
+was being not able to contact the server.</p> 
+
+
+<h3 id="valid_pages">Valid pages</h3>
+
+<p>The proportion of valid pages was, of course, small – only 2.2% 
+(436 pages) were valid, plus 0.5% which were Tentatively Valid (because of
+the lack of encoding specification). (<a href="#figure1">figure 1</a>.)</p>
+
+<div class="joonis" id="figure1">
+<img src="/archive/kool/standardid/figure1.png" alt="Proportion of valid pages" />
+<p><span class="nr">Figure 1.</span> Proportion of valid pages.</p>
+</div>
+
+<p>42 pages out of 94 tentatively valid were using virtual hosting of
+<a href="http://www.artfotoplus.ee/">artfotoplus.ee</a>, and were not set up.
+Others were either undetected redirections, under construction or pages with
+very little content.</p> 
+
+<p>NB! In all the following comparisons between valid and invalid pages the
+tentatively valid pages are excluded.</p>
+
+<p>A list of all valid pages is available in 
+<a href="http://triin.net/2005/04/22/Valideerunud_lehtede_loetelu">appendix 3</a>
+of Estonian version of this survey.</p>
+
+
+<h3 id="document_types">Document types</h3>
+
+<p>35% of invalid pages had Document Type Declaration.</p>
+
+<p>As seen from figures <a href="#figure2">2</a> and <a href="#figure3">3</a>,
+The most common document type was <em>HTML 4.01 Transitional</em>. Probably 
+because many HTML-editors add this DTD be default, and it’s the DTD with most
+features and least restrictions.</p>
+  
+<p>Second place belongs to <em>HTML 4.0 Transitional</em>, but when you look at
+the valid pages only, then it’s <em>XHTML 1.0 Transitional</em>.</p>
+
+<p>Interestingly <em>XHTML 1.1</em> is quite widespread, although it should
+be served as <code>application/xhtml+xml</code>, it still is mainly provided as
+<code>text/html</code>, which is far from correct.</p>
+
+<div class="joonis" id="figure2">
+<img src="/archive/kool/standardid/figure2.png" alt="Document types on all pages" />
+<p><span class="nr">Figure 2.</span> Document types on all pages.</p>
+</div>
+
+<div class="joonis" id="figure3">
+<img src="/archive/kool/standardid/figure3.png" alt="Document types on valid pages" />
+<p><span class="nr">Figure 3.</span> Document types on valid pages.</p>
+</div>
+
+
+<h3 id="encodings">Encodings</h3>
+
+<p>Encoding was only specified on 68% of pages (with meta element). For 12% of 
+pages the W3C validator gave an error message because of problems with 
+encoding.</p>
+
+<p>The overall favorite encoding was ISO‑8859‑1 (<a href="#figure4">figure 
+4</a>), which is according to ISO standard does not really fit for Estonian
+alphabet, because of the missing ž and š (which are present in Windows‑1252
+encoding, which is used by browsers instead of ISO‑8859‑1). The second place
+Windows‑1257 (which supplements ISO‑8859‑13) fits well for Estonian text. 
+The officially recommended character set for Estonian (ISO‑8859‑15) is
+not quite popular.</p>
+
+<p>Cirillic encodings were (starting from most popular): Windows‑1251, 
+KOI8‑R and ISO‑8859‑5.</p>
+
+<p>Universal UTF‑8 was only used on about 1000 pages. Estimated about half 
+of these were in Estonian and another half in two or more languages 
+simultaneously.</p>
+
+<div class="joonis" id="figure4">
+<img src="/archive/kool/standardid/figure4.png" alt="Popularity of different encodings" />
+<p><span class="nr">Figure 4.</span> Popularity of different encodings.</p>
+</div>
+
+
+<h3 id="html_elements">HTML elements</h3>
+
+<p>The most overused HTML element was <code>&lt;img&gt;</code>. Followed by
+<code>&lt;a&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;table&gt;</code> and 
+<code>&lt;font&gt;</code>. (<a href="#figure5">Figure 5</a>.)</p>
+
+<p><a href="#figure6">Figure 6</a> shows proportionally, what kind of elements
+commonly exist on a page and illustrates the present situation a bit better.</p>
+
+<p>By looking at images and tables we can say, that about ¾ of pages uses
+tables for layout and HTML-embedded images for graphics.</p>
+
+<p>77% of pages uses <code>&lt;br&gt;</code>, <code>&lt;p&gt;</code> or both. 
+40% of these uses both, 21% only the line brake, and 16% only the paragraph.</p>
+
+<p>60% of pages uses <code>&lt;link&gt;</code>, <code>&lt;style&gt;</code> or 
+both. So it’s possible to say that 60% of pages makes use CSS. (Of course there
+are inline-styles, but it’s about as good as using the 
+<code>&lt;font&gt;</code>-tag.)</p>
+
+<p>45% of pages uses <code>&lt;b&gt;</code> and/or <code>&lt;strong&gt;</code>. 
+63% of these prefers <code>&lt;b&gt;</code>, 24% goes for 
+<code>&lt;strong&gt;</code> and 13% uses both.</p>
+
+<p>7% of pages uses <code>&lt;i&gt;</code> and/or <code>&lt;em&gt;</code>. 70% 
+of these prefers <code>&lt;i&gt;</code>, 27% goes for <code>&lt;em&gt;</code>
+and 3% uses both.</p>
+
+<p>Entire 44% of pages uses more or less client-side scripting 
+(element <code>&lt;script&gt;</code>); mostly to achieve simple hover-effects 
+on images.</p>
+
+<p>A lot of obsolete elements are used: 
+<code>&lt;font&gt;</code> 42%, <code>&lt;center&gt;</code> 21%, 
+<code>&lt;map&gt;</code> 12%, <code>&lt;hr&gt;</code> 9% and 
+<code>&lt;u&gt;</code> 3%.</p>
+
+<p>10% of pages uses <code>&lt;frameset&gt;</code> and almost 3% 
+uses <code>&lt;iframe&gt;</code>, which makes 13% of pages with frames.</p>
+
+<p>The use of headings is scarce. <code>&lt;h1&gt;</code> is used by 7% and 
+<code>&lt;h2&gt;</code> by 3%.</p>
+
+<p>As element <code>&lt;embed&gt;</code> was not recorded by this survey 
+(because it’s not listed in HTML 4.01 specification), we can’t conclude 
+that <code>&lt;object&gt;</code> is the most popular element for implementing
+Flash’i, Java, video, sound etc on web page.</p>
+
+<div class="joonis" id="figure5">
+<img src="/archive/kool/standardid/figure5.png" alt="HTML elements by total amount" />
+<p><span class="nr">Figure 5.</span> HTML elements by total amount.</p>
+</div>
+
+<div class="joonis" id="figure6">
+<img src="/archive/kool/standardid/figure6.png" alt="HTML elements by occurrence frequency on pages" />
+<p><span class="nr">Figure 6.</span> HTML elements by occurrence frequency on pages.</p>
+</div>
+
+<h3 id="pages_with_and_without_tables">Pages with and without tables</h3>
+
+<p>The proportion of tableless pages on valid pages was almost twice as large as 
+on the proportion of tableless pages on invalid pages (<a href="#figure7">figure 
+7</a>).</p>
+
+<div class="joonis" id="figure7">
+<img src="/archive/kool/standardid/figure7.png" alt="Tabelid valideerunud lehekülgedel ning mittevalideerunud lehe­külgedel" />
+<p><span class="nr">Figure 7.</span> Tables on valid pages (on left) and on
+invalid pages (on right).</p>
+</div>
+
+
+<h3 id="validator_error_messages">Validator error messages</h3>
+
+<p>The program collected 865,602 error messages from 19,655 pages. The average
+number of errors per page was 44, but this number was largened by few pages with
+extremely high load errors (maximum of 3177 errors on single page: 
+<a href="http://www.jogevalv.ee">www.jogevalv.ee</a>). The most frequent was
+5 error messages per page, median was 18. (<a href="#figure8">Figure 8</a>.)</p>
+
+<div class="joonis" id="figure8">
+<img src="/archive/kool/standardid/figure8.png" alt="Histogram of validation errors" />
+<p><span class="nr">Figure 8.</span> Histogram of validation errors.</p>
+</div>
+
+<p>But simply counting error messages may not give us good comparison between
+pages, as same errors are often repeated several times per page, and one error
+at the beginning may introduce a cascade of others throughout the whole page.</p>
+
+<p>If we only count different error messages, then we receive different numbers:
+average of 6 different errors per page and maximum of 27 
+(<a href="http://www.katoliku.ee">www.katoliku.ee</a>). Most frequently 2 different errors per
+page and median of 5. The distribution of different error messages is 
+illustrated by <a href="#figure9">figure 9</a>.</p>
+
+<div class="joonis" id="figure9">
+<img src="/archive/kool/standardid/figure9.png" alt="Histogram of different validation errors" />
+<p><span class="nr">Figure 9.</span> Histogram of different validation errors.</p>
+</div>
+
+<p><a href="#table1">Table 1</a> also compares different statistics of error
+messages.</p>
+
+<div class="tabel" id="table1">
+<table summary="Statistics of error messages">
+<thead><tr>
+<th>error messages</th>
+<th>average</th>
+<th>weighted avg.</th>
+<th>max</th>
+<th>median</th>
+<th>mode</th>
+<th>std. dev.</th>
+</tr></thead>
+<tr>
+<th>All</th>
+<td class="nr">44.04</td>
+<td class="nr">39.31</td>
+<td class="nr">3177</td>
+<td class="nr">18</td>
+<td class="nr">5</td>
+<td class="nr">100.04</td>
+</tr>
+<tr>
+<th>Different</th>
+<td class="nr">6.01</td>
+<td class="nr">5.97</td>
+<td class="nr">27</td>
+<td class="nr">5</td>
+<td class="nr">2</td>
+<td class="nr">4.08</td>
+</tr>
+</table>
+<p><span class="nr">Table 1.</span> Statistics of error messages.</p>
+</div>
+
+<p>Next we look at different error messages - they’re amount 
+(<a href="#figure10">figure 10</a>) and incidence (<a href="#figure11">figure 
+11</a>); the exact numbers are available in 
+<a href="/2005/04/22/Tabel_W3C_validaatori_veateadetega">appendix 2</a> of 
+Estonian version.</p>
+
+<div class="joonis" id="figure10">
+<img src="/archive/kool/standardid/figure10.png" alt="The amount of different error messages" />
+<p><span class="nr">Figure 10.</span> The amount of different error messages. 
+(Only 15 most common are shown.)</p>
+</div>
+
+<div class="joonis" id="figure11">
+<img src="/archive/kool/standardid/figure11.png" alt="The incidence of different error messages" />
+<p><span class="nr">Figure 11.</span> The incidence of different error messages. 
+(Only 18 most common are shown.)</p>
+</div>
+
+<p>The most numerous error message <code>„there is no attribute 
+&quot;FOO&quot;...“</code>, was generated by the use of un standard 
+attributes.</p>
+
+
+<p>One of the most common error messages was <code>„required attribute 
+&quot;FOO&quot; not specified“</code>, mainly because of the lack of 
+<code>alt</code> and <code>type</code>.</p>
+
+<p>Almost 63% of pages was without the document type declaration (error message 
+<code>„no document type declaration...“</code>).</p>
+
+<p>Unbelievably frequent was <code>„document type does not allow element 
+&quot;FOO&quot; here...“</code>. This was mainly the sign of some really
+stupid mistakes, like placing <code>&lt;style&gt;</code> outside of 
+<code>&lt;head&gt;</code>, putting table <code>&lt;td&gt;</code> outside of 
+<code>&lt;tr&gt;</code>, <code>&lt;form&gt;</code> between 
+<code>&lt;table&gt;</code> and <code>&lt;tr&gt;</code> etc.</p>
+
+<p>One third of pages had the error message 
+<code>„end tag for element &quot;FOO&quot; which is not open“</code>. 
+This was the sign of typos, like in the following example:</p>
+
+<pre>
+&lt;!-- begin paragraph -&gt;
+&lt;p&gt;Lorem ipsum dolor sit&lt;br /&gt;
+amet; just go to --&gt; &lt;/b&gt;home&lt;/b&gt;.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/tml&gt;
+</pre>
+
+<p>The next four error messages were always together:</p>
+
+<ul>
+<li><code>„reference to entity &quot;FOO&quot; for which no system identifier 
+could be generated“</code>,</li>
+<li><code>„entity was defined here“</code>,</li>
+<li><code>„general entity &quot;FOO&quot; not defined and no default 
+entity“</code> and</li>
+<li><code>„cannot generate system identifier for general entity 
+&quot;FOO&quot;“</code>.</li>
+</ul>
+
+<p>The use of &amp; instead of <code>&amp;amp;</code> was of course the reason.</p>
+
+<p>The message <code>„element &quot;FOO&quot; undefined“</code> had four 
+different main reasons:</p>
+
+<ul>
+<li>the use of deprecated elements like <code>&lt;marquee&gt;</code>, 
+<code>&lt;blink&gt;</code> and <code>&lt;embed&gt;</code>,</li>
+<li>the use of <code>&lt;frameset&gt;</code> and <code>&lt;frame&gt;</code> 
+without <em>(X)HTML X.X Frameset</em> doctype,</li>
+<li>the use of vendor specific extensions (mostly on pages generated with 
+Microsoft tools) and</li>
+<li>typos in element names.</li>
+</ul>
+
+<p>The message <code>„end tag for &quot;FOO&quot; omitted...“</code> and 
+it’s companion <code>„start tag was here“</code> were often on pages 
+which declared them self as XHTML, but didn’t follow the rules of XML.</p>
+
+
+<h2 id="comparison">Comparison to previous surveys</h2>
+
+<p>Similar surveys have been conducted by Thomas Dowling 
+(<a href="http://silver.ohiolink.edu/tdowling/validation.html">Validating HTML</a> 
+, 1997), and by Greg Lanier 
+(<a href="http://wwwx.cs.unc.edu/Research/assist/et/projects/universal/">Universal 
+web design: a survey of web accessibility and usability</a>, 2003). But the most 
+similar ones, and most recent, have been conducted by Soren Johannessen in 
+Denmark at 2004:</p>
+
+<ul>
+<li><a href="http://www.ae35-unit.dk/standard/english.html" lang="en">The use of 
+W3C standards in Denmark</a>, during 2004‑01‑31 until 2004‑02‑16 2033 Danish 
+authorities home pages were validated (these were the participants of 
+<a href="http://bedstpaanettet.dk/portal/page?_pageid=380,457847&amp;_dad=portal&amp;_schema=PORTAL">Top 
+of the Web</a> contest on year 2003).</li>
+<li><a href="http://www.ae35-unit.dk/standard/danishcompanies.html" lang="en">Danish 
+companies and the use of W3C standards</a>, during 2004‑03‑11 until 2004‑03‑16 
+250 largest Danish companies web pages were tested.</li>
+<li><a href="http://www.ae35-unit.dk/standard/bestonthenet2004.html" lang="en">The 
+use of W3C standards in Denmark II</a>, during 2004‑11‑18 until 2004‑11‑28 
+580 Danish authorities home pages were tested (the participants of 
+„Top of the Web“ on 2004; the smaller number of participants was because 
+this time a fee was imposed).</li>
+</ul>
+
+<p>Compared to these surveys, the 2.2% of valid pages in Estonia is not that bad
+when compared to the first Danish survey’ 3.05%, and they’re a whole better
+when compared to the second survey’s 0.4% (only one page was valid); the third
+survey had 12.24% of valid pages, but because of the registration fee, the 
+selection of pages was clearly of higher class. Anyway, the selections of all
+these surveys was a lot thinner and because of that cannot be really compared to
+the results of this survey.</p>
+
+<p>The percentage of pages with doctype was in the first Danish survey 35%, 
+which precisely maps to the results of Estonian pages. The second Danish survey
+had 38% and the third 61%.</p>
+
+<p>Similarly the most widely used doctype was <em>HTML 4.01 Transitional</em> 
+(<a href="#figure12">figure 12</a>), followed by <em>HTML 4.0 Transitional</em>.</p>
+
+<div class="joonis" id="figure12">
+<img src="/archive/kool/standardid/figure12.png" alt="Document Type Declarations on Danish authorities web pages" />
+<p><span class="nr">Figure 12.</span> Document Type Declarations on Danish 
+authorities web pages by 2004 Jan-Feb survey (based on Johannessen’s data.)</p>
+</div>
+
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>73% pages uses tables for layout and embedded images for graphics.
+The presentative HTML is widely used: <code>&lt;font&gt;</code> on 42% and  
+<code>&lt;center&gt;</code> on 21% of pages.</p>
+
+<p>44% uses JavaScript, mainly for effects which could be attained with proper
+use of CSS. But CSS is only used on 60% of pages and probably underused.</p>
+
+<p>The Document Type Declarations is not used on most pages – either because of
+lack of knowledge or care. If doctype is specified, it’s usually one of the
+<em>Transitional</em>’s.</p>
+
+<p>Only two third of pages has got an encoding specification. Mostly the
+ISO-8859-1 encoding is used, which is not really suitable for Estonian.</p>
+
+<p>A lot of good structural HTML elements are underused, for example headings
+are used on maximum of 10% of pages, and only 5% of pages uses lists.</p>
+
+<p>The creators of dynamic pages don’t know or care of using 
+<code>&amp;amp;</code> instead of &amp;. Many don’t know or care that the
+paragraphs should be marked up with <code>&lt;p&gt;</code>, not separated with
+<code>&lt;br&gt;&lt;br&gt;</code>.</p>
+
+<p>Too many web authors don’t even seem to know the basic rules of HTML and 
+nest elements in almost random order.</p>
+
+
+</div>
+
+</body>
+</html>

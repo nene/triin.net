@@ -1,0 +1,485 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Tulemused</title>
+<meta http-equiv="Content-type" content="text/html; charset:utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="TÜ Haapsalu Kolledž, Infehnoloogia osakond. Proseminaritöö. Juhendaja: Jaagup Kippar" />
+<meta name="keywords" content="valideerimine standardid CSS HTML W3C kodeeringud" />
+<meta name="date" content="2005-04-22" />
+</head>
+<body>
+
+<h1 id="tulemused">2. Tulemused</h1>
+<p>Käesoleva uurimuse tulemused on täies mahus kättesaadaval 
+<a href="http://www.triin.net/2005/04/22/tulemused.tar.gz">digitaalsel 
+kujul</a>.</p>
+
+
+<h2 id="valjapraagitud_lehekuljed">2.1. Väljapraagitud leheküljed</h2>
+
+<p>Programm praakis töötamise käigus 21 905 aadressi seast välja 2250 (10%) 
+ja seega jäi reaalseks valideerimiseks alles 19 655 aadressi.</p>
+
+<div class="joonis" id="joonis1">
+<img src="/archive/kool/standardid/joonis1.png" alt="Erinevate vigade esinemissagedus" />
+<p><span class="nr">Joonis 1.</span> Erinevate vigade esinemissagedus. 
+(Vigade selgitused on toodud 
+<a href="http://triin.net/2005/04/22/Programmi_BatchVal_dokumentatsioon">lisas 1</a>)</p>
+</div>
+
+<p>Peamiseks põhjuseks lehekülgede väljapraakimisel oli ümbersuunamine 
+teisele aadressile, teiseks ebaõnnestumine serveriga kontakteerumisel ja 
+kolmandaks igasuguse HTML-i puudumine leheküljel 
+(<a href="#joonis1">joonis 1</a>). Täiendav info kõigi programmi poolt 
+antavate veateadete kohta on ära toodud 
+<a href="http://triin.net/2005/04/22/Programmi_BatchVal_dokumentatsioon">lisas 1</a>.</p>
+
+
+<h2 id="valideerunud_lehekuljed">2.2. Valideerunud leheküljed</h2>
+
+<p>Valideerunud lehekülgede osakaal oli, nagu eelnevalt arvata võis, väike 
+– vaid 2,2% (436 lehekülge) valideerus täielikult, lisaks 0,5% (94 
+lehekülge) valideerus mööndustega (<em lang="en">tentatively</em>) 
+(<a href="#joonis2">joonis 2</a>). Sellise ääri-veeri valideerumise 
+põhjuseks oli reeglina dokumendi kodeeringu määramata jätmine.</p>
+
+<div class="joonis" id="joonis2">
+<img src="/archive/kool/standardid/joonis2.png" alt="Valideerunud lehekülgede osakaal" />
+<p><span class="nr">Joonis 2.</span> Valideerunud lehekülgede osakaal.</p>
+</div>
+
+<p>42 lehte 94-st mööndustega valideerunust osutus 
+<a href="http://www.artfotoplus.ee/">artfotoplus.ee</a> virtuaal­majutust 
+kasutavateks pooleliolevateks lehekülgedeks. Ülejäänud olid kas tuvastamata 
+jäänud ümbersuunamised, pooleliolevad lehed, veateated või lihtsalt väga 
+vähese sisuga lehed.</p>
+
+<p>NB! Kõigis järgnevates analüüsides, kus võrreldakse valideerunud ja 
+mittevalideerunud lehekülgi, on käsitluse alt välja arvatud kõik 
+mööndustega valideerunud lehed.</p>
+
+<p>Nimekiri kõigist valideerunud lehekülgedest on ära toodud 
+<a href="http://triin.net/2005/04/22/Valideerunud_lehtede_loetelu">lisas 3</a>.</p>
+
+
+<h2 id="dokumendituubid">2.3. Dokumenditüübid</h2>
+
+<p>Kõigil valideerunud lehtedel (ka mööndustega valideerunutel) oli 
+loomulikult dokumendi­tüüp määratud, sest selle alusel nad valideerusidki. 
+Mittevalideerunud lehtedel oli aga dokumenditüübi määratlus olemas vaid 35%, 
+ehk vaid igal kolmandal leheküljel (<a href="#joonis3">joonis 3</a>).</p>
+
+<div class="joonis" id="joonis3">
+<img src="/archive/kool/standardid/joonis3.png" alt="Dokumenditüübi määrangu olemasolu mittevalideerunud lehtedel" />
+<p><span class="nr">Joonis 3.</span> Dokumenditüübi määrangu olemasolu 
+mittevalideerunud lehtedel.</p>
+</div>
+
+<p>Nagu nähtub joonistelt <a href="#joonis4">4</a> ja <a href="#joonis5">5</a>, 
+oli levinuimaks dokumenditüübiks ülekaalukalt <em>HTML 4.01 
+Transitional</em>. Paljuski on selline ülekaal seletatav sellega, et enamik 
+HTML-i redaktoreid lisab vaikimisi dokumendile just selle. Ühtlasi on tegemist 
+ka kõige paindlikuma dokumenditüübiga, mis lubab kõiki endiselt nii levinud 
+presentatiivseid HTML-i elemente.</p>
+
+<p>Teisel kohal on <em>HTML 4.0 Transitional,</em> kuid kui vaadata vaid 
+valideerunud lehti, siis nende seas on teisel kohal <em>XHTML 1.0 
+Transitional</em>, mis esimeste puhul on kolmandal kohal. Alles seejärel tuleb 
+<em>XHTML 1.0 Strict</em>. HTML-i Strict versioon on aga vähelevinud.</p>
+
+<p>Üllataval kombel on küllaltki levinud <em>XHTML 1.1</em>, mida W3C 
+soovituse kohaselt tuleks serveerida kui <code>application/xhtml+xml</code> ent 
+kindlasti mitte kui <code>text/html</code>. Nii palju kui vastava 
+dokumenditüübi määranguga dokumente sai üle vaadatud kasutasid kõik 
+ebakorrektselt ikkagi <span>text/html</span> tüüpi.</p>
+
+<div class="joonis" id="joonis4">
+<img src="/archive/kool/standardid/joonis4.png" alt="Dokumenditüüpide jaotus kõigi lehtede lõikes" />
+<p><span class="nr">Joonis 4.</span> Dokumenditüüpide jaotus kõigi lehtede lõikes.</p>
+</div>
+
+<div class="joonis" id="joonis5">
+<img src="/archive/kool/standardid/joonis5.png" alt="Dokumenditüüpide jaotus valideerunud lehtedel" />
+<p><span class="nr">Joonis 5.</span> Dokumenditüüpide jaotus valideerunud lehtedel.</p>
+</div>
+
+
+<h2 id="kodeeringud">2.4. Kodeeringud</h2>
+
+<p>Kodeering oli HTML-is määratud vaid 68% lehekülgedest (tuleb arvestada, et 
+osade lehtede puhul võis kodeering olla seatud HTTP päisega või XML-i 
+deklaratsiooniga, mida kasutatav programm ei registreerinud, kuid kumbki meetod 
+pole just kuigi levinud). Sealjuures teatas 12% lehekülgede puhul validaator 
+probleemist kodeeringuga, mis enamikul juhtudest pidi kindlasti olema tingitud 
+just sellest, et dokumendi kodeering oli jäetud määramata.</p>
+
+<p>Järgnevas tekstis kasutatud informatsioon erinevate kodeeringute kohta 
+pärineb peaasjalikult 
+<a href="http://en.wikipedia.org/wiki/Category:Character_sets">Wikipedia’st</a>.</p>
+
+<p>Enimkasutatavaks kodeeringuks oli ülekaalukalt ISO‑8859‑1 
+(<a href="#joonis6">joonis 6</a>), mis aga ISO standardi järgi ei sobi päris 
+hästi eestikeelsete tekstide tarbeks, sest puuduvad ž ja š. Nimetatud tähed 
+on aga olemas Microsoft’i Windows‑1252 kodeeringus, mis täiendab 
+ISO‑8859‑1 kooditabelit lisasümbolitega. Teisel kohal olev Windows‑1257 
+ja ISO‑8859‑13, mida eelnimetatu täiendab, sobivad aga eesti keele jaoks 
+kenasti. Eesti keele jaoks ametlikult soovitatav ISO‑8859‑15 on aga alles 
+seitsmendal kohal, mis võib paljuski tuleneda sellest, et paljud HTML-i 
+redaktorid toetavad vaid piiratud hulka erinevaid kodeeringuid ning 
+ISO‑8859‑15 nende hulka tihtipeale ei kuulu.</p>
+
+<p>Spetsiifiliselt kirillitsa tarbeks mõeldud kodeeringutest oli levinuim 
+Windows‑1251, millele järgnesid KOI8‑R ja ISO‑8859‑5.</p>
+
+<p>Universaalne UTF‑8 leidis kasutamist vaid tuhatkonnal lehel. Parema 
+ülevaate saamiseks, miks ja kus <span>unicode</span>’i kasutatakse, sai 
+käsitsi läbi vaadatud 50 UTF‑8-t kasutavat lehekülge. Selgus, et:</p>
+
+<ul>
+<li>21 nendest olid eestikeelsed,</li>
+<li>13 eesti-inglise-vene-keelsed,</li>
+<li>7 eesti-inglise-keelsed,</li>
+<li>2 inglisekeelsed,</li>
+<li>2 viie-keelsed,</li>
+<li>1 eesti-vene-keelne,</li>
+<li>4 ei kasutanud aga hoolimata määrangust <em lang="en">unicode</em>’i 
+võimalusi üldse:</li>
+<li>1 kasutas vastavat kodeeringut vaid raame määraval lehel ja</li>
+<li>3 kasutasid <span>ö</span> asemel <span>&amp;ouml;</span>, <span>ä</span> 
+asemel <span>&amp;auml;</span> jne.</li>
+</ul>
+
+<div class="joonis" id="joonis6">
+<img src="/archive/kool/standardid/joonis6.png" alt="Erinevate kodeeringumääratluste esinemissagedus" />
+<p><span class="nr">Joonis 6.</span> Erinevate kodeeringumääratluste 
+esinemissagedus. ISO‑8859‑1 on kasutusel nii ülekaalukalt, et seda on 12 
+korral ka ühtviisi valesti kirjutatud. (Jooniselt on välja jäetud alla kõik 
+kodeeringunimetused, mida leidus alla kümne.)</p>
+</div>
+
+<h2 id="html_elemendid">2.5. HTML-i elemendid</h2>
+
+<p>Enimkasutatavaks HTML-i elemendiks oli <code>&lt;img&gt;</code>, mida on 
+suurtes kogustes kasutatud kujundamiseks. Linkide <code>&lt;a&gt;</code> rohkus 
+on samas täiesti normaalne, sest ilma nendeta poleks HTML hüpertekst. 
+Järgmised elemendid – <code>&lt;br&gt;</code>, <code>&lt;table&gt;</code> ja 
+<code>&lt;font&gt;</code> – ilmestavad selgelt laialtlevinud veebiehituse 
+stiili: tabelid paigutamiseks, reavahetused lõikude eraldamiseks ja 
+<code>&lt;font&gt;</code> teksti kujundamiseks. (<a href="#joonis7">Joonis 7</a>.)</p>
+
+<p><a href="#joonis8">Joonis 8</a> näitab protsentuaalselt, milliseid elemente 
+üldse lehtedel esineb, 
+ja illustreerib valitsevat olukorda natuke paremini. Mõistagi kohtab pea 
+kõigil lehtedel elemente <code>&lt;html&gt;</code>, <code>&lt;title&gt;</code>, 
+<code>&lt;head&gt;</code> ja <code>&lt;body&gt;</code> – see, et viimast on 
+kolme protsendi jagu vähem on seletatav sellega, et mitmed lehed, mis kasutavad 
+raame <code>&lt;frameset&gt;</code>, ei vaevu kehaosa üldse lisama. 
+<code>&lt;meta&gt;</code> ohtrus tuleneb vajadusest mitte-inglisekeelsetele 
+lehtedele õige kodeering määrata.</p>
+
+<p>Vaadates piltide ja tabelite esinemissagedusi võib öelda, et umbes ¾ 
+lehekülgedest kasutavad paigutuseks tabelit (esilehele enamasti ei panda 
+tabelit, kus oleks mingit sorti tabulaarne info nagu näiteks toodete nimekiri) 
+ja kujunduseks pilte HTML-is (<em>contra</em> CSS-iga määratud 
+taustapildid).</p>
+
+<p>77% lehtedest kasutab kas reavahetust <code>&lt;br&gt;</code>, paragrahvi 
+<code>&lt;p&gt;</code> või mõlemat. Sealjuures 40% lehtedest on nii paragrahv 
+kui reavahetus, 21% kasutab vaid reavahetust ja 16% üksnes paragrahvi 
+märgendit.</p>
+
+<p>60% lehekülgedest leidub kas elementi <code>&lt;link&gt;</code>, 
+<code>&lt;style&gt;</code> või mõlemaid. Kuna esimese peamine kasutusala on 
+viitamine välimisele stiililehele, siis võib öelda, et 60% lehtedest kasutab 
+CSS-i vähemalt mingil määral. (Küllap on ka lehti, mis rakendavad ohtralt 
+HTML-i <code>style</code>-atribuuti, aga see on umbes samale efektiivne kui 
+<code>&lt;font&gt;</code>-i kasutamine.)</p>
+
+<p>45% lehtedest kasutab teksti rõhutamiseks elemente <code>&lt;b&gt;</code> 
+ja/või <code>&lt;strong&gt;</code>. Nendest 63% kasutab 
+<code>&lt;b&gt;</code>-d, 24% <code>&lt;strong&gt;</code>-i ning 13% mõlemat 
+korraga.</p>
+
+<p>7% lehtedest kasutab teksti rõhutamiseks elemente <code>&lt;i&gt;</code> 
+ja/või <code>&lt;em&gt;</code>. Nendest 70% kasutab <code>&lt;i&gt;</code>-d, 
+27% <code>&lt;em&gt;</code>-i ning 3% mõlemat korraga.</p>
+
+<p>Tervelt 44% lehtedest kasutab vähemal või rohkemal määral skriptimist 
+(element <code>&lt;script&gt;</code>); suures enamuses on tõenäoliselt 
+eesmärgiks piltide vahetamine hiirega ülelibistamisel.</p>
+
+<p>Palju kasutatakse mitmesuguseid iganenud vahendeid nagu 
+<code>&lt;font&gt;</code> 42%, <code>&lt;center&gt;</code> 21%, 
+<code>&lt;map&gt;</code> 12%, <code>&lt;hr&gt;</code> 9% ja 
+<code>&lt;u&gt;</code> 3%.</p>
+<p>10% lehtedest kasutab raame <code>&lt;frameset&gt;</code> ning peaaegu 3% 
+reasiseseid raame <code>&lt;iframe&gt;</code>, mis teeb kokku 13% üht või 
+teist sorti raamidega lehti.</p>
+
+<p>Pealkirjade kasutamine on kasin – esimese taseme pealkirja 
+<code>&lt;h1&gt;</code> kasutatab vaid 7% lehekülgedest, 
+<code>&lt;h2&gt;</code>-te vaid 3% ja ülejäänuid veelgi vähem.</p>
+
+<p>Kuna <code>&lt;embed&gt;</code> element jäi vaatluse alt välja (kuna see 
+puudub HTML 4.01 spetsifikatsioonis (W3C, 1999)), siis ei saa väita, et 
+<code>&lt;object&gt;</code> on kõige populaarsem element Flash’i, Java, 
+video, heli jms leheküljega sidumiseks, nagu joonis 8 ekslikult näitab. 
+<code>&lt;object&gt;</code> on küll populaarsem kui 
+<code>&lt;applet&gt;</code>, aga see viitab pigem Java vähesele 
+kasutamisele.</p>
+
+
+<div class="joonis" id="joonis7">
+<img src="/archive/kool/standardid/joonis7.png" alt="HTML-i elementide jaotus koguhulga põhjal" />
+<p><span class="nr">Joonis 7.</span> HTML-i elementide jaotus koguhulga põhjal.</p>
+</div>
+
+<div class="joonis" id="joonis8">
+<img src="/archive/kool/standardid/joonis8.png" alt="HTML-i elementide esinemissagedus" />
+<p><span class="nr">Joonis 8.</span> HTML-i elementide esinemissagedus.</p>
+</div>
+
+<h2 id="lehed_tabelitega_ja_ilma">2.6. Lehed tabelitega ja ilma</h2>
+
+<p>Võrreldes valideerunud ja mittevalideerunud lehekülgi oli ilma tabeliteta 
+valmistatud lehekülgede osakaal valideerunud lehekülgede puhul pea kaks korda 
+suurem. Samuti on valideerunud lehtede hulgas rohkem neid, kus kasutatakse vaid 
+üht tabelit (<a href="#joonis9">joonis 9</a>). Ka enim tabeleid ühe lehe kohta 
+leidus ühel mittevalideerunud leheküljel – tervelt 238.</p>
+
+<div class="joonis" id="joonis9">
+<img src="/archive/kool/standardid/joonis9.png" alt="Tabelid valideerunud lehekülgedel ning mittevalideerunud lehe­külgedel" />
+<p><span class="nr">Joonis 9.</span> Tabelid valideerunud lehekülgedel 
+(vasakul) ning mittevalideerunud lehe­külgedel (paremal).</p>
+</div>
+
+
+<h2 id="validaatori_veateated">2.7. Validaatori veateated</h2>
+
+<p>19 655-lt leheküljelt korjas programm kokku 865 602 veateadet, 
+registreerides 88-t erinevat veateatemustrit. Keskmine vigade arv lehekülje 
+kohta oli 44, ent seda numbrit paisutasid suureks mitmed äärmuslike vigade 
+hulgaga lehed, nagu näiteks suurima veateadete hulgaga leht 
+<a href="http://www.jogevalv.ee">www.jogevalv.ee</a>, mille kohta validaator 
+andis tervelt 3177 veateadet. Sagedaseim oli 5 veateadet lehekülje kohta, 
+mediaan oli 18. <a href="#joonis10">Jooniselt 10</a> on selgelt näha, et 
+põhiliselt kõikus veateadete arv kusagil 1 ja 40 vea vahel.</p>
+
+<div class="joonis" id="joonis10">
+<img src="/archive/kool/standardid/joonis10.png" alt="Valideerumisvigade sagedustabel" />
+<p><span class="nr">Joonis 10.</span> Valideerumisvigade sagedustabel.</p>
+</div>
+
+<p>Kuid puhtalt veateadete arvu järgi lehti hinnata võib olla üsna 
+ülekohtune, sest kui lehekülje autor on eksinud mõne reegli vastu, siis 
+tõenäoliselt on ta seda eksimust ka korranud, ja nii võibki olla, et kõik 
+1000 veateadet ühel lehel viitavad ühele ainsale veale kuid samas 5 veateadet 
+mõnel teisel lehel annavad teada viiest erinevast probleemist.</p>
+
+<p>Loendades vaid erinevaid veateateid saame hoopis teistsugused numbrid: 
+keskmiselt 6 viga lehe kohta ning maksimaalselt 27 (nõnda palju oli erinevaid 
+vigu aadressil <a href="http://">www.katoliku.ee</a>). Kõige sagedamini 2 viga 
+lehel ning mediaan 5. Erinevate vigade jaotust ilmestab ka 
+<a href="#joonis11">joonisel 11</a> toodud sagedustabel.</p>
+
+<div class="joonis" id="joonis11">
+<img src="/archive/kool/standardid/joonis11.png" alt="Erinevate valideerumisvigade sagedustabel" />
+<p><span class="nr">Joonis 11.</span> Erinevate valideerumisvigade sagedustabel.</p>
+</div>
+
+<p>Kokkuvõttev võrdlus kõikide veateadete ja erinevate veateadete analüüsil 
+kasutatud erinevate statistikute vahel on toodud <a href="#tabel1">tabelis 
+1</a>.</p>
+
+<div class="tabel" id="tabel1">
+<table summary="Veateadete statistikud">
+<thead><tr>
+<th>veateated</th>
+<th>keskmine</th>
+<th>k.keskmine</th>
+<th>maksimum</th>
+<th>mediaan</th>
+<th>mood</th>
+<th>std. hälve</th>
+</tr></thead>
+<tr>
+<th>Kõik</th>
+<td class="nr">44,04</td>
+<td class="nr">39,31</td>
+<td class="nr">3177</td>
+<td class="nr">18</td>
+<td class="nr">5</td>
+<td class="nr">100,04</td>
+</tr>
+<tr>
+<th>Erinevad</th>
+<td class="nr">6,01</td>
+<td class="nr">5,97</td>
+<td class="nr">27</td>
+<td class="nr">5</td>
+<td class="nr">2</td>
+<td class="nr">4,08</td>
+</tr>
+</table>
+<p><span class="nr">Tabel 1.</span> Veateadete statistikud (aritmeetiline 
+keskmine, kaalutud keskmine, maksimaalne ja minimaalne veateadete arv, mediaan, 
+mood ja standardhälve). Kaalutud keskmise puhul on välja arvatud 1% kõige 
+suurema ja 1% kõige väiksema vigade arvuga lehti.</p>
+</div>
+
+<p>Järgnevalt vaatleme erinevate veateadete hulka (<a href="#joonis12">joonis 
+12</a>) ja esinemissagedusi (<a href="#joonis13">joonis 13</a>); arvandmed 
+kõigi veateadete kohta on toodud ära 
+<a href="http://triin.net/2005/04/22/Tabel_W3C_validaatori_veateadetega">lisas 2</a>.</p>
+
+<div class="joonis" id="joonis12">
+<img src="/archive/kool/standardid/joonis12.png" alt="Erinevate veateadete hulk" />
+<p><span class="nr">Joonis 12.</span> Erinevate veateadete hulk. (Vaid 15 
+sagedasemat veateadet on näidatud.)</p>
+</div>
+
+<div class="joonis" id="joonis13">
+<img src="/archive/kool/standardid/joonis13.png" alt="Erinevate veateadete esinemissagedus" />
+<p><span class="nr">Joonis 13.</span> Erinevate veateadete esinemissagedus. 
+(Vaid 18 sagedasemat veateadet on näidatud.)</p>
+</div>
+
+<p>Kõige sagedamini esinenud veateade <code>„there is no attribute 
+&quot;FOO&quot;...“</code>, tulenes mitmesuguste ebastandardsete atribuutide 
+kasutamisest, sagedasti oli tegemist koodiga, mis nägi välja järgmine:</p>
+
+<pre>
+&lt;body leftmargin=&quot;0&quot; topmargin=&quot;0&quot; marginwidth=&quot;0&quot; 
+  marginheight=&quot;0&quot;&gt;
+&lt;table height=&quot;100%&quot;&gt;
+&lt;tr&gt;
+  &lt;td background=&quot;/img/bg05.gif&quot;&gt;
+</pre>
+
+<p>Ühtki neist atribuutidest pole mainitud W3C standardis, aga selleks pole ka 
+vajadust, sest samasugune efekt on saavutatav, kui määrata vaid id-atribuut 
+tabelilahtrile, ja kasutada järgnevat stiililehte:</p>
+
+<pre>
+body {margin: 0}
+#lahter {background: url(&quot;/img/bg05.gif&quot;); height:100%}
+</pre>
+
+<p>Üheks levinuimaks veateateks oli <code>„required attribute &quot;FOO&quot; 
+not specified“</code>, mis tüüpiliselt tähendas, et piltidele 
+(<code>&lt;img&gt;</code>) oli jäetud määramata atribuut <code>alt</code>, 
+mis sisaldab alternatiivteksti juhuks, kui pilti pole saadaval. Samuti oli 
+sagedasti määramata jäetud atribuut <code>type</code>, elementidele 
+<code>&lt;script&gt;</code> ja <code>&lt;style&gt;</code>.</p>
+
+<p>Tervelt 63% lehekülgedest oli ilma dokumenditüübi määranguta (veateade 
+<code>„no document type declaration...“</code>).</p>
+
+<p>Kõige rängemat tüüpi vead kuulusid veateate <code>„document type does 
+not allow element &quot;FOO&quot; here...“</code> alla. See veateade tähistas 
+täiesti rumalaid vigu nagu <code>&lt;style&gt;</code> elemendi paigutamine 
+kõikvõimalikesse kohtadesse väljaspool <code>&lt;head&gt;</code> elementi, 
+tabelilahtrite <code>&lt;td&gt;</code> paigutamine väljapoole tabeliridasid 
+<code>&lt;tr&gt;</code>, <code>&lt;form&gt;</code> elemendi paigutamine 
+<code>&lt;table&gt;</code> ja <code>&lt;tr&gt;</code> vahele jms.</p>
+
+<p>Kolmandikul lehekülgedest oli probleeme, mida validaator tähistas teatega 
+<code>„end tag for element &quot;FOO&quot; which is not open“</code>. 
+Reeglina oli tegu lihtsalt väikeste kirjavigadega, mis aga võivad erinevate 
+brauserite tõlgenduses anda väga erinevaid tulemusi. Järgnev näide 
+illustreerib tüüpilisi vigu, mis antud veateadet tekitasid:</p>
+
+<pre>
+&lt;!-- begin paragraph -&gt;
+&lt;p&gt;Lorem ipsum dolor sit&lt;br /&gt;
+amet; just go to --&gt; &lt;/b&gt;home&lt;/b&gt;.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/tml&gt;
+</pre>
+
+<p>Järgmised neli veateadet esinesid alati koos:</p>
+
+<ul>
+<li><code>„reference to entity &quot;FOO&quot; for which no system identifier 
+could be generated“</code>,</li>
+<li><code>„entity was defined here“</code>,</li>
+<li><code>„general entity &quot;FOO&quot; not defined and no default 
+entity“</code> ja</li>
+<li><code>„cannot generate system identifier for general entity 
+&quot;FOO&quot;“</code>.</li>
+</ul>
+
+<p>Sagedasti esinev viga, mis seda põhjustas tulenes &amp;-märgi kasutamisest 
+veebiskriptidele antavate parameetrite eraldamisel. Kuid &amp; on HTML-is 
+erisümbol ning tähistab tähekoodi algust (näiteks <code>&amp;auml;</code> on 
+<code>ä</code> ja <code>&amp;otilde;</code> on <code>õ</code>), &amp;-märgi 
+enda jaoks on aga <code>&amp;amp;</code>. Järgnev näide demonstreerib levinud 
+valekasutust ja korrektset varianti:</p>
+
+<pre>
+index.php?id=143&amp;action=show &lt;!-- vigane --&gt;
+index.php?id=143&amp;amp;action=show &lt;!-- korrektne --&gt;
+</pre>
+
+<p>Veateate <code>„element &quot;FOO&quot; undefined“</code> põhjused 
+langesid nelja kategooriasse:</p>
+
+<ul>
+<li>rudimentsete elementide nagu <code>&lt;marquee&gt;</code>, 
+<code>&lt;blink&gt;</code> ja <code>&lt;embed&gt;</code> kasutamine,</li>
+<li>elementide <code>&lt;frameset&gt;</code> ja <code>&lt;frame&gt;</code> 
+kasutamine ilma <em>(X)HTML X.X Frameset</em> dokumenditüübita,</li>
+<li>brauserispetsiifiliste laienduste kasutamine (eeskätt mitmete Microsofti 
+vahenditega genereeritud lehekülgede puhul) ning</li>
+<li>kirjavead lubatud elemendinimede kirjutamisel.</li>
+</ul>
+
+<p>Veateade <code>„end tag for &quot;FOO&quot; omitted...“</code> ja sellele 
+alati järgnev <code>„start tag was here“</code> esinesid sagedasti 
+lehtedel, mille dokumenditüübiks oli määratud XHTML, kuid mis ei järginud 
+XML-i ranget reeglit selle kohta, et kõik elemendid <code>&lt;foo&gt;</code> 
+peavad saama suletud elemendiga <code>&lt;/foo&gt;</code> või olema üles 
+märgitud lühendatult kui <code>&lt;foo /&gt;</code>.</p>
+
+<p>Veateade <code>„an attribute value must be a literal unless it contains 
+only name characters“</code> esines nendel juhtudel kui elementide atribuutide 
+väärtused olid jäetud jutumärkidest ümbritsemata ent väärtused ei 
+koosnenud üksnes alfabeetilistest sümbolitest nagu järgnevas näites:</p>
+
+<pre>
+&lt;p bgcolor=#F3F5EB&gt;
+&lt;a href=/baas/otsinq.cgi&gt;
+</pre>
+
+<p>Veateade <code>„end tag for &quot;FOO&quot; which is not finished“</code> 
+esines enamasti juhul, kui elemendid olid valesti üksteise sisse paigutatud, 
+näiteks <code>&lt;form&gt;</code> asetatud otse elemendi 
+<code>&lt;table&gt;</code> sisse või elemendid <code>&lt;body&gt;</code> ja 
+<code>&lt;html&gt;</code> vahel.</p>
+
+<p>Veateade <code>„&quot;FOO&quot; is not a member of a group specified for 
+any attribute“</code> esines juhtudel, kui oli kasutatud mõnda tundmatut 
+atribuuti, mis oli korraga nii atribuudi kui väärtuse tähenduses, nagu 
+<code>noresize</code> ja <code>nocache</code> järgnevates näidetes:</p>
+
+<pre>
+&lt;frame src=&quot;nav.html&quot; name=&quot;nav&quot; noresize&gt;
+&lt;img src=&quot;foo.jpg&quot; alt=&quot;foo&quot; nocache&gt;
+</pre>
+
+<p>Veateade <code>„value of attribute &quot;FOO&quot; cannot be 
+&quot;BAR&quot;...“</code> esines reeglina juhul, kui <code>align</code> 
+atribuudile oli määratud mõni muu väärtus kui <code>top</code>, 
+<code>middle</code>, <code>bottom</code>, <code>left</code> või 
+<code>right</code> nagu järgmises näites:</p>
+
+<pre>
+&lt;img src=&quot;foo.jpg&quot; alt=&quot;foo&quot; align=&quot;texttop&quot;&gt;
+&lt;img src=&quot;foo.jpg&quot; alt=&quot;foo&quot; align=&quot;absmiddle&quot;&gt;
+</pre>
+
+
+</body>
+</html>

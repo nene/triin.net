@@ -1,0 +1,83 @@
+2009-09-07
+Don’t Deploy Like I Do
+======================
+
+As mentioned in my [previous blog entry][prev], I had a goal set to
+make a simple deployment script for publishing developments of this
+site – the current approach of simply firering up the FTP client and
+manually uploading the files was too tiresome process and really
+needed to be automated.
+
+That’s of couse a typical problem, and a good solution usually goes
+like that:
+
+* You have a directory in server where all the files of your web app
+  reside in.  You also have a symbolic link pointing at that
+  directory.
+  
+* You create another directory where you upload a new version of your
+  app.
+
+* And then you switch to the newer version by changing the symbolic
+  link.
+
+That’s of course ignoring possible updates to your database schema and
+a myriad of other possible things your app might need, but that’s how
+one generally should go with the simplest deployment.
+
+Unfortunately, that kind of process doesn’t work with my hosting
+provider, as the `public_html` directory – into which one is supposed
+to put its app – also contains directories that represent subdomains.
+So I can’t just that easily upload another directory and switch to
+that.
+
+In that kind of case it would be better when your web app is
+structured like that:
+
+* `public_html/`
+  * `app/`
+  * `css/`
+  * `img/`
+  * `.htaccess`
+  * `index.php`
+
+Then you would need to upload new versions of each of those parts, but
+at least the number of parts would be fairly fixed number.
+
+Again, not quite so in my case, which looks more like that:
+
+* `public_html/`
+  * `css/`
+  * `img/`
+  * `.htaccess`
+  * `index.php`
+  * `foo.php`
+  * `bar.php`
+  * `baz.php`
+  * `zap.php`
+  * `...`
+
+Not quite that easy to keep track of all those PHP files in public
+directory.  But that’s how it currently is.  Dealing with legacy
+code...
+
+So currently my approach is to to just syncronize files on my local
+computer with server using the [ncftpput][] utility (my first choice
+would have been quite similar [wput][], but it gave me `Segmentation
+fault` when I was trying to use it).
+
+But the whole deployment-script-thing was done to make the development
+of my PHP-driven site easier, but the funny thing is, that during
+doing it I discovered, that maybe after all I don’t have to use PHP
+for the new version of the site – it turned out that my hosting
+provider now also supports **Ruby On Rails**, and well... I like Ruby
+a whole lot more than PHP.
+
+
+[prev]: http://www.triin.net/2009/08/30/Pushing_myself
+[ncftpput]: http://www.ncftpd.com/ncftp/doc/ncftpput.html
+[wput]: http://wput.sourceforge.net/wput.1.html
+
+
+
+

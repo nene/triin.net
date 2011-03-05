@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Running the program</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Survey on over million webpages" />
+<meta name="keywords" content="CSS, HTML, XHTML, JavaScript, validation" />
+<meta name="date" content="2006-06-12" />
+</head>
+<body>
+
+<h1 id="running-the-program">Running the program</h1>
+
+<p>To get through as many pages as fast as possible, I installed
+the program into 17 computers in the lab. In each computer I ran
+5 instances of the program simultaneously, which makes 85 instances
+total. This meant, I had to split the file containing 4.36 million
+URI-s from Open Directory Project into 85 chunks and give each
+chunk to one program instance to download and analyze.</p>
+
+<p>All the results were stored into MySQL database, which stood
+in the 18th computer - all the other machines communicating with it.</p>
+
+<p>I was running short with my time. I had about a week to run the
+program and it wasn't enough to download and analyze all the URI-s
+I had. So I just strived for as much as I could.</p>
+
+<p>The result of about 100 hours of continuous running between 10th and
+16th of April was 1.27 million URI-s downloaded and analyzed (29%). (See
+<a href="#figure-2">figure 2</a>). Not even a half of what was
+initially planned, but still a considerable amount to make some
+statistics.</p>
+
+<div class="joonis" id="figure-2">
+<img src="/archive/kool/webstat/figure-2.png"
+alt="The initial selection was 4.36 million URI-s. 1.27 million of those were investigated by the program. Of those the program was unable to download 0.2 million URI-s. Few thousands of pages were removed from further analyzes either because they didn?t have appropriate content-type header for a web page or the HTTP status code was not 200 OK or their size was 0 bytes. At last the pages with not a single HTML element were removed ? which left only 725,984 pages for further analyzes." />
+<p><span class="nr">Figure 2.</span>
+How the initial selection of URI-s was trimmed down.</p></div>
+
+<p>Although I had trimmed down the initial selection of 4.7 million
+URI-s from Open Directory Project by removing duplicates and links
+to non-HTML pages, there were still more URI-s to be removed.</p>
+
+<p>First of all the program was unable to download few hundreds
+of thousands URI-s. At the time the program was running the internet
+connection was lost for a few hours, so I guess that counts for the
+most of these not downloaded URI-s.</p>
+
+<p>I also left aside the data about pages that had different HTTP
+status code than 200 OK (mostly 404 Not found error pages) and
+pages that were simply empty (0 bytes in size).</p>
+
+<p>I also removed a great amount of pages where the program was
+unable to find even a single HTML element. If you look again at
+<a href="#figure-2">figure 2</a>, you?ll see that there was a great
+many pages like that (about quarter of all the pages left).
+This doesn?t look normal and indeed it isn?t: I checked those
+pages to see if they really were empty ? but they weren?t. They
+were just ordinary pages, but because of some bug in the program,
+no HTML elements were found from those. I have yet to identify
+the exact bug, but only thing I can do with the gathered results,
+is to exclude those pages from all the statistical analyzes that
+follow.</p>
+
+<p>So... if you still believe, that a research with so many
+shortcomings is worth looking at, you can continue with the results.</p>
+
+
+
+</body>
+</html>

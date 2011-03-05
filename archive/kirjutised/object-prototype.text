@@ -1,0 +1,179 @@
+2009-09-13
+Why exactly is Object.prototype verboten?
+=========================================
+
+There are several sites claiming that [Object.prototype is
+forbidden][erik].  But they don’t really provide a complete
+explanation of why it is so.  Maybe it’s not so forbidden after all?
+This article takes another stab at this question.
+
+
+## Motivation
+
+Everybody likes the neat iterator methods in Array.prototype.  Using
+these you can write some really short and expressive code:
+
+    var persons = [
+      {name: "John", age: 10},
+      {name: "Mary", age: 28},
+      {name: "Alice", age: 16}
+    ];
+    
+    var averageAge = persons.reduce(function(sum, p){
+      return sum + p.age;
+    }, 0) / persons.length;
+
+    // or even shorter
+    var averageAge = persons.pluck("age").average();
+
+It would be really great to use these same iterator methods on
+objects:
+
+    var ages = {
+      John: 10,
+      Mary: 28,
+      Alice: 16
+    };
+
+    var averageAge = ages.reduce(function(sum, age){
+      return sum + age;
+    }, 0) / ages.length();
+
+    // or
+    var averageAge = ages.average();
+
+    // with the added benefit of accessing a particular person
+    // directly by its name:
+    if (person.Mary > averageAge) {
+      alert("Mary is above average!");
+    }
+
+
+## Straight-forward Object.prototype extension
+
+So, lets not hold ourselves back and add the `average` method to
+Object.prototype:
+
+    Object.prototype.average = function() {
+      var sum = 0, cnt = 0;
+      for (var i in this) {
+        sum += this[i];
+        cnt++;
+      }
+      return sum / cnt;
+    };
+
+And now lets try it out:
+
+    var ages = {John: 10, Mary: 20, Alice: 30};
+    ages.average();
+
+The average of 10,20,30 should be 20, but when we run the above script
+it prints out **NaN**.  Hei!  What happened!
+
+The problem is, that the **for in loop** iterates over all the
+properties of an object – including those defined in prototype.  That
+means our `average` will not iterate over three, but four objects.
+Three of the objects are numbers and adding them together is no
+problem, but the fourth is a function (the `Object.prototype.average`
+itself) and trying to add that produces `NaN`.
+
+
+## hasOwnProperty()
+
+Luckily we are able to differenciate between the primary properties of
+the object and those defined by its prototype using the `hasOwnProperty`
+method.  Here’s an enhanced version of `average`:
+
+    Object.prototype.average = function() {
+      var sum = 0, cnt = 0;
+      for (var i in this) {
+        if (this.hasOwnProperty(i)) {
+          sum += this[i];
+          cnt++;
+        }
+      }
+      return sum / cnt;
+    };
+
+Running the above test code again gives us our expected 20.
+
+But now we have another problem.  No more can we use plain for-in loop
+anywhere in our code – we have to place the `hasOwnProperty` check
+inside each one of them.  And not only in our code, but also in all
+the third-party code we use.  Even when you are willing to modify the
+code of your libraries, you might not have enough control to do it
+(for example when you are using Google Maps library that is hosted
+directly from Google and isn’t even downloadable).
+
+But lets pause for a minute.  Isn’t it so that `Object.prototype` also
+contains the built-in `hasOwnProperty` method, but when we iterate over
+an object with for-in the `hasOwnProperty` doesn’t show up, although our
+`average` method does?  The `hasOwnProperty` is somehow uniterable!
+When we could make our `average` method also to be similarly
+unitarable, then we could escape from the whole
+add-hasOwnProperty-inside-every-for-in-loop problem.
+
+
+## ECMAScript 5
+
+And indeed, this is a problem with JavaScript language and a one
+targeted by the forthcoming [5th edition of ECMAScript][es5] (a long
+and boring PDF, so I suggest you better take a look at the [overview
+provided by John Resig][jr]).  If we were to be using ECMAScript 5
+compatible browser, then we could define our `average` method as not
+being enumerable:
+
+    Object.defineProperty(Object.prototype, "average", {
+      enumerable: false,
+      value: function() {
+        var sum = 0, cnt = 0;
+        for (var i in this) {
+          sum += this[i];
+          cnt++;
+        }
+        return sum / cnt;
+      }
+    });
+
+So at least in the future we will be able to extend Object.prototype
+with some nice generic iterator functions.  Happy end?  Well... not
+really.
+
+
+## The fundamental problem with Object.prototype
+
+Consider this code:
+
+    var ages = {John: 10, Mary: 20, Alice: 30, average: 15};
+    ages.average();
+
+The name of one of our subjects happens to be `average` – the very
+same as the name of the method we want to use.  That new `average`
+hides our intended `average` in the prototype and our code breakes.
+
+The same applies to any method in `Object.prototype`.  Had we adopted
+the for-in-with-hasOwnProperty approach, then a malicious user could
+enter “hasOwnProperty” to the right place and bring our system
+completely down.
+
+Sure, there is a way to ensure, that we are indeed using the exact
+method defined in prototype:
+
+    Object.prototype.average.call(ages);
+
+But this kind of code really isn’t what we strived for.
+
+It only remains to conclude, both for now and for the days ahead:
+
+> **`Object.prototype` is verboten.**
+
+
+[erik]: http://erik.eae.net/archives/2005/06/06/22.13.54/
+[es5]: http://www.ecma-international.org/publications/files/drafts/tc39-2009-025.pdf
+[jr]: http://ejohn.org/blog/ecmascript-5-objects-and-properties/
+
+
+
+
+

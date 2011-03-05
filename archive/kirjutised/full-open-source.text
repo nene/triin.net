@@ -1,0 +1,177 @@
+2010-02-23
+In the future all software will be delivered in source code
+===========================================================
+
+Note that I'm not just repeating what [Free Software Foundation][fsf]
+has been advocating for ages, I'm streching it even further.  Namely,
+that normal users are going to download programs in source code,
+configure, make and install.  All software being open source will just
+be a small side-effect of all this.
+
+## But why?
+
+Isn't compiling your own programs just a harder and slower way to get
+to the same binary?
+
+### Faster programs
+
+Not quite.  When you download a general-purpose binary, it will be
+compiled so that it runs on a whole range of processors.  This means
+that it will be compiled for the worst processor out there.  Event
+when your CPU is the latest and greatest, the binary doesn't make use
+of its fancy instructions, because it also needs to run on some old
+processor that doesn't support these instructions.
+
+But when you compile your own, you can tell the compiler to optimize
+the program only for your processor, taking advantage of all those new
+nifty instructions.
+
+### More architectures
+
+When you want to go beyond one processor architecture, you just can't
+get away with a single binary.  Today already you need at least 32-bit
+and 64-bit versions.  Want to support Windows, Linux, BSD, OSX -
+you'll need about ten different binaries.  When distributing in source
+code, you just need one version that can be compiled for all these
+architectures - but that's what you need to have anyway!
+
+Binaries are the cause why we are still stuck with x86 architecture.
+Because most of the software is distributed in binary form, processor
+manufacturers are forced to stick to the old architecture - otherwise
+all these binaries will stop working on the new machine.
+
+If software were distributed as source code, processor architectures
+would be free to evolve.  Processor manufactorers would just need to
+supply an updated version of a compiler and all the source code would
+nicely be compiled to work with the new processor.  It's not that we
+would then have bazillon processor architectures, but we wouldn't be
+locked in to a single one.
+
+## Counterarguments
+
+Even given all these goodnesses, going fully to source code might
+still sound quite insane, but please, bare with me while I go through
+several counter arguments.
+
+### Compilation is for geeks only
+
+Sure, the way things currently are, it's the sacred land of hard-core
+Linux-aficionados.  Even many programmers are a bit scared of typing:
+
+    # ./configure
+    # make
+    # make install
+
+...not to mention compiling your own (dare I say it) kernel!
+
+But things don't have to be this way.  [Gentoo][gentoo] is a good
+state-of-the-art example of compiling made easy.  You can compile
+whole KDE desktop environment by just typing:
+
+    # emerge kdebase-meta
+
+And it will download, compile and install all the KDE packages and their
+dependences.
+
+Sure, Gentoo is widely considered a hard-core distro, but it's not
+really the compilation part that scares most people away, it's that
+all the installation and configuration is done from command line.  But
+the compilation itself is way easier than in most other distros.
+
+It's more of an interface issue. There is no reason why one couldn't
+create a source-based distro with user-friendly graphical package
+manager.
+
+### Compilation is time consuming
+
+Ubuntu takes about [15 minutes][ub-vis-7] to install.  Gentoo takes
+[several hours][oo-time].  Nobody is going to put up with that!
+
+But computers are getting faster.  Gentoo install used to take days -
+these days I can get KDE running within one.  Multi-core CPU-s don't
+make most programs faster, but compilation is a highly parallelizable
+task and here every additional CPU (or core) helps.
+
+Another part of the problem is that C/C++ is [notoriously slow to
+compile][c-slow]:
+
+> The way that C++ header files work with a standard compiler, you can
+> wind up re-parsing the same file hundreds or thousands of times. So
+> even with a really fast compiler, you can easily wind up with some
+> extremely slow compile times.
+
+That's exactly the problem that [Go language][go] is trying to fix:
+
+> Go compilers produce fast code fast. Typical builds take a fraction
+> of a second yet the resulting programs run nearly as quickly as
+> comparable C or C++ code.
+
+Armed with fast processors and compilers, there is no reason to be
+slowed down by compilation times.  Additionally for many programs of
+the future, compilation time will not be relevant at all, because the
+code will be interpreted or [JIT-compiled][jit].
+
+### Binaries are faster to download
+
+This is just a widespread [misconception][asc-bin]:
+
+> Once upon a time I compared the average sizes of binary compiled
+> programs and their source code in C, since the size of the binaries
+> would presumably be highly compressed and efficient. If you stripped
+> comments, the source code was on the average about 1/2 the size of
+> the binary code - though of course it executes slower. YMMV, but no
+> way was the source code enormously bigger. And as far as data is
+> concerned, the number "10" takes a wasteful 16 bits to store, but
+> the binary version takes an efficient 4 bytes.
+
+Of course on this age of web 2.0 and rich internet applications we
+can't get away without mentioning JavaScript.  Although JavaScript is
+not compiled, a widespread practice is the use of JavaScript
+minification (which can be equated to compiling - [at least google
+does][closure]).  Because minification turns JavaScript into shorter
+JavaScript, it will always result in smaller files, at least by the
+amount of comments and whitespace.
+
+But truth to be told again.  More important than minification is that
+you serve your JavaScript files gzipped.  Minification is just an
+extra bit that you should add to achieve maximum compression.  A small
+test with jQuery proves this:
+
+     161K jquery-1.4.2.js
+      71K jquery-1.4.2.min.js
+      45K jquery-1.4.2.js.gz
+      24K jquery-1.4.2.min.js.gz
+
+This extra that minification gives you is already not really needed by
+most web apps.  Almost nobody besides Google minifies HTML any more.
+Soon it will be the same with JavaScript.
+
+### What about proprietary software?
+
+What about it?  You can always obfuscate your source code when you
+really want to.  But I think in the long run most of the software will
+also become open source - the GPL is programmed to do it, it's just a
+matter of time.
+
+### Some things need to be binary!
+
+One would guess that at least the installer of this imaginary OS would
+need to be binary.  But not neccessarily...  You could still download
+the installer as source code, compile it, and then burn the resulting
+binary to install-disk.
+
+Or embedded devices.  You wouldn't think of compiling on your phone?
+Like you wouldn't think of browsing the web from it?  Just a matter of
+good-enough hardware.
+
+Or what do you think?
+
+[fsf]: http://www.fsf.org/
+[gentoo]: http://www.gentoo.org/
+[ub-vis-7]: http://www.tuxradar.com/node/33
+[oo-time]: http://www.openoffice.org/FAQs/build_faq.html#howlong
+[c-slow]: http://scienceblogs.com/goodmath/2009/11/googles_new_language_go.php
+[go]: http://golang.org/
+[jit]: http://en.wikipedia.org/wiki/Just-in-time_compilation
+[asc-bin]: http://www.satn.org/about/asciivsbinary.htm
+[closure]: http://code.google.com/closure/compiler/

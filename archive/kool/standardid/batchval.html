@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Programmi BatchVal dokumentatsioon</title>
+<meta http-equiv="Content-type" content="text/html; charset:utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="TÜ Haapsalu Kolledž, Infehnoloogia osakond. Proseminaritöö. Juhendaja: Jaagup Kippar" />
+<meta name="keywords" content="valideerimine standardid CSS HTML W3C kodeeringud" />
+<meta name="date" content="2005-04-22" />
+</head>
+<body>
+
+<h1>Lisa 1: Kasutatud programmi lühike dokumentatsioon</h1>
+
+
+<h2 id="uldine">Üldine</h2>
+
+<p>Uurimuse läbiviimiseks loodud programm on avalikult veebist kättesaadav: 
+<a href="http://www.triin.net/2005/04/22/batchval.tar.gz">batchval.tar.gz</a></p>
+
+<p>Programm valideerib W3C validaatorit kasutades talle ette antud veebilehed 
+ning salvestab statistika nii failide, validaatori veateadete kui programmi 
+töö käigus tekkinud vigade kohta.</p>
+
+<p>Terviklik programm koosneb ühest peaprogrammist ja kahest alamprogrammist. 
+Peaprogramm on kirjutatud Python’is ning alamprogrammid Perl’is. Peaprogramm 
+on teostatud Python’is, sest see keel võimaldab internetist faile alla 
+laadida ja teisi programme käivitada ning nende antavaid veateateid 
+registreerida – saavutades seda kõike väga vähese koodihulgaga. 
+Alamprogrammid tegelevad allalaetud failidest mustrite otsimisega ning on 
+seetõttu teostatud Perl’is – keeles, mis on kuulus oma mitmekülgsete 
+regulaaravaldiste poolest.</p>
+
+
+<h2 id="noudmised_susteemile">Nõudmised süsteemile</h2>
+
+<ul>
+<li>Python (testitud versiooniga 2.3.3),</li>
+<li>Perl (testitud versiooniga 5.8.3),</li>
+<li>Linux või mõni muu UNIX-i laadne süsteem (testitud SuSE ja Gentoo Linux peal).</li>
+</ul>
+
+
+<h2 id="sisend_ja_valjund">Sisend ja väljund</h2>
+
+<p>Programmi sisendiks on fail aadressidega, kus aadressid on eraldatud 
+reavahetustega ning ei sisalda protokolli tunnust, s.t. mitte 
+<code>http://www.domeen.ee</code> vaid <code>www.domeen.ee</code>. Vaikimisi 
+eeldatakse, et kõik aadressid kasutavad HTTP protokolli. (Vaikimisi on selleks 
+failiks „servers.list“.)</p>
+
+<p>Programmi väljundiks on kolm faili:</p>
+
+<ul>
+<li>veateadete fail, kuhu salvestatakse kõik programmi töö käigus tekkinud 
+probleemid (vaikimisi „err.log“),</li>
+<li>lehekülje statistika fail, kuhu salvestatakse info lehelt leitud HTML-i 
+kohta tabelina eraldades väljad komadega (vaikimisi „sitestat.csv“), 
+genereeritud alamprogrammi „checkpage.pl“ poolt,</li>
+<li>validaatori statistika fail, kuhu salvestatakse info selle kohta kas leht 
+valideerus või ei valideerunud ning statistika erinevate veateadete arvu kohta 
+tabelina eraldades välad komadega (vaikimisi „results.csv“), genereeritud 
+alamprogrammi „validate.pl“ poolt .</li>
+</ul>
+
+
+<h2 id="kasutamine">Kasutamine</h2>
+
+<p>Programmiga töö alustamiseks tuleks luua uus kataloog ning sinna sisse 
+programm arhiivist lahti pakkida:</p>
+
+<pre>$ tar xvfz bachval.tar.gz</pre>
+<p>Kui Perl ja Python ei asu kataloogis <code>/usr/bin</code>, siis tuleks 
+modifitseerida failide „batchval.py“, „validate.pl“ ja 
+„checkpage.pl“ esimesi ridu, näiteks asendada rida</p>
+
+<pre>#!/usr/bin/python</pre>
+
+<p>reaga</p>
+
+<pre>#!/usr/local/bin/python</pre>
+
+<p>Lihtsaimal juhul toimub programmi kasutamine järgmiselt (oluline on olla 
+programmi kataloogis):</p>
+
+<pre>$ ./batchval.py --prepare</pre>
+
+<p>Programm võtab sellisel juhul oma sisendi vaikimisi kasutatavast failist 
+ning kirjutab väljundid samuti vaikimisi märgitud failidesse. Parameeter 
+„--prepare“ (lühendatult „-p“) käsib väljundiks kasutatavad failid 
+eelnevalt tühjendada/luua ning paigutab nendesse ühtlasi komadega eraldatud 
+tabeli tulpade pealkirjad. Kui sooviks on näiteks poolelijäänud programmi 
+tööd jätkata nii, et väljundifaile ei tühjendataks ja lihtsalt jätkataks 
+nendesse ridade lisamist, siis tuleb „--prepare“ parameeter ära jätta.</p>
+
+<p>Soovi korral võib nii sisend kui väljundfailide nimed programmile eraldi 
+ette määrata:</p>
+
+<pre>
+$ ./batchval.py --input &lt;sisendfail&gt;  
+                --error &lt;veateadete fail&gt;
+                --check &lt;HTML-i statistika fail&gt;
+                --validation &lt;validaatori statistika fail&gt;
+</pre>
+
+<p>Vaikimisi salvestab programm allalaetud leheküljed ajutiselt faili 
+„check.html“, sedagi faili võib ette määrata kasutades parameetrit 
+<code>--download &lt;failinimi&gt;</code>.</p>
+
+<p>Kasutades parameetrit <code>--debug</code> katkestab programm töö alati kui 
+kohtab mõnda programmi jaoks tundmatut W3C validaatori veateadet. See 
+parameeter on kasulik täiendamaks veateatemustrite loetelu, mida sisaldab fail 
+„validate.pl“.</p>
+
+<p>Abi erinevate parameetrite kohta on alati kättesaadav käsurealt, 
+kirjutades:</p>
+
+<pre>$ ./batchval.py –-help</pre>
+
+
+<h2 id="veateated">Veateated</h2>
+
+<p>Olulist rolli selle programmi juures mängivad veateated, mis kannavad 
+mitmesugust olulist infot ning ei tähenda reeglina viga programmis endas vaid 
+pigem probleeme valideerimiseks määratud lehekülgedega. Mugavamaks 
+analüüsiks salvestatakse kõik veateated vaikimisi faili „err.log“.</p>
+
+<p>Järgnevad veateated on kõige tavalisemad ning tähistavad probleeme 
+valideeritava lehekülje või seda vahendava serveriga:</p>
+
+<dl>
+<dt>Page redirected</dt><dd>lehekülje koodis oli ümbersuunamist tähistav 
+&lt;meta&gt; element.</dd>
+<dt>URL unreachable</dt><dd>nimetatud aadressilt ei õnnestunud dokumenti 
+alla laadida.</dd>
+<dt>Not an HTML-document</dt><dd>lehekülje koodis ei leitud ühtegi 
+üldtuntud HTML-i elementi.</dd>
+<dt>Page unavailable or access denied for W3C validator</dt><dd>W3C 
+validaatoril ei õnnestunud leheküljele ligi pääseda.</dd>
+<dt>Error downloading from W3C validator</dt><dd>ebaõnnestus valideerimise 
+tulemuste allalaadimine.</dd>
+</dl>
+
+<p>W3C validaatori poolt antavad veateated:</p>
+
+<dl>
+<dt>Cannot continue because of previous errors</dt><dd>validaator katkestab 
+lehekülje valideerimise eelnenud vigade tõttu.</dd>
+<dt>This is not an SGML document</dt><dd>validaator ei tunnista antud faili 
+SGML-iks (seega ei saa antud dokument olla ka ei HTML ega XHTML).</dd>
+<dt>A Fatal Error occurred (with encoding or DTD)</dt><dd>hoolimata sellest, et 
+validaatorile määrati eraldi kasutamiseks kodeering ISO-8859-1, polnud 
+valideerimise teostamine võimalik.</dd>
+</dl>
+
+<p>Programmi enda puudustest tingitud veateated:</p>
+
+<dl>
+<dt>Unknown Error message recovered</dt><dd>W3C validaator andis veateate, mida 
+programm ei tunne.</dd>
+<dt>Error in script</dt><dd>tundmatu viga alamprogrammis „validate.pl“.</dd>
+<dt>A Mystery Error</dt><dd>seni avastamata viga, mis registreeritakse failis 
+„validate.pl“ real 676.</dd>
+</dl>
+
+</body>
+</html>

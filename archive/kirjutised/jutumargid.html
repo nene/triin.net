@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="et">
+<head>
+<title>Jutumärgid ja muu</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Kirjavahemärgid veebis, korrektne kasutus ja implementeerimine" />
+<meta name="keywords" content="jutumärgid ülakomad unicode q utf enkodeering iso-8859-15" />
+<meta name="date" content="2004-12-02" />
+</head>
+<body>
+
+<h1>&ldquo;Jutumärgid&rdquo; ja muu&hellip;</h1>
+
+<p>Pärast oma väikeseid rännakuid LaTeX-i ja TeX-i maailmas
+hakkasin igasugustele pisidetailidele märksa rohkem tähelepanu
+pöörama. Pealegi, kui Donald E. Knuth pöörab tohutut tähelepanu
+isegi sellele, <a href="http://www-cs-faculty.stanford.edu/~knuth/cm.html" 
+title="Important Message to all Users of TeX">milline näeb välja 
+&delta; (delta)</a>, siis ei tundu minu väike tähelepanujuhtimine
+kirjavahemärkidele sugugi tühisena.</p>
+
+<p>Palju on lehekülgi, mis selle asemel, et kasutada tüpograafiliselt
+korrektseid &ldquo;kahepoolseid jutumärke&rdquo;, kasutavad 
+programmeerijatele hästi tuntud "ühepoolseid jutumärke".
+Ühepoolseid jutumärke kasutab teiste seas näiteks selline suurlehekülg
+nagu <a href="http://www.ekspress.ee" title="Eesti Ekspress">ekspress.ee</a>.</p>
+
+<p>Mõningates kohtades on näha ka TeX-i laadseid ``variante'',
+aga see pole eestikeelsetel lehtedel eriti levinud.</p>
+
+<p>Teised, kes küll kasutavad kas &ldquo;jutumärke&rdquo; või
+&laquo;jutumärke&raquo; ei kasuta html-i sümbolikoode
+nagu &amp;ldquo; ja &amp;rdquo; vaid hoopis mingi ISO-8859 kooditabeli
+sümboleid, mis reeglina antud enkodeeringule ei vasta&mdash;juhul 
+kui enkodeering muidugi üldse määratudki on.
+Näiteks ühel <a href="http://www.poogen.ee">poogen.ee</a> lehel annab
+validaator ainuüksi sellel põhjusel tervelt 1414 veateadet.</p>
+
+<h2>Lahendused</h2>
+
+<h3><code>&lt;q&gt;</code></h3>
+
+<p>Tegelikult pole antud probleem sugugi lihtne.
+Näiteks HTML-is on olemas spetsiaalne element <code>&lt;q&gt;</code>,
+mis on mõeldud <q>jutumärkide</q> tekitamiseks, aga see pole
+brauserite poolt eriti toetatud. Õigupoolest Opera ongi vist ainus,
+kes seda mõningal määral toetab. Tegelikult on <code>&lt;q&gt;</code>
+väärtus üsnagi kahtlane, arvestades, et XML ei lubaks sel juhul
+jutumärkidel alata ühes lõigus ning lõppeda alles mitu lõiku hiljem
+või üldse mitte.</p>
+
+<h3>Unicode</h3>
+
+<p>Varem sai mainitud, et paljudel lehtedel on probleemid jutumärkidega
+tingitud sellest, et kasutatakse valet kodeeringut. Hea uudis on see,
+et selline kodeering, mis kõikvõimalikke jutumärke toetab, on 
+olemas&mdash;selleks on <em>unicode</em>. Halb uudis on aga see, et
+vähesed teavad ja oskavad seda kasutada.</p>
+
+<p>Idee poolest tuleks lihtsalt kasutada mõnda tekstiredaktorit, mis
+toetab unicode-i (neid on palju) ning salvestada tekst näiteks UTF-8
+formaadis. Kõik veebilehitsejad toetavad unicode-i nii, et selle poole
+pealt pole mingit probleemi. See aga tähendab reeglina seda, et
+kogu lehekülg tuleks üle viia UTF-8 peale, mis iseenestest pole paha,
+sest see ennetab probleeme tulevikus, kui keegi ühtäkki peaks tahtma
+midagi näiteks tühipaljas kirillitsas kirjutada, mis aga ühegi
+ISO-8859-x sisse ei mahu, UTF saab selle ja kõigi teiste maailma
+keeltega aga suurepäraselt hakkama.</p>
+
+<h3><code>&amp;html;</code></h3>
+
+<p>Viimaseks variandiks on kasutada HTML-i sümbolilühendeid 
+<code>&amp;xxxx;</code>. Kindlasti märksa rohkem ruumi võttev
+variant kui unicode, kuid võimaldab pääseda ilma enkodeeringut
+muutmata.</p>
+
+<p>Järgnevalt olen ära toonud mõningad olulisimad märgid
+ja nende HTML-i ekvivalendid ning kui õnnestus leida, siis
+klahvikombinatsioonid nende eesti klaviatuuril väljavõlumiseks.</p>
+
+
+<dl>
+<dt>&lsquo;</dt><dd>vasak ülakoma &mdash; <code>&amp;lsquo; [AltGr+Shift+V]</code></dd>
+<dt>&rsquo;</dt><dd>parem ülakoma &mdash; <code>&amp;rsquo; [AltGr+Shift+B]</code></dd>
+<dt>&ldquo;</dt><dd>vasak jutumärk &mdash; <code>&amp;ldquo; [AltGr+V]</code></dd>
+<dt>&rdquo;</dt><dd>parem jutumärk &mdash; <code>&amp;rdquo; [AltGr+B]</code></dd>
+
+<dt>&lsaquo;</dt><dd>vasak väike jutumärk #2 &mdash; <code>&amp;lsaquo;</code></dd>
+<dt>&rsaquo;</dt><dd>parem väike jutumärk #2 &mdash; <code>&amp;rsaquo;</code></dd>
+<dt>&laquo;</dt><dd>vasak jutumärk #2 &mdash; <code>&amp;laquo;</code></dd>
+<dt>&raquo;</dt><dd>parem jutumärk #2 &mdash; <code>&amp;raquo; [AltGr+X]</code></dd>
+
+
+<dt>&hellip;</dt><dd>kolm punkti &mdash; <code>&amp;hellip;</code></dd>
+<dt>&mdash;</dt><dd>mõttekriips &mdash; <code>&amp;mdash;</code></dd>
+</dl>
+
+
+<p>Teadmiseks ka niipalju, et ka Trinoloogialehel on nüüdsest
+need koledad "märgid" vahetatud hoopis kenamate &ldquo;märkide&rdquo;
+vastu. Kodeeringuks jääb seniks veel ISO-8859-15&hellip;</p>
+
+
+</body>
+</html>

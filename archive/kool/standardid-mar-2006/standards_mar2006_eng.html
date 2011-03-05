@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Web Standards in Estonia vol 3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Third validation survey on Estonian web pages" />
+<meta name="keywords" content="validation, standards, CSS, HTML, W3C, encodings" />
+<meta name="date" content="2006-03-11" />
+</head>
+<body>
+
+
+<h1>Web Standards in Estonia vol 3</h1>
+
+<div class="preambula">
+<p>This survey continues the work done in previous surveys on
+<a href="/2005/04/27/Web_Standards_in_Estonia">February 2005</a> and
+<a href="/2005/09/18/Web_Standards_in_Estonia_vol_2">August 2005</a>.
+Also, the recent work of
+<a href="/2006/03/05/Validating_sites_of_W3C_members">Validating sites of
+W3C members</a> (which uses the same methodology) might be of interest to you.</p>
+
+<p>All the figures on this web page are also represented as tables. If you want
+to see the tables, turn off the showing of images in your browser or view the
+page with a text‐only browser. If you only see the tables, or don’t see neither
+tables or figures, then it probably means your browser does not correctly
+support the <code>object</code> element.</p>
+</div>
+
+
+<h2>Table of Contents</h2>
+
+<ul>
+<li><a href="#the-selection-of-pages">The selection of pages</a></li>
+<li><a href="#results">Results</a></li>
+<li><a href="#document-types">Doctypes</a></li>
+<li><a href="#buggy-doctypes">Buggy doctypes</a></li>
+<li><a href="#encodings">Encodings</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+
+
+<h2 id="the-selection-of-pages">The selection of pages</h2>
+
+<p>I acquired the set of Estonian web pages the same way as in
+previous surveys: they’re all taken from
+<a href="http://www.neti.ee/cgi-bin/serverid">Neti.ee Estonian servers list</a>.</p>
+
+<p>Compared to the previous survey (done in August 2005), there
+were 1290 more pages this time.</p>
+
+<div class="tabel" id="table1">
+<table summary="This table lists the surveys in chronological order
+and shows how many pages took part of each survey, also how big was
+the growth in number of pages between surveys">
+<thead><tr>
+<th>Survey</th>
+<th>Nr of pages</th>
+<th>Growth</th>
+</tr></thead>
+<tr>
+<th>February 2005</th>
+<td class="nr">21,905</td>
+<td class="nr"></td>
+</tr>
+<tr>
+<th>August 2005</th>
+<td class="nr">22,735</td>
+<td class="nr">830</td>
+</tr>
+<tr>
+<th>March 2006</th>
+<td class="nr">27,211</td>
+<td class="nr">4476</td>
+</tr>
+</table>
+<p><span class="nr">Table 1.</span> The number of pages that took
+part from each of the Estonian-webpages-survey.</p>
+</div>
+
+<p>When we look at <a href="#table1">table 1</a>, we’ll see
+there has been a significant growth in the number of pages used
+in survey. From February to August (6 months) 830 more pages were
+added to the list, but from August to March (7 months) <strong>4476</strong> pages
+were added. That’s quite a difference! Probably it’s because the winter is the
+active time of doing business (and also – it seems – buying domain
+names).</p>
+
+<p>From the full set of 27,211 pages 3186 pages were excluded for various
+reasons (redirect to another page, no HTML content, error page etc),
+which left us with 24,024 pages to perform validation and other kinds
+of statistics on.</p>
+
+<h2 id="results">Results</h2>
+
+<p>The results of our previous survey were a bit disappointing (to say
+the least). The number of valid pages had only risen by four and the
+overall percentage of valid pages had fallen from 2.22% to 2.17%.</p>
+
+<p>That fore I was quite surprised when I first saw the results
+of this very survey. It looked like a miracle.</p>
+
+<p>I checked everything twice, but it seems to be correct: <strong>the
+amount of valid pages in Estonia has risen from 2.17% to 3.02%!</strong>
+That’s almost 1% of growth! That’s almost 40% more valid pages!
+The following <a href="#table2">table 2</a> provides you with hard numbers.</p>
+
+<div class="tabel" id="table2">
+<table summary="This table lists the surveys in chronological order
+and shows how many pages took part of each survey, also how big was
+the growth in number of pages between surveys">
+<thead><tr>
+<th>Result of validation</th>
+<th>Nr of pages</th>
+<th>Percentage</th>
+</tr></thead>
+<tr>
+<th>Not valid</th>
+<td class="nr">23,176</td>
+<td class="nr">96.47%</td>
+</tr>
+<tr>
+<th>Valid</th>
+<td class="nr">725</td>
+<td class="nr">3.02%</td>
+</tr>
+<tr>
+<th>Tentatively valid</th>
+<td class="nr">124</td>
+<td class="nr">0.52%</td>
+</tr>
+</table>
+<p><span class="nr">Table 2.</span> The results of validating
+all the pages.</p>
+</div>
+
+
+
+<h2 id="document-types">Doctypes</h2>
+
+<p>If previously 34.98% of invalid pages had doctype specified, then now it has
+risen to <strong>35.54%</strong>. Minor change, but indeed.</p>
+
+<p>The distribution of document types used in invalid and valid pages can be
+seen from the following figures <a href="#figure1" title="Figure 1">1</a> and
+<a href="#figure2" title="Figure 2">2</a>.</p>
+
+<div class="joonis" id="figure1">
+<object type="image/png" data="/archive/kool/standardid-mar-2006/dtd-invalid.png">
+<table summary="This table lists doctypes starting from most popular ones and
+for each doctype shows the number of pages using it, and the difference to the
+previous survey in the number of pages.">
+<caption>Invalid pages</caption>
+<thead>
+<tr><th>Document type</th><th>Number of pages</th><th>Change</th></tr>
+</thead>
+<tbody>
+<tr><td class="nr">HTML 4.01 Transitional</td><td class="nr">4056</td><td class="nr">+865</td></tr>
+<tr><td class="nr">HTML 4.0 Transitional</td><td class="nr">1691</td><td class="nr">+206</td></tr>
+<tr><td class="nr">XHTML 1.0 Transitional</td><td class="nr">1364</td><td class="nr">+662</td></tr>
+<tr><td class="nr">HTML 3.2</td><td class="nr">405</td><td class="nr">+193</td></tr>
+<tr><td class="nr">HTML 4.01 Frameset</td><td class="nr">245</td><td class="nr">+23</td></tr>
+<tr><td class="nr">XHTML 1.0 Strict</td><td class="nr">146</td><td class="nr">+63</td></tr>
+<tr><td class="nr">XHTML 1.1</td><td class="nr">85</td><td class="nr">+30</td></tr>
+</tbody>
+</table>
+</object>
+<p><span class="nr">Figure 1.</span> Changes in the use of doctypes on invalid pages.
+The increase is marked with green and decrease with red (brighter then green).
+All the other figures in this page use the same colors in exactly the same meaning.</p>
+</div>
+
+
+<div class="joonis" id="figure2">
+<object type="image/png" data="/archive/kool/standardid-mar-2006/dtd-valid.png">
+<table summary="This table lists doctypes starting from most popular ones and
+for each doctype shows the number of pages using it, and the difference to the
+previous survey in the number of pages.">
+<caption>Valid pages</caption>
+<thead>
+<tr><th>Document type</th><th>Number of pages</th><th>Change</th></tr>
+</thead>
+<tbody>
+<tr><td class="nr">HTML 4.01 Transitional</td><td class="nr">336</td><td class="nr">+104</td></tr>
+<tr><td class="nr">XHTML 1.0 Transitional</td><td class="nr">232</td><td class="nr">+122</td></tr>
+<tr><td class="nr">XHTML 1.0 Strict</td><td class="nr">57</td><td class="nr">+26</td></tr>
+<tr><td class="nr">XHTML 1.1</td><td class="nr">36</td><td class="nr">+19</td></tr>
+<tr><td class="nr">HTML 4.0 Transitional</td><td class="nr">32</td><td class="nr">+8</td></tr>
+<tr><td class="nr">HTML 4.01 Frameset</td><td class="nr">11</td><td class="nr">+3</td></tr>
+</tbody>
+</table>
+</object>
+<p><span class="nr">Figure 2.</span> Changes in the use of doctypes on valid pages.</p>
+</div>
+
+<p>The most significant change to note from both figures above: <strong>the usage of
+XHTML 1.0 Transitional has almost doubled.</strong> Also the XHTML 1.0 Strict and
+XHTML 1.1 have also nearly doubled they’re usage. This certainly is the sign that XHTML
+is moving in the direction of becoming more popular than HTML (especially when creating
+new webpages).</p>
+
+<p>On the bad side of XHTML 1.1, which (according to W3C) <em>must not</em> be served as
+<code>text/html</code>. But none of the valid pages, that used XHTML 1.1, served it as
+an XHTML or XML application.</p>
+
+<p>However the great rise of HTML 3.2 is probably some kind of mistake in my data-gathering
+process, because last time the HTML 3.2 actually made a big fall, but now somehow it
+has risen again, but there is still less HTML 3.2 now, then there was in the first survey.</p>
+
+<h2 id="buggy-doctypes">Buggy doctypes</h2>
+
+<p>The survey discovered a lot of mistakes made in the spelling of doctypes’
+Formal Public Identifiers (FPI). Clearly, this indicates, that most of the
+developers don’t really know what a doctype is – but here are the most common
+mistakes made.</p>
+
+<p>First of all, <strong>FPI is case-sensitive</strong>. A lot of developers
+don’t seem to know that. A lot of pages had doctypes written entirely or
+partly in lowercase (but also in uppercase). This is wrong. The bad examples follow:</p>
+
+<pre>
+-//w3c//dtd html 4.0 transitional//en 22
+-//W3C//Dtd XHTML 1.1//EN
+-//W3C//DTD HTML 3.2 FINAL//EN
+-//W3C//DTD html 4.01 Transitional//EN
+-//w3c//dtd html 4.0//en
+-//W3C//DTD XHTML 1.0 strict//EN
+</pre>
+
+<p>Secondly, <strong>the language identifier at the end of FPI refers to the language
+the Document Type Definition itself is written in.</strong> All the W3C documents
+are written in english, that’s why there’s "EN" at the end. But a lot of developers
+thought this might be a place to specify the language of the HTML document. Wrong
+again. Bad examples follow:</p>
+
+<pre>
+-//W3C//DTD HTML 4.0 Transitional//ET
+-//W3C//DTD HTML 4.01 Transitional//ET
+-//W3C//DTD XHTML 1.0 Transitional//ET
+-//W3C//DTD HTML 4.0 Transitional//EE
+-//W3C//DTD XHTML 1.1//EE
+-//W3C//DTD HTML 4.0 Transitional//RU
+-//W3C//DTD XHTML 1.0 Transitional//RU
+-//W3C//DTD HTML 4.0 Transitional//LT
+-//W3C//DTD HTML 4.0 Transitional//LV
+-//W3C//DTD XHTML 1.0 Strict//NO
+</pre>
+
+<p>And lastly there were the misspelled FPI’s. Hard to say, why some people
+write something like "XHTML 1.1 Transitional" without checking to see, if
+a doctype like that even exists. More bad examples follow:</p>
+
+<pre>
+-//W3C//DTD HTML 5.0 Transitional//EN
+-//W3C//DTD HTML 4.1 Transitional//EN
+-//W3C//DTD HTML 4.01 Strict//EN
+-//W3C//DTD HTML 3.02 Transitional//EN
+-//W3C//DTD XHTML 1.1 Transitional//EN
+-//W3C//DTD XHTML 1.0//EN
+-//W3C//DTD HTM 4.0 Transitional//EN
+-//W3C//DTD W3 HTML//EN
+-//W3C//DTD 3.2//EN
+-//W3C//DTD Transitional 1.0 Strict//EN
+-//WC3//DTD HTML 4.0 Transitional//EN
+</pre>
+
+
+
+
+<h2 id="encodings">Encodings</h2>
+
+<p>The number of pages, that specify encoding has risen from 72% to 73%.</p>
+
+<p>As seen from <a href="#figure3">figure 3</a>, <strong>UTF-8 has made the most significant
+rise and conquered the second place.</strong> ISO 8859-13 has risen from 10th place
+to 8th.</p>
+
+<div class="joonis" id="figure3">
+<object type="image/png" data="/archive/kool/standardid-mar-2006/encodings.png">
+<table summary="This table lists encodings starting from most popular ones and
+for each encoding shows the number of pages using it, and the difference to the
+previous survey in the number of pages.">
+<caption>Encodings</caption>
+<thead>
+<tr><th>Encoding</th><th>Number of pages</th><th>Change</th></tr>
+</thead>
+<tbody>
+<tr><td class="nr">iso-8859-1</td><td class="nr">11019</td><td class="nr">+1441</td></tr>
+<tr><td class="nr">utf-8</td><td class="nr">2124</td><td class="nr">+739</td></tr>
+<tr><td class="nr">windows-1257</td><td class="nr">1867</td><td class="nr">+268</td></tr>
+<tr><td class="nr">windows-1251</td><td class="nr">1030</td><td class="nr">+159</td></tr>
+<tr><td class="nr">windows-1252</td><td class="nr">594</td><td class="nr">+80</td></tr>
+<tr><td class="nr">iso-8859-4</td><td class="nr">264</td><td class="nr">+46</td></tr>
+<tr><td class="nr">iso-8859-15</td><td class="nr">212</td><td class="nr">+47</td></tr>
+<tr><td class="nr">iso-8859-13</td><td class="nr">88</td><td class="nr">+72</td></tr>
+<tr><td class="nr">windows-1250</td><td class="nr">73</td><td class="nr">+5</td></tr>
+<tr><td class="nr">iso-8859-2</td><td class="nr">63</td><td class="nr">+3</td></tr>
+<tr><td class="nr">koi8-r</td><td class="nr">26</td><td class="nr">+12</td></tr>
+<tr><td class="nr">us-ascii</td><td class="nr">18</td><td class="nr">+3</td></tr>
+<tr><td class="nr">iso8859-1</td><td class="nr">13</td><td class="nr">+3</td></tr>
+<tr><td class="nr">utf8</td><td class="nr">11</td><td class="nr">?</td></tr>
+</tbody>
+</table>
+</object>
+<p><span class="nr">Figure 3.</span> Changes in the popularity of encodings.
+As almost half of the pages use <code>iso-8859-1</code> the number-of-pages-axis
+has been cut.</p>
+</div>
+
+<p>The misspelled "iso8859-15" still has 13th place, but with the rise of UTF-8,
+the 14th place has been achieved by another misspelling: "utf8".</p>
+
+<p>Other popular misspellings (used more than once):</p>
+
+<pre>
+iso8859-15
+unicode
+win-1251
+_autodetect_all
+et-iso-8859-1
+iso-8851-15
+iso-8859
+latin-1
+windows 1251
+windows1251
+</pre>
+
+<h2 id="summary">Summary</h2>
+
+<p>There seems to be only good news this time:</p>
+
+<ul>
+<li>A lot more valid pages!</li>
+<li>A lot more XHTML!</li>
+<li>A lot more UTF-8!</li>
+</ul>
+
+<p>Let’s hope the progress continues...</p>
+
+</body>
+</html>
+
+
+
+
+

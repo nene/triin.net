@@ -1,0 +1,106 @@
+2011-02-27
+Optimizing JavaScript array iteration
+=====================================
+
+Lately I've been playing with [ExtJS 4 preview releases][ext4].  This
+has involved a lot of code reading, as full docs are missing for many
+parts of the framework.  I don't mind reading code - it's cool to
+figure out how the internals work - but I do mind reading code like
+this:
+
+    attachEventsForFeatures: function() {
+        var features = this.features,
+            ln       = features.length,
+            i        = 0;
+
+        for (; i < ln; i++) {
+            if (features[i].isFeature) {
+                features[i].attachEvents();
+            }
+        }
+    },
+
+This is a piece of well-written JavaScript.  But it's not an easy to
+read one.  And not only is this piece hard to read - the whole ExtJS
+framework is littered with code just like this.
+
+For comparison, here's an easy-to-read version of this function:
+
+    attachEventsForFeatures: function() {
+        this.features.forEach(function(f) {
+            f.isFeature && f.attatchEvents();
+        });
+    },
+
+What an immense difference in readability!  In ExtJS verion, the
+readability has been satisfied for the sake of performance.  As it
+turns out, [Array.forEach can be more than 10 times slower than
+for-loop][perf] (especially in one certain browser).  So there are
+merits for writing code like that.
+
+But still.  Reading code like that feels like reading assembly.  And
+writing code like that should therefore feel like doing the job of a
+compiler.  And that just feels wrong.
+
+We really shouldn't put our efforts into doing that kind of
+micro-optimizations by hand.  Instead we should build a JavaScript
+compiler that would do that kind of transformations for us.
+
+We already have JavaScript compilers that optimize the size of the
+source code.  But those compilers do very little to optimize the
+execution speed.  We need them to do that too.
+
+Of course it's not all that simple.  In the above example the compiler
+cannot safely assume that forEach is a method of Array.
+`this.features` might be a completely different object that also
+happens to have a forEach method.  But we can take a safer route:
+
+    attachEventsForFeatures: function() {
+        Ext.Array.forEach(this.features, function(f) {
+            f.isFeature && f.attatchEvents();
+        });
+    },
+
+Even if we assume that `Ext.Array.forEach` cannot be overwritten, we
+have to look out for code like this:
+
+    attachEventsForFeatures: function() {
+        Ext.Array.forEach(this.features, function(f) {
+            f.action = function() {
+                return f.value;
+            };
+        });
+    },
+
+If we would blindly translate the above to for loop, we would get the
+following code:
+
+    attachEventsForFeatures: function() {
+        for (var i=0, ln=this.features.length; i < ln; i++) {
+          var f = this.features[i];
+          f.action = function() {
+              return f.value;
+          };
+        }
+    },
+
+But that's not equivalent to the forEach-version, because the closure
+around variable `f` is lost and therefore every function we created
+will reference the same `f` - the last one - not really what we
+wanted.
+
+But I believe all these hurdles can be overcome.  At the very least we
+could have annotations in code that tell the compiler whether to
+optimize or not.
+
+I have started a small project [rewriter][] in Github to see what I
+can achieve with my own rudimentary knowledge of compiler
+optimizations.  So far it's just a proof of concept, but I believe
+that the possibilities here are great.
+
+
+[ext4]: http://www.sencha.com/products/extjs4-preview/
+[perf]: http://benhollis.net/blog/2009/12/13/investigating-javascript-array-iteration-performance/
+[rewriter]: https://github.com/nene/rewriter
+
+

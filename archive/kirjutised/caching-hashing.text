@@ -1,0 +1,99 @@
+2010-01-18
+Caching and hashing
+===================
+
+To strive for shortest load times you want to make all your CSS and
+JavaScript files and images to be highly cacheable.  So you send all
+kinds of headers that tell the browser to cache these files forever
+and never ask them from server again.  Great.  Now your website is
+comparable to the speed of light.  Your server almost has no load,
+your clients are happy... and then you need to make a change in one of
+those cached files.
+
+Because the file is cached, it's not enough to just put up a new
+version of it.  We explicitly ordered browsers to never ask for new
+versions of files.  Sure, we could ask our clients to clear their
+browser cache and reload the page, but that's far from good user
+experience and besides - it doesn't neccessarily work either when the
+file happens to be cached by some intermediate proxy server.  So the
+only really reliable way is to rename the file.
+
+So you rename your `my-app.js` to `my-app2.js` and then to
+`my-app3.js` and so on...  but that's getting tedious.  Especially
+when you have a lot of files to keep track of and you want to deploy
+new versions of you website as often as possible.  So you need to come
+up with some automated scheme for renaming your files in each build.
+
+Here are some choices:
+
+
+Version numbers
+---------------
+
+    styles-3.0.1.css
+    main-3.0.1.js
+    slider-3.0.1.js
+    rich-editor-3.0.1.js
+
+A simple and often implemented scheme.  But with several drawbacks:
+
+* You need to manually make up a version number for each release.
+* You need a lot of version numbers - at least each time you deploy.
+* If you want to deploy your app also for internal testing, that's not
+  good at all.
+* The files that didn't change since previous version will also get
+  new names and therefore will be reloaded by browser, not taking
+  advantage of cache.
+
+
+Build or revision numbers
+-------------------------
+
+    styles-2483.css
+    main-2483.js
+    slider-2483.js
+    rich-editor-2483.js
+
+That's a lot more automated and we can also use it for internal
+test-deploys.  But the third problem still remains.  Additionally this
+technique doesn't work when you either don't have a centralized build
+system or you don't have a version control system available to give
+you the revision number when you make the build.
+
+
+File content checksums
+----------------------
+
+    styles-ae73776736945d07512d810f10a0c47a.css
+    main-0a72aa2e0d6e426cddfb3ff0e25ed7b8.js
+    slider-fe37cbafab5a2546a9ba0062a2009b4c.js
+    rich-editor-5fdc749b7075c23b36cdbe4fb3ec1be8.js
+
+Here each filename contains an MD5 hash of its contents.  This ensures
+that **filename changes only when it's content changes.**  Although we
+recalculate the hashes in each build, the files who's content didn't
+change will get the same hash they had before.
+
+The only disadvantage I see is that it adds quite a bit to the length
+of filenames.  But this seems easy to overcome.  First of all it's not
+really the hash that's so long - it's only the hexadecimal
+representation of the 128-bit hash, that's so long.  One could use
+base64-encoding to reduce the hash a bit:
+
+    styles-2kStTdDfHT1r4jWGyGeCHw.css
+
+You could also only include the first half of the hash:
+
+    styles-2kStTdDfHT1.css
+
+This theoretically means entire 1 out of 2<sup>64</sup> chance of
+getting a collision - you are more likely to be killed by a meteorite.
+
+Anyway.  That's the technique I have chosen to implement for
+[SeeMe][seeme].  Hopefully it will work just as fine in practice as in
+my theory.
+
+
+
+
+[seeme]: http://seeme.oskando.ee/

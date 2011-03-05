@@ -1,0 +1,98 @@
+## Global functions
+
+    var ages = {
+      John: 10,
+      Mary: 28,
+      Alice: 16
+    };
+
+    var averageAge = objReduce(ages, function(sum, age){return sum + p.age;}, 0);
+    
+    var averageAge = objAverage(ages);
+
+    var doubleAges = objMap(ages, function(age){return age*2;});
+
+    var olderPeople = objKeys(objFilter(ages, function(age){return age>20;}));
+
+
+
+## Converting to Array
+
+    var averageAge = objToA(ages).reduce(function(sum, p){return sum + p.value;}, 0);
+
+    var averageAge = objToA(ages).pluck("value").average();
+
+    var doubleAges = objToA(ages).map(function(p){return {key: p.key, value: p.value*2};).toObj();
+
+    var olderPeople = objToA(ages).filter(function(p){return p.value>20;})).pluck("key");
+
+ver. 2:
+
+    var averageAge = objToA(ages).reduce(function(sum, p){return sum + p[1];}, 0);
+
+    var averageAge = objToA(ages).pluck(1).average();
+
+    var doubleAges = objToA(ages).map(function(p){return [p[0], p[1]*2];).toObj();
+
+    var olderPeople = objToA(ages).filter(function(p){return p[1]>20;})).pluck(0);
+
+    
+## Converting to Hash
+
+    var averageAge = new Hash(ages).reduce(function(sum, age){return sum + age;}, 0);
+
+    var averageAge = new Hash(ages).average();
+
+    var doubleAges = new Hash(ages).map(function(age){return age*2;}).toObject();
+
+    var olderPeople = new Hash(ages).filter(function(age){return age>20;})).keys();
+
+Using $H:
+
+    var averageAge = $H(ages).reduce(function(sum, age){return sum + age;}, 0);
+
+    var averageAge = $H(ages).average();
+
+    var doubleAges = $H(ages).map(function(age){return age*2;}).toObject();
+
+    var olderPeople = $H(ages).filter(function(age){return age>20;})).keys();
+
+Nice, but that's not really how map() and filter() of PrototypeJS
+work.  They don't return a hash when working on hash, but always
+return an array.  Actually PrototypeJS works like this:
+
+    var olderPeople = $H(ages).filter(function(p){return p[1]>20;}))...?
+
+That's how MooTools does it! But mootools Hash is problematic:
+
+    // this will screw things up:
+    var x = $H({john: 24, hasOwnProperty: 18});
+    
+
+Return types of Enumerable methods:
+
+* all -> bool
+* any -> bool
+* find -> Anything
+* reduce -> Anything
+* max -> Anything
+* min -> Anything
+
+1:1 mapping:
+* map -> Array
+  * pluck -> Array
+  * invoke -> Array
+
+Many:Few mapping:
+* filter -> Array
+  * grep -> Array
+
+[Many,Many,Many]:Many mapping:
+* zip -> Array
+
+
+
+
+
+
+

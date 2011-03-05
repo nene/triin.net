@@ -1,0 +1,266 @@
+2011-01-25
+The road to JsDuck
+==================
+
+Long time ago I wrote about [documenting your code in ExtJS
+framework][suck]: of how tedious it is to use HTML in comments and how
+repetitive some parts of it are.  Basically, how it all sucks.
+
+I was pretty fed up by it.  And then I thought: How hard can it be?
+Really!  **I can write a better documentation generator than
+[ext-doc][] in a weekend.** Yeah!
+
+So I started the [JsDuck][] project.
+
+I have to admit it took quite a bit longer than a weekend (almost
+three months really).  But you really have to be optimist by nature,
+if you’re about to write any non-trivial program, don’t you?
+
+So here’s a little story of how JsDuck came to be.
+
+
+Initial goals
+-------------
+
+I set myself the following goals:
+
+* Be backwards compatible with existing HTML-heavy doc-comments
+  (comments starting with `/**`) in ExtJS source and produce
+  documentation similar to official ExtJS documentation.  Users of
+  ext-doc should be able to adopt JsDuck without having to make a
+  single change a single comment.
+
+* Extract as much information from source code as possible —
+  documentation shouldn’t repeat what the code is already telling.
+
+* Support formatting of doc-comments using [Markdown][].
+
+
+Parsing the code
+----------------
+
+I started from the bottom with lexer and parser for JavaScript.  On
+the whole JavaScript turned out relatively easy to parse.  The only
+tricky bit was differentiating between division operator and regular
+expression literal.  It turn out that slash `/` is from the lexers’
+point of view the most ambiguous character:
+
+* If it’s followed by `*` it’s a multi-line comment (that’s easy).
+
+* If it’s followed by another `/` it’s a single-line comment (that’s
+  easy too).
+
+* Otherwise it’s either a division operator or beginning of regular
+  expression.  But how do you differenciate between these two?
+
+For example here we have an assignment followed by regex:
+
+    a = b;
+    /foo/g.test(x);
+
+But just removing semicolon turns regex into division operators:
+
+    a = b
+    /foo/g.test(x);
+
+This is the same as:
+
+    a = b / foo / g.test(x);
+
+I have to admit I didn’t digg into [ECMAScript spec][ecma] to find out
+the rules of this when I wrote the lexer.  But I did it afterwards and
+found out that the spec isn’t much of a help anyway.  At least when
+you want to write a simple lexer and don’t care about the complete
+grammar, the spec is an overkill.
+
+After struggling with it for a while I came up with the following
+rule:
+
+> A slash / is a division operator if it follows identifier, `this`,
+> number, `)`, or `]`.  Otherwise it’s the beginning of a regex.
+
+As noted before, I didn’t need to write a complete JavaScript parser.
+I just wanted to extract the doc-comments and then look at a little
+bit of code following every doc-comment.  So the parser part became
+quite simple — in principle I wrote a recursive-descent parser, except
+that there wasn’t any recursion going on.
+
+I didn’t even wrote a complete lexer.  For example I didn’t care about
+`>=` being identified as one token.
+
+But the hardest part of parsing was the one I initially thought to be
+the easiest.
+
+
+Parsing doc-comments
+--------------------
+
+The problem with doc-comments syntax was that, well… I did’t really
+know what the syntax was.  Or what the rules of the syntax were.  For
+example look at this event-comment:
+
+    /**
+     * @event myEvent
+     * My method
+     * @param {String} foo
+     */
+
+It begins with `@event`, so we know it’s a comment for event, next
+there are event name, description and finally list of event
+parameters.  This seems quite straight-forward.  But now look at
+method-comment:
+
+    /**
+     * My method
+     * @param {String} foo
+     * @method myMethod
+     */
+
+Oh.  So I can’t look just at the beginning of doc-comment to
+determine its type.  And of course with methods the `@method` and
+`@param` tags are optional, if those are missing, the source code
+context will determine if we are dealing with method or not.
+
+And this is just the tip of the iceberg…
+
+I spent several weeks trying to fit the syntax of comments into some
+simple set of rules.  I failed.
+
+Eventually I gave up on finding the theory of it all, and simply
+hard-coded all the nifty special cases:
+
+    if comment contain @class
+        it's a class
+    if code contains call to Ext.extend()
+        it's a class
+    if code contains a function that looks like class name
+        it's a class
+    ...
+    when class
+        extract list of @cfg-s from class comment
+        extract @constructor from class comment
+        if @class <somename>
+            use that name for class
+        else
+            use the name found from code
+        end
+        ...
+
+And so on and on…
+
+The code that resulted was probably the most complex part of JsDuck.
+But at the same time written in pretty straight-forward fashion.  Just
+that the rules I had to implement were complex by themselves.  I still
+believe I can do better.  Possible some refactoring would be in order.
+
+With those big parsing-obstacles behind me, I was finally nearing to
+the documentation-output phase.
+
+
+Markdown
+--------
+
+I plugged in the popular Ruby markdown library [Maruku][]… and
+JsDuck performance dropped to the crawling speed of [Roman snail][].
+
+**“What did you expect? It’s Ruby!”** I hear you saying.
+
+Oh yeah, I know that.  But speed wasn’t the only issue.  Maruku also
+supported quite a bit of extra syntax that I didn’t really wanted, and
+worst of all, it threw syntax errors (e.g. when it encountered
+malformed HTML).
+
+Luckily for me, it wasn’t the only Markdown library.  I replaced
+Maruku with [RDiscount][], the core of which is written in C, so its
+performance just blows Maruku away.  Additionally it only supports
+vanilla Markdown and it doesn’t throw errors — no matter what you
+throw at it.
+
+It was love, from the first moment of seeing.
+
+
+Slow, as in Ruby
+----------------
+
+After implementing many-many tiny features — which took like forever —
+JsDuck was finally at feature-parity with ext-doc.  That is, all the
+stuff _I considered important_ was supported.  And of course JsDuck
+did quite a bit more than ext-doc.
+
+The only significant advantage that had remained for ext-doc was
+performance.  And I decided to tackle it.
+
+To parse 600 JavaScript files (about 4MB in total) the speeds on my
+4-core almost idle machine were as follows:
+
+* ext-doc — 6.5 seconds
+* JsDuck — 23 seconds
+
+Not a pretty picture for JsDuck, but I was pretty optimistic, as I had
+so far paid relatively little attention on perfmance issues, so I knew
+there had to be some low-hanging performance-fruits for me to pick.
+And there was.
+
+I added some caching to avoid generating the same HTML over-and-over
+again, which gave me quite a boost on the output side.
+
+Now lexing became the main bottleneck.  But lexer was pretty sleek
+already.  I managed to squeeze a little bit out of it by checking for
+the most frequent tokens first and inlining most of the function calls
+and well… I tried every sensible and stupid thing I could think of.
+I even threw out half of the functionality to see how fast it
+theoretically could be, and it was still too slow.
+
+I knew that using C I could parse few megs of source code easily in
+milliseconds, but using Ruby I couldn’t even get the lexer below a
+second.
+
+But I had one big bet left.  I knew Ruby had threads, and my machine
+had multiple cores, and parsing is embarrassingly parallelizable.  One
+plus one makes two, right?
+
+Well… not quite.  I found out that although Ruby has threads, they
+are so-called green threads, which means that only one thread can run
+at a time.
+
+**“It’s Ruby. It’s meant to be slow!”** I hear your voices again.
+
+It was quite a dissappointment indeed.  I tried several other hopeless
+optimizations on lexer, and was thinking of rewriting it in C, when I
+discovered [parallel][].
+
+It’s a tiny magical gem, that allows you to easily execute code in
+parallel processes.  It uses the `Process.fork` behind the scenes,
+which means quite a bit of memory overhead, but it’s dead simple to
+use and I think the performance gains are really worth it.
+
+Let the numbers speak for themselves:
+
+* ext-doc — 6.5 seconds
+* JsDuck — 4.5 seconds
+
+
+Work in progress
+----------------
+
+Now that I’m getting ready to release 0.3 version, which I think is
+starting to get pretty solid, I feel there is so much more to do.
+There are several features that I really-really want to add.  Sencha
+is going to soon release ExtJS4, which I also want to support.  And
+I’m still not satisfied with the performance.
+
+But I guess it just feels good to look back down from the hillside and
+say for yourself: **“See!  I have come all this way from down there.
+All by myself.”**
+
+
+[suck]: http://triin.net/2010/03/14/Why_ExtJS_doc-comments_suck
+[ext-doc]: http://code.google.com/p/ext-doc/
+[JsDuck]: https://github.com/nene/jsduck
+[Markdown]: http://daringfireball.net/projects/markdown/
+[ecma]: http://www.ecma-international.org/publications/standards/Ecma-262.htm
+[Roman snail]: http://en.wikipedia.org/wiki/Helix_pomatia
+[Maruku]: http://maruku.rubyforge.org/
+[RDiscount]: https://github.com/rtomayko/rdiscount
+[parallel]: https://github.com/grosser/parallel
+

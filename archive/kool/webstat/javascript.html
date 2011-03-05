@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>JavaScript</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Survey on over million webpages" />
+<meta name="keywords" content="CSS, HTML, XHTML, JavaScript, validation" />
+<meta name="date" content="2006-06-12" />
+</head>
+<body>
+
+<h1 id="javascript">JavaScript</h1>
+
+<p>Only a little bit less pages use JavaScript than CSS ?
+<strong>65.09%</strong> of pages (CSS was used by 67.20%).</p>
+
+<p>Although W3C mentions only 3 ways to attatch JavaScript to HTML, an
+entire 25% of pages uses also the third method: JavaScript URI-s, like
+the following:</p>
+
+<pre>&lt;a href="javascript: alert('Hello!');"&gt;JS link&lt;/a&gt;</pre>
+
+<p>On the other hand, most pages using JavaScript URI-s, also use
+other more standard methods for JavaScript attatching, which I?m going
+to discuss right now.</p>
+
+<p><a href="#figure-38">Figure 38</a> lists the combinations of
+different JavaScript attatchment methods and how much each of those is
+being used. The interesting thing is, that most common is to use all
+the methods together. Both the external JavaScript only and external
+plus inline are used only on about 10% of JavaScript pages.</p>
+
+<div class="joonis" id="figure-38">
+<img src="/archive/kool/webstat/figure-38.png" alt="external + embedded + inline, embedded + inline, external + embedded, embedded, external + inline, external, inline" />
+<p><span class="nr">Figure 38.</span>
+How is JavaScript connected to HTML.</p></div>
+
+<p>The following <a href="#figure-39">figure 39</a> shows the
+distribution of different JavaScript attatching methods by the size of
+script code.  Similarly to CSS the scripts in external .js files are
+usually larger than the one embedded into HTML. But quite differently
+from CSS the most common way is to embed JavaScript between
+<code>script</code> tags.</p>
+
+<div class="joonis" id="figure-39">
+<img src="/archive/kool/webstat/figure-39.png" alt="" />
+<p><span class="nr">Figure 39.</span>
+Comparison of code sizes between external, embedded and inline
+JavaScript.</p></div>
+
+<h2 id="ajax"><acronym title="Asyncronous JavaScript And XML">AJAX</acronym></h2>
+
+<p>Because of some problems/bugs with the program, only the string
+<code>XMLHttpRequest</code> was looked for in JavaScript files.
+On 6125 pages this search found a match. This means that 1.90%
+of pages with JavaScript were using AJAX or similar technology.</p>
+
+<p>At this point the document ends. There should be some kind of
+conclusions chapter here, but at the moment I?m too tired to write
+one. Maybe I?ll write it in the future if I find some time for
+that. For an overview of the main points in this research you can read
+the <a href="/2006/06/12/Abstract">abstract</a>.<p>
+
+
+</body>
+</html>

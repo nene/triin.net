@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Program for analyzing the code of web pages</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Survey on over million webpages" />
+<meta name="keywords" content="CSS, HTML, XHTML, JavaScript, validation" />
+<meta name="date" content="2006-06-12" />
+</head>
+<body>
+
+<h1 id="program-for-analyzing-the-code-of-web-pages">Program for analyzing the code of web pages</h1>
+
+<p>Of course, to analyze the code of all these pages, I needed a program
+to automate the progress. I chose to write it in Perl, although it?s not
+my first language, but it had a lot of great libraries avaliable for
+parsing HTML and CSS. Most importantly I used the following:</p>
+
+<ul>
+<li><a href="http://search.cpan.org/~gaas/HTML-Parser-3.54/Parser.pm">HTML::Parser</a>
+from Gisle Aas ? a great tool for parsing real-world HTML.</li>
+<li><a href="http://search.cpan.org/~bjoern/CSS-SAC-0.06/SAC.pm">CSS::SAC</a>
+from Björn Höhrmann ? implementation of SAC (<a href="http://www.w3.org/TR/SAC">Simple
+API for CSS</a>) in Perl.</li>
+</ul>
+
+<p>To validate (X)HTML i used <a title="WDG Validator"
+href="http://www.htmlhelp.com/tools/validator/offline/index.html.en">offline
+HTML validator</a> provided by Web Design Group (WDG). You might wonder why I
+didn't use the well-known <a href="http://validator.w3.org">W3C Markup Validator</a>?
+First of all Dagfinn Parnas, who?s research I?m trying to replicate as closely as
+possible, used this validator, but also the WDG Validator is a way lot easier to
+install into your computer.</p>
+
+<p>As for CSS, there doesn?t seem to be no other validator available than the
+<a href="http://jigsaw.w3.org/css-validator/">W3C CSS Validator</a>. I have to
+say great thanks to Steve Ferguson, who made available a <a
+href="http://www.illumit.com/css-validator/">precompiled version of the CSS
+Validator</a> ? I tried several days to compile the validator by my own, but
+didn?t succeed.</p>
+
+<p>To store all the data to be gathered by the program, I created a MySQL
+database with 38 tables. MySQL was used as this is the database I?m most
+familiar with.</p>
+
+<p>To retrieve the URI-s from web, I used the well-known GNU Wget.</p>
+
+<p>All the Perl source code of the program is freely available for download
+and licensed under the same terms as Perl itself (which means: feel free
+to modify or do whatever you think, just don't do anything nasty). The
+installation instructions are hidden into the following tarball inside
+the file INSTALL:</p>
+
+<ul>
+<li><a href="/2006/05/10/webstat.tar.gz">webstat.tar.gz</a> ? 8 MB
+(includes W3C CSS Validator and WDG HTML Validator).</li>
+</ul>
+
+<p>Oh, and if you didn't guessed it already, you need Linux to run
+the whole thing.</p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Super-Lab protokoll</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<style type="text/css">
+<!--
+body { font-family: sans-serif }
+ul { list-style-type: none; font-family: monospace; margin-left: 0; padding-left: 0 }
+h1,h3,a { color: #336699 }
+a:hover { background: #66cc99 }
+h2 { background: #336699; color: #fff; padding-left: 1em }
+-->
+</style>
+
+
+</head>
+<body>
+
+<h1>Programmi töökäik</h1>
+
+<h2>Serveriga ühendumine</h2>
+
+<p>Klient saadab serverile teate <strong>liitumine (<a href="#k4">4</a>)</strong>.</p>
+<p>Server vastab talle teatega <strong>liitumise aktsepteerimine (<a href="#s7">7</a>)</strong>.</p>
+<p>Kui mäng ei käi, siis aktsepteerib server liitumise, andes teate kolmanda baidi
+väärtuseks <strong>1</strong>, vastasel juhul <strong>0</strong>.
+Neljanda baidi väärtuseks on <strong>1</strong> juhul kui antud kasutaja
+oli esimene serveriga liituja, vastasel juhul <strong>0</strong>. Väärtus <strong>1</strong>
+märgib, et klient saab administraatori õigused. Teine bait on kasutaja ID-number.</p>
+
+<p>Kui klient polnud esimene serveriga liituja, siis saadab server talle
+varem liitunud klientide arvu jagu teateid <strong>liitumine (<a href="#s4">4</a>)</strong>.
+Seejärel saadab server uuele liitujale teate <strong>kaart (<a href="#s6">6</a>)</strong>,
+kus on kirjas mänguplatsi number.
+Ühtlasi saadetakse varem liitunud klientidele teade <strong>liitumine</strong> selle
+uue kliendi andmetega.</p>
+
+<h2>Mängu alustamine</h2>
+
+<p>Administraatoriõigustes klient saadab serverile teate <strong>kaart (<a href="#k6">6</a>)</strong>,
+kus sisaldub mänguplatsi number.</p>
+
+<p>Server saadab kõigile teistele klientidele seepeale teate <strong>kaart (<a href="#s6">6</a>)</strong>,
+mis sisaldab seda sama mänguplatsi numbrit.</p>
+
+<p>Peale sobiva kaardi valimist saadab administraator teate <strong>start (<a href="#k2">2</a>)</strong>,
+server saadab omapoolse <strong>start-teate (<a href="#s2">2</a>)</strong> edasi kõigile
+teistele klientidele ning mäng algab.</p>
+
+<h2>Mängu käik</h2>
+
+<p>Mängu alguses on kõik mängijad ühes punktis, mis on määratud vastavas kaardifailis
+baidiväärtusega <strong>1</strong>.</p>
+
+<p>Kui mängija asukoht mänguväljakul muutub, siis saadab klient serverile teate
+<strong>liikumine (<a href="#k0">0</a>)</strong>, kus sisalduvad kliendi uued
+koordinaadid mänguväljakul. Server saadab vastava <strong>liikumis-teate (<a href="#s0">0</a>)</strong>
+kõigile klientidele. Selles teates sisaldub vastava mängija ID-number ning tema
+koordinaadid.</p> 
+
+<p>Kui mõni mängija jõuab kaardil sihtpunkti (tähistatud kaardifailis baidiväärtusega
+<strong>2</strong>), siis saadab tema klient serverile
+teate <strong>võit (<a href="#k1">1</a>)</strong>. Kui serverile pole veel ühtegi
+võiduteadet saadetud, siis saadab server kõigile klientidele (kaasaarvatud võitja)
+teate <strong>võit (<a href="#s1">1</a>)</strong> koos võitnud mängija ID-ga.
+Kui aga server on juba võiduteate saanud, siis vastavt teadet ignoreeritakse.</p>
+
+<p>Peale võiduteate saamist loevad nii server kui kliendid mängu lõppenuks ning
+pöörduvad tagasi mängueelsesse staadiumisse.</p>
+
+<h2>Mängust lahkumine</h2>
+
+<p>Suvalisel hetkel võib klient saata serverile teate <strong>lahkumine (<a href="#k5">5</a>)</strong>.
+Kui klient oli tavakasutaja, siis saadetakse teistele klientidele serveri
+poolt teade <strong>lahkumine (<a href="#s5">5</a>)</strong> koos vastava kliendi
+ID-numbriga.</p>
+<p>Kui klient oli administraator, siis saadab server teistele klientidele
+teate lahkumine (<a href="#s5">5</a>) kus on ID-ks iga kliendi isiklik ID. Oma ID-ga
+lahkumisteate saamise peale katkestab klient ühenduse serveriga (muidugi koos
+vastava teatega, et administraator on lahkunud). Ühtlasi lõpetab server omalt poolt
+mängu.</p>
+
+<h2>Mängu katkestamine</h2>
+
+<p>Kui administraator-klient saadab serverile mängu ajal teate <strong>stop (<a href="#k3">3</a>)</strong>,
+siis saadab server kõigile teistele klientidel samuti <strong>stop-teate (<a href="#s3">3</a>)</strong>.
+Seepeale lõpetavad nii kliendid kui server käesoleva mängu ning suunduvad
+tagasi mängueelsesse staadiumisse.</p> 
+ 
+
+<h1>Super-Lab Suhtlemisprotokoll</h1>
+
+
+<h2>Serveri poolt saadetavad teated</h2>
+
+<ul>
+<li>0 - <a href="#s0">Liikumine</a></li>
+<li>1 - <a href="#s1">Võit</a></li>
+<li>2 - <a href="#s2">Start</a></li>
+<li>3 - <a href="#s3">Stop</a></li>
+<li>4 - <a href="#s4">Liitumine</a></li>
+<li>5 - <a href="#s5">Lahkumine</a></li>
+<li>6 - <a href="#s6">Kaart</a></li>
+<li>7 - <a href="#s7">Liitumise aktsepteerimine</a></li>
+</ul>
+
+
+<h3 id="s0">Liikumine:</h3>
+<ul>
+<li>0</li>
+<li>ID</li>
+<li>X</li>
+<li>Y</li>
+</ul>
+
+<h3 id="s1">Võit:</h3>
+<ul>
+<li>1</li>
+<li>ID</li>
+<li>-</li>
+<li>-</li>
+</ul>
+
+<h3 id="s2">Start:</h3>
+<ul>
+<li>2</li>
+<li>-</li>
+<li>-</li>
+<li>-</li>
+</ul>
+
+<h3 id="s3">Stop:</h3>
+<ul>
+<li>3</li>
+<li>-</li>
+<li>-</li>
+<li>-</li>
+</ul>
+
+<h3 id="s4">Liitumine:</h3>
+<ul>
+<li>4</li>
+<li>ID</li>
+<li>nimepikkus</li>
+<li>pildi nr</li>
+</ul>
+
+<p>+järgneb nimepikkuse jagu baite, mis sisaldavad nime</p>
+
+
+<h3 id="s7">Liitumise aktsepteerimine: (saadetakse liitujale)</h3>
+<ul>
+<li>7</li>
+<li>ID</li>
+<li>0 või 1 (omab väärtust 1 juhul kui aktsepteeritakse, muidu 0)</li>
+<li>0 või 1 (omab väärtust 1 juhul kui administraator, muidu 0)</li>
+</ul>
+
+
+<h3 id="s5">Lahkumine:</h3>
+<ul>
+<li>5</li>
+<li>ID</li>
+<li>-</li>
+<li>-</li>
+</ul>
+
+<h3 id="s6">Kaart:</h3>
+<ul>
+<li>6</li>
+<li>-</li>
+<li>kaardi nr</li>
+<li>-</li>
+</ul>
+
+
+
+
+
+
+
+<h2>Kasutajate poolt saadetavad teated:</h2>
+
+<ul>
+<li>0 - <a href="#k0">Liikumine</a></li>
+<li>1 - <a href="#k1">Võit</a></li>
+<li>2 - <a href="#k2">Start</a></li>
+<li>3 - <a href="#k3">Stop</a></li>
+<li>4 - <a href="#k4">Liitumine</a></li>
+<li>5 - <a href="#k5">Lahkumine</a></li>
+<li>6 - <a href="#k6">Kaart</a></li>
+</ul>
+
+<h3 id="k0">Liikumine:</h3>
+<ul>
+<li>0</li>
+<li>-</li>
+<li>X</li>
+<li>Y</li>
+</ul>
+
+<h3 id="k1">Võit:</h3>
+<ul>
+<li>1</li>
+<li>-</li>
+<li>-</li>
+<li>-</li>
+</ul>
+
+<h3 id="k2">Start (saadetav vaid hostija poolt):</h3>
+<ul>
+<li>2</li>
+<li>-</li>
+<li>-</li>
+<li>-</li>
+</ul>
+
+<h3 id="k3">Stop (saadetav vaid hostija poolt):</h3>
+<ul>
+<li>3</li>
+<li>-</li>
+<li>-</li>
+<li>-</li>
+</ul>
+
+<h3 id="k4">Liitumine:</h3>
+<ul>
+<li>4</li>
+<li>-</li>
+<li>nimepikkus</li>
+<li>pildi nr</li>
+</ul>
+
+<p>+järgneb nimepikkuse jagu baite, mis sisaldavad nime</p>
+
+<h3 id="k5">Lahkumine:</h3>
+<ul>
+<li>5</li>
+<li>-</li>
+<li>-</li>
+<li>-</li>
+</ul>
+
+<h3 id="k6">Kaart (saadetav vaid hostija poolt):</h3>
+<ul>
+<li>6</li>
+<li>-</li>
+<li>kaardi nr</li>
+<li>-</li>
+</ul>
+
+</body>
+</html>

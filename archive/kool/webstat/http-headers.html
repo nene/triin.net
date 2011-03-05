@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>HTTP headers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Survey on over million webpages" />
+<meta name="keywords" content="CSS, HTML, XHTML, JavaScript, validation" />
+<meta name="date" content="2006-06-12" />
+</head>
+<body>
+
+<h1 id="http-headers">HTTP headers</h1>
+
+<p>Besides HTML, CSS and JavaScript the program also collected
+data about HTTP headers. Sure, this data only reflects those headers
+that are common on the front pages of websites, and as I said,
+all the pages with other status code than 200 OK were removed
+from further analyzes.</p>
+
+<p>First of all, lets take a look at the very first line of any
+HTTP response, typically something like this:</p>
+
+<pre>HTTP/1.1 200 OK</pre>
+
+<p><code>1.1</code> here designates the HTTP version number.
+Version 1.1 is the most recent HTTP standard, 1.0 being the previous.
+Anything below 1.0 is deprecated. As <a href="#figure-3">figure 3</a>
+clearly shows, the situation in web regarding HTTP versions is sound:
+97% of pages are served using the latest standard. Although I should
+point out, that the program dismissed all the pages with HTTP version
+below 1.0. Anyway, I’m quite sure that web browsers also don’t accept
+anything below 1.0.</p>
+
+<div class="joonis" id="figure-3">
+<img src="/archive/kool/webstat/figure-3.png" alt="97.15% of pages uses HTTP version 1.1. Remaining 2.85% uses version 1.0." />
+<p><span class="nr">Figure 3.</span>
+HTTP versions. Majority of pages uses the latest HTTP version 1.1.</p></div>
+
+<p>The following <a href="#figure-4">figure 4</a> shows 21 most frequently
+used HTTP headers on web pages.</p>
+
+<div class="joonis" id="figure-4">
+<img src="/archive/kool/webstat/figure-4.png" alt="Content-type, date, server, connection, content-length, ..." />
+<p><span class="nr">Figure 4.</span>
+Most frequently used HTTP headers.</p></div>
+
+<p>Of course 100% of pages have Content-Type header, because pages without
+that were previously removed from the selection. I’ll discuss the usage of
+Content-Type header later in the text, when I talk about the encodings
+used.</p>
+
+<p>The values of Date header are presumably uninteresting, but the Server
+header provides a lot of information regarding which HTTP servers are
+used. As can be seen from <a href="#figure-5">figure 5</a>, by far the
+most popular HTTP server is Apache, followed by Microsoft Internet
+Information Service.</p>
+
+<div class="joonis" id="figure-5">
+<img src="/archive/kool/webstat/figure-5.png" alt="Apatche, Microsoft-IIS, Zeus" />
+<p><span class="nr">Figure 5.</span>
+Three most popular HTTP servers (based on Server headers).</p></div>
+
+<p>The previous figure is continued in <a href="#figure-6">figure 6</a>,
+magnifying the usage of rarer servers. Note that these are just the
+values of the Server header, not necessarily names of HTTP server
+softwares. For example Rapidsite is actually a web hosting service
+provider.</p>
+
+<div class="joonis" id="figure-6">
+<img src="/archive/kool/webstat/figure-6.png" alt="Zeus, Netscape-Enterprise, Rapidsite, Squeegit, Sun-one-web-server, Lotus-Domino, ..." />
+<p><span class="nr">Figure 6.</span>
+Lesser popular values of Server header (extension to the previous figure).</p></div>
+
+<p>The fourth header, used on almost every page, is the Connection.
+Aside from few quirks, all pages are served with either keep-alive
+or close as values of this header. <a href="#figure-7">Figure 7</a>
+shows, that the first value is used slightly more often than the
+other.</p>
+
+<div class="joonis" id="figure-7">
+<img src="/archive/kool/webstat/figure-7.png" alt="Keep-Alive 58.71%, Close 41.29%" />
+<p><span class="nr">Figure 7.</span>
+Values for the Connection header.</p></div>
+
+<p>But the HTTP headers statistics was not the main target of this
+research, it could be described more as a side-result, although a
+planned one. So, lets leave the HTTP protocol for now, and dive into
+the markup itself.</p>
+
+
+</body>
+</html>

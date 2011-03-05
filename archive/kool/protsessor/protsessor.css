@@ -1,0 +1,10 @@
+body { 
+    font-family: Verdana, Arial, sans-serif;  
+    background: #fff url(pentium.jpg) top right no-repeat;
+		padding-right: 100px;
+}
+
+h1 { color: #F0AF51; padding-top: 90px; font-size: 100px; }
+
+h2, h3 { color: #B58233 }
+

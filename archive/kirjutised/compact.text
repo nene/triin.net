@@ -1,0 +1,93 @@
+2010-01-13
+Fighting the uglyness of Array.push()
+=====================================
+
+Say you are creating an array of something, for example UI buttons:
+
+    var buttons = [
+      new OpenButton(),
+      new ExportButton(),
+      new SaveButton(),
+      new DeleteButton()
+    ];
+
+Nice and clean code.  But then the requirements change...
+
+Marketing department decides, that `ExportButton` should only be shown
+to paying customers, and otherwise removed from the UI completely.
+
+This might be very well be a good business decision, but from the code
+perspective it's not good at all.  When the order of elements in array
+doesn't matter we could get away with a code like that:
+
+    var buttons = [
+      new OpenButton(),
+      new SaveButton(),
+      new DeleteButton()
+    ];
+    if (isPayingCustomer()) {
+      buttons.push(new ExportButton());
+    }
+
+But in our case the order definitely matters - UI buttons can't just
+be in any random order.  And therefore we have to split the creation
+of array into multiple parts, which results in quite ugly code:
+
+    var buttons = [new OpenButton()];
+    if (isPayingCustomer()) {
+      buttons.push(new ExportButton());
+    }
+    buttons.push(new SaveButton());
+    buttons.push(new DeleteButton());
+
+We went from nice and clear declarative code into much harder to
+understand imperative code.  That's a great price to pay for such a
+small change in functionality.  Could we do it better?
+
+Instead of conditionally pushing things to array, we would like to
+just declare that this array element only exists under certain
+conditions.  We could express it like that:
+
+    var buttons = [
+      new OpenButton(),
+      isPayingCustomer() ? new ExportButton() : null,
+      new SaveButton(),
+      new DeleteButton()
+    ];
+
+That's all nice and clean, except that we didn't want any `null`
+elements in our array.  The code that will use this array probably
+expects all array elements to be buttons, and we don't want to change
+it to ignore nulls.
+
+Luckily there is `compact()` - a method of arrays that removes all
+`null` and `undefined` elements from array.  That's exactly what we
+need!  We just add a call to it at the end of our code:
+
+    var buttons = [
+      new OpenButton(),
+      isPayingCustomer() ? new ExportButton() : null,
+      new SaveButton(),
+      new DeleteButton()
+    ].compact();
+
+The only catch is that JavaScript arrays don't actually have a
+`compact()` method.  But that's not a big problem - anyone can add it
+to `Array.prototype` and it's already there in some JavaScript
+libraries (e.g. [Prototype][1]).  Here's a quick implementation using
+[filter()][2]:
+
+    Array.prototype.compact = function() {
+      return this.filter(function(x) {
+        return x !== null && x !== undefined;
+      });
+    };
+
+`compact()` does something so simple that it rarely gets attention.
+But that simple tool has often saved me from writing some truly ugly
+push-push-push-code.  I hope it helps you too.
+
+Now go and compact those arrays!
+
+[1]: http://api.prototypejs.org/language/array.html#compact-instance_method
+[2]: https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter

@@ -1,0 +1,31 @@
+2009-10-25
+Object-methods vol 3: Converting to an Array
+============================================
+
+In previous writings I have so far found no good location for
+general-purpose object-manipulation methods.  I have concluded that
+neither [Object.prototype][verboten] nor the [Object][static] itself
+are good places for these methods.
+
+So the two obvious solutions have been tried, and we have to start
+thinking of the not-so-obvious.  As they say: we have to think out of
+the box.  One of the first things to do in this situation is to start
+questioning your assumptions.  And that's what I'm going to digg into
+this time.
+
+## Are we even doing the right thing?
+
+So far we have been assuming that we need methods that manipulate
+objects.  We think that we need to iterate over object properties,
+filter the properties, apply some function to each property value etc.
+But do we?  Maybe we're just using wrong tool for the job?  Hammers
+are not meant to work like screwdrivers, but we want our objects
+(JavaScript hash tables) to work like arrays.  These two are different
+beasts - why should they work similarly?
+
+These are ceartanly desireable things to do.
+
+[verboten]: http://triin.net/2009/09/13/Why_exactly_is_Object.prototype_verboten
+[static]: http://triin.net/2009/10/04/Object-methods_vol_2:_Static_functions
+
+

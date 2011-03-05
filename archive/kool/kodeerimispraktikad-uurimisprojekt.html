@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="et" xml:lang="et">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Veebilehtede kodeerimispraktikad</title>
+</head>
+<body>
+
+<h1>Veebilehtede kodeerimispraktikad</h1>
+
+<div class="preambula">
+<ul>
+<li>Bakalaureusetöö uurimisprojekt.</li>
+<li>TLÜ Haapsalu Kolledž: Infotehnoloogia osakond.</li>
+<li>Juhendaja: Jaagup Kippar.</li>
+<li>Haapsalu 2005.</li>
+</ul>
+<p>Käesolev dokument on saadaval ka
+<a href="http://triin.net/2005/12/23/Veebilehtede_kodeerimispraktikad.pdf">PDF-formaadis</a> (147KB).</p> <!-- TODO -->
+</div>
+
+
+<h2>Sisukord</h2>
+
+<ul>
+<li><a href="#sissejuhatus">Sissejuhatus</a></li>
+<li><a href="#ch-1">1. Probleemi kirjeldus</a>
+<ul>
+    <li><a href="#ch-1-1">1.1. Kas valideeruvate lehtede osakaal on suurenenud?</a></li>
+    <li><a href="#ch-1-2">1.2. Kuidas on muutunud heade ja halbade praktikate suhe?</a></li>
+    <li><a href="#ch-1-3">1.3. Veebilehtede kodeerimispraktikaid on vähe uuritud</a></li>
+</ul></li>
+<li><a href="#ch-2">2. Küsimused, millele soovime vastust</a>
+<ul>
+    <li><a href="#ch-2-1">2.1. (X)HTML</a></li>
+    <li><a href="#ch-2-2">2.2. CSS</a></li>
+    <li><a href="#ch-2-3">2.3. JavaScript</a></li>
+    <li><a href="#ch-2-4">2.4. Flash</a></li>
+    <li><a href="#ch-2-5">2.5. Java</a></li>
+    <li><a href="#ch-2-6">2.6. Uudisvood</a></li>
+</ul></li>
+<li><a href="#ch-3">3. metoodika</a>
+<ul>
+<li><a href="#ch-3-1">3.1. Valim</a></li>
+<li><a href="#ch-3-2">3.2. Programmi pool</a></li>
+</ul></li>
+<li><a href="#kokkuvote">Kokkuvõte</a></li>
+</ul>
+
+<h2 id="sissejuhatus">Sissejuhatus</h2>
+
+<p>Olles läbi viinud <a href="http://westciv.com/style_master/house/good_oil/best_practices/"
+title="Are we there yet? Best practices in web development in Australia - a survey.">analüüsi
+83-l Austraalia veebilehel</a>, teatas John Allsopp Sydney’s toimunud konverentsil
+„Web Essentials 05“:</p>
+
+<blockquote>
+<p>Ma ei taha enam kunagi näha Firefox’i tööriistariba.</p>
+<p>Ma ei taha enam kunagi näha W3C validaatorite või „Cynthia Says“ tulemusi.</p>
+<p>Ma ei taha vaadata mitte ühegi tabelitel baseeruva lehekülje lähtekoodi.</p>
+<p>Kuid on lihtsalt häbiväärne, et nende lehtekülgede autorid ei paista seda samuti teha tahtvat.</p>
+</blockquote>
+
+<p>Igaüks, kes on vähegi kursis World Wide Web Consortium’i (W3C)
+<abbr title="Hypertext Markup Language">HTML</abbr>-i ja
+<abbr title="Cascading Style Sheets">CSS</abbr>-i standarditega
+(Ametlikult on tegemist siiski soovitustega – <i lang="en" xml:lang="en">recommendations</i>),
+teab ka fakti, et veebilehti, mis nendest kinni peavad, on vaid
+käputäis. Seega, milleks meile üldse need standardid, kui enamik
+lehti töötab suurepäraselt ilma nendetagi? Milleks kulutada oma
+raha ja aega täitmaks mitmesuguseid eeskirju, kui me võiksime oma
+ressursse selle asemel hoopis kuskil paremas kohas rakendada?</p>
+
+<p>Mida te arvate, kui suured peavad olema ühe veebidisaineri
+teadmised, et saada aru, mis on valesti järgmistes koodilõikudes:</p>
+
+<pre>&lt;/head&gt;&lt;center&gt;&lt;body bgcolor="#ffffff"...
+
+&lt;/CENTER&gt;&lt;/BODY&gt;&lt;/HTML&gt;&lt;/form&gt;
+
+&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;</pre>
+
+<p>Loogiliselt võttes peaks tegu olema ühe algaja veebimeistri
+näpukaga – ent oleks see vaid nii. ülalolevad koodijupid pärinevad
+Boeing’i ametlikult koduleheküljelt. Aga Boeing toodab ju lennukeid!
+Kas Boeing’i lennukid on niisama vigased kui nende veebileht? Sugugi
+mitte – lennukid on esmaklassilised, läbinud kõikvõimalikud peened
+testid ja turvakontrollid. Boeing’i käive oli 2004. aastal 54
+miljardit dollarit! Nad võiksid endale soovi korral palgata kõige
+esmaklassilisema veebimeistri maailmas. Neil pole vähimatki vabandust
+serveerimaks vigase koodiga veebilehti. Aga just seda nad teevad.</p>
+
+<p>Paljude veebimeistrite arvates ei tekita vigase HTML-i kirjutamine
+mingeid probleeme. Aga läbi tarkvaraarenduse ajaloo on teada palju
+taolisi halbu praktikaid, mida pole just kergesti maha tahetud jätta:
+GOTO käsud, globaalsed muutujad, kommentaaride puudumine koodist...
+Ka veebilehtede lohaka kirjutamise osas peab tekkima üldtunnustatud
+arusaam, et tegu on halva praktikaga.</p>
+
+<p>Veebistandardite aktivistid on teinud juba aastaid „kihutustööd“,
+ning mitte edutult. Tänaseks kuuluvad standardipõhiste lehtede hulka
+juba ka sellised „tegijad“ nagu msn.com ja slashdot.org.</p>
+
+<p>Ent kõik see edu võib olla näiline, sest samal ajal, kui on kasvanud
+veebistandarditega kooskõlas olevate lehtede hulk, on kasvanud ka
+vigaste lehtede arv. Ning seega võib kokkuvõttes olla nõnda, et
+standardeid järgivate lehekülgede osakaal on hoopistükkis langenud.</p>
+
+<p>Aga see ei saa ju nii olla! Veebistandardite alaseid uudisgruppe,
+liste ja foorumeid on tekkinud nagu seeni pärast vihma. Palju
+mainekad saidid (nagu näiteks Macromedia, <abbr title="America Online">AOL</abbr>
+ja MSN) on läinud üle CSS-i põhisele paigutusele. Olukord <em>peab</em>
+olema paranenud! Kuid keegi pole viinud läbi uuringut, mis ütleks, kui
+palju olukord ikkagi paranenud on?</p>
+
+<p>Sellise uuringu läbiviimine ongi selle bakalaureusetöö uurimisprojekti
+esmaseks teemaks.</p>
+
+<h2 id="ch-1">1. Probleemi kirjeldus</h2>
+
+<h3 id="ch-1-1">1.1. Kas valideeruvate lehtede osakaal on suurenenud?</h3>
+
+<p>Siin ja edaspidi mõistetakse valideerumise all vastavust formaalsetele
+standarditele, nagu näiteks veebilehe HTML-koodi vastavus HTML-i dokumenditüübi
+deklaratsioonile. Valideerimise all mõeldakse protsessi, kus seda vastavust
+kontrollitakse – reeglina mõnda spetsiaalset programmi ehk validaatorit
+kasutades (näiteks W3C <a href="http://validator.w3.org" title="HTML-i validaator">HTML-i</a>
+ja <a href="http://jigsaw.w3.org/css-validator/" title="CSS-i validaator">CSS-i validaatorid</a>).</p>
+
+<p><a href="http://www.triin.net/2005/09/18/Web_Standards_in_Estonia_vol_2"
+title="Web Standards in Estonia vol 2">Minu enda hiljaaegu läbi viidud uuringud Eesti veebilehtedel</a>
+andsid tulemuseks, et ehkki poole aastaga oli valideeruvate lehtede
+arv kasvanud (4 lehe võrra), oli mäejagu rohkem kasvanud mittevalideeruvate
+lehekülgede hulk (tervel 628 lehe jagu!), mistõttu valideeruvate lehtede
+osakaal oli hoopistükkis langenud 2,22%-lt 2,17%-le.</p>
+
+<p>Kuna aga minu uuringutes kasutatud valim oli kaunis väike (ligikaudu
+20&nbsp;000), siis pole tulemused piisavalt usaldusväärsed, et hüpoteesi
+kinnitada. Pealegi, ei saa vaid Eesti lehtedelt kogutud andmete alusel teha
+üldistusi kogu maailma kohta.</p>
+
+<p>Aastal 2001 viis norrakas Dagfinn Parnas oma <a href="http://www.ub.uib.no/elpub/2001/h/413001/Hovedoppgave.pdf"
+title="How to cope with incorrect HTML">magistritöö</a>
+käigus läbi suuremahulise uuringu. Tema valimis oli 2,4 miljonit <abbr title="Uniform Resource Locator">URL</abbr>-i,
+mis pärinesid vabatahtlike poolt koostatud veebikataloogist „Open Directory Project“.
+Kontrollides kõiki neid lehti HTML-i validaatoriga sai ta tulemuseks,
+et vaid 0,71% kõigist lehtedest valideerusid.</p>
+
+<p>Kui Parnase poolt läbi viidud uuringut nüüd, 5 aastat hiljem, korrata –
+peaksimegi saama anda üpris täpse hinnangu sellele, kui palju (ja kas üldse)
+on valideeruvate lehtede osakaal suurenenud.</p>
+
+<h3 id="ch-1-2">1.2. Kuidas on muutunud heade ja halbade praktikate suhe?</h3>
+
+<p>Kui valideerumise hindamise läbiviimine programmi poolt on võrdlemisi lihtne –
+leht kas valideerub või mitte – siis näiteks selle hindamine, kas lehekülje
+kujundamiseks on kasutatud tabeleid, on juba komplitseeritud. Vaadates asja
+teise külje pealt – nende lehtede osakaal, kes näitavad oma esiküljel tabulaarset
+infot, peaks olema konstantne suurus, ning seetõttu ei tohiks häirida, kui meid
+huvitab see, kas tabelite väärkasutus on kasvanud või kahanenud.</p>
+
+<p>Hoopis suuremaks probleemiks osutub siinkohal see, et puuduvad varasemad andmed,
+millega kogutud tulemusi võrrelda. Siinkohal jõuamegi probleemini, mis ajendas
+kirjutama uurimust pealkirja „Veebilehtede kodeerimispraktikad“ all.</p>
+
+<h3 id="ch-1-3">1.3. Veebilehtede kodeerimispraktikaid on vähe uuritud</h3>
+
+<p>Enamik uuringuid selles vallas on olnud:</p>
+
+<ol>
+<li>väga väikesemahulised (alla tuhande lehe),</li>
+<li>keskendunud vaid vaid mõnele kitsale lihtsalt automatiseeritavale valdkonnale (valideerumine) ja/või</li>
+<li>vaadelnud lehekülgi vaid mõnest kitsast regioonist (Eesti).</li>
+</ol>
+
+<p>Seetõttu ongi minu töö eesmärgiks viia läbi põhjalikum uuring, mis ehkki ei
+anna hetkel võimalust öelda, kuivõrd on olukord veebis aja jooksul muutunud,
+loob eeldused tegemaks neid võrdlusi tulevikus. Mis aga veelgi tähtsam – loob
+ülevaate sellest, milline on olukord nüüd ja praegu.</p>
+
+<h2 id="ch-2">2. Küsimused, millele soovime vastust</h2>
+
+<p>Järgnevalt on üles loetletud küsimusi, millele antud uuring peaks vastuse andma.
+Kindlasti on lisaks nendele veel mitmeid küsimusi millele see uuring vastuse annab,
+küllap on nende seas aga ka neid probleeme, mis vastuseta jäävad.</p>
+
+<h3 id="ch-2-1">2.1. (X)HTML</h3>
+
+<ul>
+<li>Kui paljud leheküljed valideeruvad?</li>
+<li>Millised on levinuimad dokumenditüübid?</li>
+<li>Millised on levinuimad kodeeringud?</li>
+<li>Millised on levinuimad failitüübid (<i lang="en" xml:lang="en">content-type</i>)?</li>
+<li>Millised on levinuimad elemendid?</li>
+<li>Millised on levinuimad atribuudid?</li>
+<li>Kui palju on tühja ALT-tekstiga pilte?</li>
+<li>Millised on levinuimad pildiformaadid?</li>
+<li>Milline on lehe koodi ja sisu mahtude suhe?</li>
+<li>Milline on levinuim alamlehtede arv (linkide arv) pealehel?</li>
+<li>Kui paljud lehed lingivad W3C validaatorit vms?</li>
+<li>Kui paljudel lehtedel on <abbr title="Extensible Markup Language">XML</abbr>-i deklaratsioon?</li>
+<li>...</li>
+</ul>
+
+<h3 id="ch-2-2">2.2. CSS</h3>
+
+<ul>
+<li>Kui paljud leheküljed kasutavad CSS-i?</li>
+<li>Kuivõrd kasutatakse <i lang="en" xml:lang="en">inline</i>,
+    <i lang="en" xml:lang="en">embedded</i> ja
+    <i lang="en" xml:lang="en">external</i> CSS-i?</li>
+<li>Kui suur on väliste CSS-i failide arv? Alternatiivsete stiililehtede kasutamine?</li>
+<li>Milliseid meediatüüpe kasutatakse?</li>
+<li>Milliseid selektoreid kasutatakse?</li>
+<li>Millised on levinuimad CSS-i atribuudid?</li>
+<li>Millised on levinuimad atribuutide väärtused?</li>
+<li>Milliseid on levinuimad mõõtühikud?</li>
+<li>Millised on levinuimad pildiformaadid CSS-is?</li>
+<li>Kui paljude lehtede CSS valideerub?</li>
+<li>...</li>
+</ul>
+
+<h3 id="ch-2-3">2.3. JavaScript</h3>
+
+<ul>
+<li>Kuivõrd kasutatakse <i lang="en" xml:lang="en">inline</i>,
+    <i lang="en" xml:lang="en">embedded</i> ja
+    <i lang="en" xml:lang="en">external</i> JavaScripti?</li>
+<li>Kui suur on väliste JavaScripti failide arv?</li>
+<li>Kui palju kasutatakse <abbr title="Document Object Model">DOM</abbr>-i?</li>
+<li>...</li>
+</ul>
+
+<h3 id="ch-2-4">2.4. Flash</h3>
+
+<ul>
+<li>Kui paljud lehed kasutavad Flashi?</li>
+<li>Milliseid HTML-i elemente kasutatakse Flashi sidumiseks?</li>
+<li>...</li>
+</ul>
+
+<h3 id="ch-2-5">2.5. Java</h3>
+
+<ul>
+<li>Kui paljud lehed kasutavad Javat?</li>
+<li>Milliseid HTML-i elemente kasutatakse Java sidumiseks?</li>
+<li>...</li>
+</ul>
+
+<h3 id="ch-2-6">2.6. Uudisvood</h3>
+
+<ul>
+<li>Kui paljud leheküljed pakuvad
+    <abbr title="Really Simple Syndication">RSS</abbr> ja/või Atom voogusid?</li>
+<li>...</li>
+</ul>
+
+<h2 id="ch-3">3. Metoodika</h2>
+
+<h3 id="ch-3-1">3.1. Valim</h3>
+
+<p>Valimiks on „Open Directory Project“ leheküljelt alla laetav
+<abbr title="Resource Description Framework">RDF</abbr>, kuna seda kasutas
+ka oma uuringus ka Dagfinn Parnas. Mõnel teisel moel koostatud valimi põhjal
+saadud andmed ei pruugi aga olla Parnas’e tulemustega võrreldavad.
+Täpse valimi suuruse ja kuju peab selgitama analüüs.</p>
+
+<h3 id="ch-3-2">3.2. Programmi pool</h3>
+
+<p>Veebilehtede koodi analüüsimiseks on plaanis kasutada võimalikult palju
+olemasolevaid teeke. Näiteks Perli jaoks on olemas HTML-Tree, CSS
+<abbr title="Simple API for CSS">SAC</abbr>, libWWW jpm. Vabalt saab veebist
+alla laadida ka W3C HTML-i ja CSS-i validaatorid.</p>
+
+<p>Kogutud andmed on kavas salvestada relatsioonilisse andmebaasi
+edasiseks mugavamaks töötluseks. Teine märksa mõjuvam põhjus selleks on see,
+et andmeid saab hinnanguliselt olema liialt palju selleks, et nende
+töötlemine väljaspool andmebaasi oleks mõeldamatu.</p>
+
+<h2 id="kokkuvote">Kokkuvõte</h2>
+
+<p>Käesoleva bakalaureusetöö eesmärgiks on uurida levinuimaid praktikaid
+veebilehtede kodeerimisel. See hõlmab endas selliseid tehnoloogiaid nagu
+HTML, CSS, JavaScript, Flash ja Java. Peamiselt keskendutakse sellele, et
+selgitada välja, kuivõrd levinud ühed või teised praktikad veebis on, ning
+võimalust mööda ka seda, kuidas on nende osakaal aja jooksul muutunud.</p>
+
+<p>Töö peaks anda teatava hinnangu sellele, milline seis valitseb veebis hetkel.</p>
+
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+2009-10-04
+Object-methods vol 2: Static functions
+======================================
+
+In [previous writing][verboten] I discussed the problem of **where to
+put general-purpose object-manipulation methods** (like `forEach`,
+`map` and `reduce` methods of `Array`, but for objects) and concluded
+that placing them to `Object.prototype` is defenetly not a way to go.
+So the problem still remains.  Lets try another approach.
+
+
+## `Object` object
+
+Previously I ended with saying that something like this might work:
+
+    var ages = {John: 10, Mary: 20, Phil: 18, Alice: 32};
+    var avgAge = Object.prototype.average(ages);
+
+That’s of course assuming that we have a way to define non-enumerable
+properties (as in upcoming [ECMAScript 5][es5]).  But when we write
+our code like that, we don’t really need a prototype any more, so we
+can simplify it and add our methods directly to `Object`:
+
+    var avgAge = Object.average(ages);
+
+That’s way better than the previous, because:
+
+* we completely avoid all the problems with `Object.prototype` –
+  `Object` is a safe place to add our functions.
+
+* we don’t have to wait for next version of JavaScript, and most
+  imprtantly
+
+* the code is a lot shorter.
+
+Happy with that, let’s try our new approach out:
+
+    // Calculate average age of persons who are over 18
+    var over18 = Object.filter(ages, function(age) {
+      return age > 18;
+    });
+    var avgAge = Object.reduce(over18, function(a, b) {
+      return a + b;
+    }, 0) / Object.count(over18);
+
+This doesn’t look bad, but it doesn’t look particularly good either.
+One problem is that now our code is littered with `Object.this` and
+`Object.that` – typing `Object` at the beginning of each of our
+object-methods seems redundant and too verbose.  Especially when you
+compare it to array-methods, that don’t require you to ever mention
+`Array`.
+
+## Getting shorter
+
+When writing `Object` is tedious we could use something shorter
+instead – for our purposes it’s just a container for our static
+functions and we aren’t bound to use `Object` for that.
+
+We could give up on using a container object completely and just
+prefix each method with `o` or `obj`.  So we would have `objMap`,
+`objFilter`, `objReduce` etc.  But I think my dear reader would not
+forgive me polluting the global namespace with a myriad of tiny
+functions.  So we just skip this thought without further ado.
+
+Instead of `Object` we could use `Obj`, `Ob` or event just `O`...
+
+But using one-letter global variable names is just asking for trouble.
+`Ob` and `Obj` are succeedingly more safer, but it would be nice to
+have something really-really short while keeping away from conflicts.
+
+One way to achieve this is follow the practice of many JS libraries
+and prefix our variable with `$`.  This way we could just use `$O`.
+
+So lets write the previous example again using our new notation:
+
+    // Calculate average age of persons who are over 18
+    var over18 = $O.filter(ages, function(age) {
+      return age > 18;
+    });
+    var avgAge = $O.reduce(over18, function(a, b) {
+      return a + b;
+    }, 0) / $O.count(over18);
+
+That’s quite a bit less typing.  Lets try something without
+intermediate variables, something that could possibly be a one-liner:
+
+    // find names of the first-born children
+    var people = {
+      John: ["Mary", "Thomas", "Mat"],
+      Alice: [],
+      Carol: ["Bob", "Tom"]
+    }
+    // first filter out people who have children
+    // then get the first child of each of them
+    // finally discard parents, keeping only child names
+    var chNames = $O.values($O.map($O.filter(people, function(children) {
+      return children.length > 0;
+    }), function(children) {
+      return children[0];
+    }));
+
+Now this thing is pretty intimidating to read.  It kind of reads
+backwards.  Not like when reading chained-together array-methods,
+which tend to follow each other quite naturally.  But we would really
+like to combine the methods together and this kind of degradation in
+readability is not acceptable.
+
+
+## Conclusion
+
+Compared to using `Object.prototype` this method is safe to use, but
+it has huge drawbacks on readability.  **When you don’t need to combine
+your object-manipulation-methods, then this technique might be for you,**
+but the rest of us must look further.
+
+Stay tuned for the next article in this series.
+
+
+[verboten]: http://triin.net/2009/09/13/Why_exactly_is_Object.prototype_verboten
+[es5]: http://www.ecma-international.org/publications/files/drafts/tc39-2009-025.pdf
+
+

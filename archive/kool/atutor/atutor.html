@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="et" xml:lang="et">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ATutor</title>
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="ATutor programmi ülevaade" />
+<meta name="keywords" content="ATutor, õpiprogrammid, käideldavus, kasutatavus" />
+<meta name="date" content="2007-05-30" />
+</head>
+<body>
+
+<h1>ATutor – õppe-sisuhaldussüsteem</h1>
+
+<p><a href="http://www.atutor.ca/">ATutor</a> on avatud lähtekoodiga
+veebipõhine õpikeskkond. Sihtmärgiks on võetud olla ääretult paindlik,
+et sobida võimalikult paljudele kasutajatele kõikvõimalike õppevormide
+puhul.</p>
+
+<p>Peaasjalikult saab luua kursusi, ja täita need erinevate materjalidega.
+Kursusesiseseks suhtluseks saab kasutada teadetetahvlit, foorumeid,
+vestlust reaalajas ja e-posti. Õpilastele saab anda (koduseid) ülesandeid,
+ja õpilased saavad tehtud tööd ka keskkonna kaudu esitada.</p>
+
+<p>Lisaks tüüpilistele õpikeskkonna vahenditele sisaldab ATutor ka
+<strong>testide</strong> koostamise ja läbiviimise tööriistu.
+Lisaks on veel hulk <strong>lisamooduleid</strong>, ning saab kasutada
+olemasolevaid õpiobjektide repositooriume.</p>
+
+<p>Olemas on ka <strong>tugi erinevatele keeltele</strong>, kuid hetkel veel eesti keel
+pakutavate tõlgete seast puudub.</p>
+
+<h2>Autorid</h2>
+
+<p>Kuna tegu on mahuka projektiga, siis on ka autoreid palju:</p>
+
+<ul>
+<li><strong>Greg Gay</strong>: projektijuht, programmeerija, veebidisainer</li>
+<li><strong>Joel Kronenberg</strong>: peaprogrammeerija</li>
+<li><strong>Heidi Hazelton</strong>: programmeerija, veebidisainer (1.3+)</li>
+<li><strong>Shozub Qureshi</strong>: programmeerija (1.4.1+)</li>
+<li><strong>Jonathan Hung</strong>: programmeerija (1.5+)</li>
+<li><strong>Jacek Materna</strong>: programmeerija (1.4.3)</li>
+<li><strong>Norma Thompson</strong>: programmeerija (1.4.3)</li>
+<li><strong>Boon-Hau Teh</strong>: programmeerija (1.4 – 1.4.2)</li>
+<li><strong>Chris Ridpath</strong>: programmeerija, <abbr title="Adaptive Technology Resource Centre">ATRC</abbr> käideldavuse kontrollija (1.4+)</li>
+<li><strong>Taras Kowaliw</strong>: programmeerija</li>
+<li><strong>Lynn Collette</strong>: kasutajaliidese disainer, veebidisainer (1.0 – 1.2)</li>
+<li><strong>Bruce Etheridge</strong>: Dokumenteerija</li>
+</ul>
+
+<h2>Nõuded serverile</h2>
+
+<ul>
+<li>HTTP Veebiserver (soovitatavalt Apache).</li>
+<li>PHP 4.3.0+ või 5.0.2+ koos Zlib ja MySQL toega.</li>
+<li>MySQL 4.0.2+ või 4.1.10+.</li>
+</ul>
+
+<h2>Ligipääsetavus</h2>
+
+<p>Palju rõhku on pandud sellele, et õpikeskkonda saaks kasutada
+suvalise veebilehitsejaga. Järgitud on W3C spetsifikatsioone nii
+koodi (<abbr title="Extensible Hypertext Markup Language">XHTML</abbr> 1.0)
+kui käideldavuse (<abbr title="Web Content Accessibility Guidlines">WCAG</abbr> 1.0) osas.</p>
+
+<p>Esiletõstmist väärib just töö käideldavuse koha pealt: õpikeskkonna
+kasutamise osas pole veebilehitsejatele seatud mingisuguseid piiranguid.
+Keskkond on kenasti ligipääsetav nii Lynxi kui <i>screenreader</i>-tarkvara
+kasutajatele.</p>
+
+<p>Aitamaks kasutajatel luua kõrge käideldavusega materjale, on loodud
+spetsiaalne abivahend loodud materjali võimalike ligipääsetavusprobleemide
+tuvastamiseks (<a href="#figure-1">joonis 1</a>).</p>
+
+<div class="joonis" id="figure-1">
+<img src="/archive/kool/atutor/a11i.png" alt="Ekraanipilt" />
+<p><span class="nr">Joonis 1.</span>
+Käideldavusprobleemide tuvastamise tööriist.</p></div>
+
+<p>Iseküsimus on muidugi, kas üks lihtne õppejõud oskab sellise vahendiga
+ka midagi peale hakata. Pigem tundub, et see külvab ta kõikvõimaliku arusaamatu
+informatsiooniga üle.</p>
+
+
+<h2>Kasutatavus</h2>
+
+<h3>Registreerumine</h3>
+
+<p>Kasutajakontode süsteemil on samuti oma veidrused. Näiteks kaks Mart Tamme nimelist
+isikut registreeruda ei saa – nimekaimul pole muud võimalust kui endale liignimi
+välja mõtelda. Näiteks Mart "väga-tubli" Tamm.</p>
+
+<p>Ülesanne: <strong>Mõtle, et sinu nimeks on Juku Juhanson, proovi
+nüüd ATutori keskkonna kasutajaks registreeruda.</strong> (Ajutiselt on ATutor keskkond
+üles seatud aadressile <a href="http://atutor.triin.net/">atutor.triin.net</a>.)</p>
+
+<h3>Võimaluste üleküllus</h3>
+
+<p>Üks peamisi probleeme on see, et kuna keskkond pakub palju võimalusi,
+siis tundub esialgu kõik väga kirju. Näiteks vastloodud kursuse esilehel on
+vaikimisi tervel 16 erinevat vahendit, lisaks veel seitsme-elemendiline külgmenüü
+ja viie-elemendiline kursuse peamenüü (<a href="#figure-2">joonis 2</a>).</p>
+
+<div class="joonis" id="figure-2">
+<img src="/archive/kool/atutor/main-page.png" alt="Ekraanipilt" />
+<p><span class="nr">Joonis 2.</span>
+Vastloodud kursuse pealeht, infotulvast nõretamas.</p></div>
+
+<h3>Kodutööde haldus</h3>
+
+<p>Süsteem on küll ohtralt dokumenteeritud, aga isegi dokumentatsiooni
+abiga osutuvad mõningad tegevused ülemäära keerukateks. Näiteks kui soovime
+anda uut kodust ülesannet, siis peame esiteks tekitama ülesande enda ja
+siis hoopis eraldi looma teadaande uue ülesande kohta, et ka õpilased
+sellest teada saaksid. Veelgi enam: ka ülesande kirjelduse peame kirjutama
+hoopis tollesse teadaandesse – ülesande enda juurde seda panna ei saa.</p>
+
+<p>Kuid nüüd õpilase ülesanne: <strong>koduse ülesande vastuse ATutor kaudu
+õpetajale edastamine.</strong> (Kursuseks vali „Loodusõpetus“.)</p>
+
+<p>Võiks arvata, et selline sagedasti ettetulev asi on tehtud nii lihtsaks kui
+võimalik, kuid kaugel sellest. Siin on sammud, mis tuleb läbida koduse ülesande
+teelesaatmiseks (vaata ka <a href="#figure-3">joonis 3</a>):</p>
+
+<ol>
+<li>vali "File Storage"</li>
+<li>vali Workspace menüüst "My Files"</li>
+<li>vali "New File"</li>
+<li>vali lae fail(id) üles</li>
+<li>Selekteeri fail(id)</li>
+<li>Vajuta "Hand In"</li>
+<li>Vali kodutöö "Kogemused siilidega"</li>
+<li>Vajuta "Submit".</li>
+</ol>
+
+<div class="joonis" id="figure-3">
+<img src="/archive/kool/atutor/homework.png" alt="Ekraanipildikoomiks" />
+<p><span class="nr">Joonis 3.</span>
+Tarvilikud tegevused kodutöö ärasaatmiseks.</p></div>
+
+<p>Minul, informaatikul, võttis selle väljamõtlemine peaaegu tund aega: lugesin
+dokumentatsiooni, proovisin kõiksuguste nurkade alt; olin juba kirjutamas
+abipalvet ATutor-i foorumisse kui viimaks aru sain, kuidas asi töötab.</p>
+
+<h2>Testide loomine ja haldus</h2>
+
+<p>Küsimuste tüüpe pole küll palju, aga kaetud on peamised vajadused:</p>
+
+<ul>
+<li>Tõene-väär</li>
+<li>Järjestamine</li>
+<li>Vabas vormis tekst</li>
+<li>Valikvastus (üks või mitu õiget)</li>
+<li>Vastavusse panemine (tekst või pilt)</li>
+<li>Hinnangute andmine (stiilis: ei nõustu, neutraalne, üldiselt nõustun, nõustun)</li>
+</ul>
+
+<p>Testide loomine peaks olema küllaltki lihtne igaühe jaoks,
+kes varem sellist tüüpi tarkvaraga kokku puutunud.</p>
+
+<p>Testi küsimusetüüpidega tutvumiseks: <strong>vastata loodusõpetuse
+kursusel olevale testile.</strong></p>
+
+
+<h2>Kokkuvõte</h2>
+
+<p>Kokkuvõtteks võib öelda, et ATutor jätab hetkel veel üksjagu soovida.
+Mitmed asjad võiksid olla lahendatud lihtsamini mõistetavalt, nõnda et ei
+peaks manuaali lugema.</p>
+
+<p>Kindlasti ei saa seda hetkel kasutusele võtta eesti koolides, kuna puudub
+eestikeelne tõlge.</p>
+
+<p>Samas positiivse poole pealt on tegemist vaba tarkvaraga ning erinevalt
+mitmetest teistest õpikeskkondadest töötab keskkond suure hulga erinevate
+veebilehitsejatega.</p>
+
+
+</body>
+</html>

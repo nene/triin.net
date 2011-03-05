@@ -1,0 +1,91 @@
+body { 
+    font-family: Verdana, Arial, sans-serif;
+    color: #000;
+    background: #fff;
+    text-align: center;
+}
+
+a {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #666;
+}
+
+#main {
+    background: #f1f1f1;
+    border: 1px solid #000;
+    padding: 5px;
+    margin: 0 auto;
+    text-align: left;
+    width: 762px;  /* vale väärtus IE5 jaoks */
+    voice-family: "\"}\""; 
+    voice-family:inherit;
+    width: 750px;  /* õige väärtus teiste jaoks */
+}
+
+.entry, .module, #header h1 {
+    background: #d1d1d1;
+    border: 1px solid #000;
+}
+
+#header h1 {
+    font-size: 25px;
+    padding: 21px 5px 9px 5px;
+    margin: 0;
+}
+
+.module h3, .entry h2 {
+    font-size: 17px;
+}
+
+
+.entry {
+    margin: 5px 0;
+    padding: 0 5px;
+}
+
+.entry p, .module ul, .module p, .module table { font-size: 12px }
+
+.entry p.date { font-style: italic }
+
+
+#content {
+    float: left;
+    width: 570px;
+}
+
+.module {
+    margin: 5px 0 5px auto;
+    padding: 5px;
+    width: 172px;  /* vale väärtus IE5 jaoks */
+    voice-family: "\"}\""; 
+    voice-family:inherit;
+    width: 160px;  /* õige väärtus teiste jaoks */
+}
+
+.module ul { 
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+#footer p{ 
+    clear: both;
+    text-align: center;
+    margin: 0;
+    font-size: 10px;
+}
+
+#links ul li { margin: 10px 0; }
+#links ul li ul li { margin: 0; }
+
+#archive td, #archive th { text-align: center; }
+
+
+
+
+

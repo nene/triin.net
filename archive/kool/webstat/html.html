@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>HTML</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Survey on over million webpages" />
+<meta name="keywords" content="CSS, HTML, XHTML, JavaScript, validation" />
+<meta name="date" content="2006-06-12" />
+</head>
+<body>
+
+<h1 id="html">HTML</h1>
+
+<p>When I already had laid out great plans for this research and
+had also begin to implement the required program, Google Inc. announced
+the results of their research:
+<a href="http://code.google.com/webstats/index.html">Web Authoring Statistics</a>.</p>
+
+<p>This is a <em>great</em> material, based on the data, gathered from
+over a billion (!) documents – a thousand times larger selection, than
+the one this survey is based on. I’d suggest anyone in interest of
+web standards and HTML in particular, to have a look at the results of
+that research.</p>
+
+<p>As such a great research is available on the use of HTML elements
+and their attributes, I won’t repeat the information available from
+Google in here, although my program gathered the information about
+HTML elements and attributes. Instead I am going to focus on the data
+about (X)HTML pages, that the survey from Google doesn’t cover, like
+the document types and encodings most frequently used on web pages.
+But I start with the simplest thing measurable on HTML files – the size.</p>
+
+<p>As <a href="#figure-8">figure 8</a> shows, most frequently the
+size of the web page is somewhere near 2<sup>13</sup> bytes (8KB).
+Most of the pages remain in range 2<sup>9</sup> bytes (0.5KB) to
+2<sup>16</sup> bytes (64KB).</p>
+
+<div class="joonis" id="figure-8">
+<img src="/archive/kool/webstat/figure-8.png" alt="A graph showing most pages near 8KB" />
+<p><span class="nr">Figure 8.</span>
+Frequency of different filesizes. Each column in location <var>n</var>
+shows how many pages are with filesize in range 2<sup>n</sup> to 2<sup>n+1</sup>.</p></div>
+
+<p>But how big portion of the page is markup and how large is the
+real textual content of the page. <a href="#figure-9">Figure 9</a>
+shows clearly, that on most pages the markup-part dominates. An
+average page has something around 20% of text on a page. The figure
+shows a strong bias towards small percentage of text.</p>
+
+<p>Of course, many of the URI-s in the used selection may have
+pointed to the front pages of sites, instead of real content pages,
+but this is just an assumption. Actually a lot of the pages pointed
+directly to the articles of some news sites. I’m quite sure, that this
+data is not the result of using this particular selection.</p>
+
+<div class="joonis" id="figure-9">
+<img src="/archive/kool/webstat/figure-9.png" alt="A normal distribution which is shifted towards smaller text percentage" />
+<p><span class="nr">Figure 9.</span>
+Distribution of pages based on the proportion of text in source code.</p></div>
+
+<p>But what about comments? How much space do they consume?
+Apparently half of the pages (53%) don’t use comments at all (see
+<a href="#figure-10">figure 10</a>). On those pages that use,
+the comments usually stay below 10% of the page size. Anyway,
+there doesn’t seem to be any good reasons to add extensive
+comments to HTML. Although adding comments to computer code
+is usually a good practice, this hardly applies to HTML. The
+weird pages are probably the ones appearing on the right side
+of the figure, which seem to be totally commented out.</p>
+
+<div class="joonis" id="figure-10">
+<img src="/archive/kool/webstat/figure-10.png" alt="Almost logarithmically falling graph" />
+<p><span class="nr">Figure 10.</span>
+Distribution of pages by the proportion of comments.
+The logarithmic scale is used,
+as only few pages have more than 10% of comments.</p></div>
+
+<h2 id="html-elements">HTML elements</h2>
+
+<p>The following three figures are directly compareable to the ones found from
+the first chapter of research done by Google:
+<a href="http://code.google.com/webstats/2005-12/pages.html">Web Authoring
+Statistics – Pages and elements</a>. Actually this is exactly why they
+are presented here – to provide a comparison with that study.
+I won’t cover the use of HTML elements in depth, because you can just
+head over to Google labs page and find a more accurate information from there.</p>
+
+<div class="joonis" id="figure-11">
+<img src="/archive/kool/webstat/figure-11.png" alt="Almost logarithmically falling graph with several bumps" />
+<p><span class="nr">Figure 11.</span>
+Distribution of pages by the total number of (X)HTML elements used.
+When you compare it to the Google figure, you see, that the line is
+not that smooth, reflecting the great difference in the size of
+used selections.</p></div>
+
+<div class="joonis" id="figure-12">
+<img src="/archive/kool/webstat/figure-12.png" alt="A not very smooth normal distribution" />
+<p><span class="nr">Figure 12.</span>
+Distribution by the number of different elements per page. Again the
+drawing from Google shows a lot smoother line; lot more similar to the
+<a href="http://en.wikipedia.org/wiki/Normal_distribution"
+title="Wikipedia article about normal distribution">normal distribution</a>.</p></div>
+
+<div class="joonis" id="figure-13">
+<img src="/archive/kool/webstat/figure-13.png" alt="head, title, html, body, a, meta, img, table, td, tr, br, p, script, font, div, b, link, center, span, form, input, style, hr, ..." />
+<p><span class="nr">Figure 13.</span>
+Usage frequency of different (X)HTML elements.
+On the figure from Google some elements have switched places,
+but the differences aren’t significant and the general ordering of the
+elements is the same. Sadly, Google only lists 19 most popular elements,
+leaving you wonder: “Hey! But what about <code>ul</code> and <code>h1</code>
+and many other important elements?” That’s why the figure above shows also
+many of the less popular elements.
+</p></div>
+
+<h2 id="document-types">Document types</h2>
+
+<p>Only 39.08% of pages have a Document Type Declaration (DOCTYPE).
+66.47% of pages with DOCTYPE only have the Formal Public Identifier (FPI)
+specified, lacking the System Identifier (SI – the URI pointing to the
+<acronym title="Document Type Definition">DTD</acronym>).</p>
+
+<p>The three overwhelmingly most popular DOCTYPEs are from the
+Transitional family: HTML 4.01, HTML 4.0 and XHTML 1.0.
+(<a href="#figure-14">Figure 14</a>) The Transitional DOCTYPEs
+are so popular, that at the fourth place is a Transitional FPI,
+which is spelled incorrectly in lower case.</p>
+
+<p>The pages, that use Strict doctype, mostly use the XHTML-one.
+But Strict is still less popular than Frameset and if you add together
+the HTML 3.2 and HTML 3.2 Final, then Strict is even less popular
+from those.</p>
+
+<div class="joonis" id="figure-14">
+<img src="/archive/kool/webstat/figure-14.png" alt="HTML 4.01 Transitional, HTML 4.0 Transitional, XHTML 1.0 Transitional, html 4.0 transitional, HTML 4.01 Frameset, XHTML 1.0 Strict, ..." />
+<p><span class="nr">Figure 14.</span>
+Most frequent FPI-s.</p></div>
+
+<p>Based on the <a href="http://hsivonen.iki.fi/doctype/">DOCTYPE comparison
+table</a> built by Sivonen, and the gathered data about different DOCTYPEs
+usage, my calculations show, that roughly 90% of pages are rendered in
+Quirks mode (at least by IE 6). Even from the pages that specify DOCTYPE, 70%
+are rendered in Quirks mode.</p>
+
+<h2 id="xhtml">XHTML</h2>
+
+<p>15.24% of pages with DOCTYPE specify some kind of XHTML DOCTYPE. Of those
+pages 22.40% use the XML prolog. (As a sidenote: 0,29% of HTML pages also
+includes the XML prolog.)</p>
+
+<p>As W3C has recommended in Note about
+<a href="http://www.w3.org/TR/xhtml-media-types/">XHTML Media Types</a>,
+XHTML documents should be served with <code>application/xhtml+xml</code>
+Content-Type instead of the regular <code>text/html</code>. Only the XHTML
+DOCTYPEs from XHTML 1.0 family may be served as <code>text/html</code>.</p>
+
+<p>Only 0.24% of XHTML pages are served with the recommended DOCTYPE
+(the number includes also few pages served with <code>application/xml</code>
+or <code>text/xml</code>). Of course, the majority uses XHTML 1.0, where
+this is permitted, but what about other XHTML DOCTYPEs?</p>
+
+<p>Although only 4.46% of XHTML pages use some other DOCTYPE than
+XHTML 1.0, of those pages (that <em>must</em> be served as XHTML) only
+2.80% are (in my selection 54 pages out of 1930).</p>
+
+<p>The most frequent DOCTYPE served as <code>application/xhtml+xml</code>
+was XHTML 1.1, followed by XHTML 1.0 Strict and Transitional.</p>
+
+<h2 id="encodings">Encodings</h2>
+
+<p>Only 66% of pages defines character encoding in one way or another. This
+means, that the remaining 34% uses Windows-1252 encoding, which is the default
+in most browsers.</p>
+
+<p>Only 15% of all pages specify encoding in
+<acronym title="Hypertext Transfer Protocol">HTTP</acronym> header. Others
+specify it with the <code>meta</code> element, if they do it at all. Of those
+pages, that specify it in the HTTP header, 61% also specifies the encoding in
+the <code>meta</code> element.</p>
+
+<p>Windows-1252 is by far the most common encoding for web pages. Although
+<a href="#figure-15">figure 15</a> shows, that most pages specify ISO 8859-1
+as their encoding, most of the browsers use Windows-1252 although the page
+says ISO 8859-1. Anyway – Windows-1252 is a superset of ISO 8859-1.</p>
+
+<div class="joonis" id="figure-15">
+<img src="/archive/kool/webstat/figure-15.png" alt="iso-8859-1, windows-1252, utf-8, shift_jis" />
+<p><span class="nr">Figure 15.</span>
+Distribution of pages by encoding (showing the percentages from pages that
+have encoding specified).</p></div>
+
+<p>Multibyte encodings UTF-8 and Shift_JIS are also claming their place,
+but only UTF-8 seems to be something significant, nearing 10%. Many of the
+other encodings are given in the following <a href="#figure-16">figure 16</a>.</p>
+
+<div class="joonis" id="figure-16">
+<img src="/archive/kool/webstat/figure-16.png" alt="shift_jis, iso-8859-2, windows-1251, windows-1250, gb2312, iso-8859-15, big5, us-ascii, x-sjis, windows-1254, iso-8859-9, ..." />
+<p><span class="nr">Figure 16.</span>
+Less popular encodings. Continuation of <a href="#figure-15">figure 15</a>.</p></div>
+
+<h2 id="markup-correctness">Markup correctness</h2>
+
+<p>First of all I have to note, that 3.50% of pages were excluded from the
+valid-or-not statistics, because of the error message “unrecognized DOCTYPE;
+unable to check document”. This could have meant either an error in DOCTYPE
+or reference to custom DTD. Dagfinn Parnas, the author of the similar research
+in 2001, also removed the pages with this error from the analyzes.</p>
+
+<p>I tried to keep as close to the beforementioned research, so I only excluded
+pages by the criteria, that Parnas did (although it has to be said that there
+definitely had to remain some small differences in the methodology). The result
+was, that out of 1,002,350 pages 25,890 or 2.58% were valid. At 2001 the result
+from Parnas was 0.71%.</p>
+
+<p>I also used my more trimmed-down selection and calculated the percentage of
+valid pages from those. Out of 702,723 URI-s 18,373 or 2.61% were valid. Only
+0.03% difference. So I think we can conclude, that roughly <strong>2.6% of webpages
+referenced by Open Directory Project are valid</strong>. Probably this number also
+reflects quite well the situation of the web in whole - over 3 times better
+than 5 years ago (if we only talk about the percentage of valid pages).</p>
+
+<p>The following <a href="#figure-17">figure 17</a> shows how many different
+error messages per page is most common. <a href="#figure-18">Figure 18</a>
+list the most common error messages by names which are given below in the
+text.</p>
+
+<div class="joonis" id="figure-17">
+<img src="/archive/kool/webstat/figure-17.png" alt="A normal-distribution-like graph geared towards smaller number of errors" />
+<p><span class="nr">Figure 17.</span>
+Distribution by the number of different error messages on page. The average
+number of errors is 6.02 and mean is 6.</p></div>
+
+<div class="joonis" id="figure-18">
+<img src="/archive/kool/webstat/figure-18.png" alt="A slowly falling graph" />
+<p><span class="nr">Figure 18.</span>
+Most frequent error messages.</p></div>
+
+<ol>
+<li>There is no attribute <var>x</var> for this element (in this HTML version).</li>
+<li>Required attribute <var>x</var> not specified.</li>
+<li>Missing document type declaration.</li>
+<li>End tag for element <var>x</var> which is not open; try removing the end tag or check for improper nesting of elements.</li>
+<li>Element <var>x</var> not allowed here; check which elements this element may be contained within.</li>
+<li>End tag for <var>x</var> omitted; possible causes include a missing end tag, improper nesting of elements, or use of an element where it is not allowed.</li>
+<li>Element <var>x</var> not allowed here; possible cause is an inline element containing a block-level element.</li>
+<li>Unknown entity <var>x</var>.</li>
+<li>Element <var>x</var> not defined in this HTML version.</li>
+<li>An attribute value must be quoted if it contains any character other than letters (A-Za-z), digits, hyphens, and periods; use quotes if in doubt.</li>
+<li>Value of attribute <var>x</var> cannot be <var>y</var>; must be one of a, b, c ... .</li>
+<li>Missing a required sub-element of <var>x</var>.</li>
+<li><var>x</var> is not a member of a group specified for any attribute.</li>
+<li>Illegal character number <var>x</var>.</li>
+<li>Text is not allowed here; try wrapping the text in a more descriptive container.</li>
+<li>Duplicate specification of attribute <var>x</var>.</li>
+<li>Element <var>x</var> not allowed here; assuming missing <var>y</var> start-tag.</li>
+<li>Invalid comment declaration; check your comment syntax.</li>
+<li>Value of attribute <var>x</var> must be a single token.</li>
+<li>An attribute specification must start with a name or name token.</li>
+</ol>
+
+</body>
+</html>

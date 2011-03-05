@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Web Standards in Estonia vol 2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Second validation survey on Estonian web pages" />
+<meta name="keywords" content="validation, standards, CSS, HTML, W3C, encodings" />
+<meta name="date" content="2005-09-18" />
+</head>
+<body>
+
+
+<h1>Web Standards in Estonia vol 2</h1>
+
+<div class="preambula">
+<p>This survey continues the work done in previous survey on
+<a href="/2005/04/27/Web_Standards_in_Estonia">February 2005.</a></p>
+<p>All the figures on this web page are also represented as tables. If you
+want to see the tables, turn off the showing of images in your browser or
+view the page with a text‐only browser. If you only see the tables, or
+don’t see neither tables or figures, then it probably means your browser does not
+correctly support the <code>object</code> element.</p>
+</div>
+
+
+<h2 id="table_of_contents">Table of Contents</h2>
+
+<ul>
+<li><a href="#preparations">1. Preparations</a>
+<ul>
+<li><a href="#web_pages_included">1.1. Web pages included</a></li>
+</ul></li>
+<li><a href="#results">2. Results</a>
+<ul>
+<li><a href="#excluded_pages">2.1. Excluded pages</a></li>
+<li><a href="#valid_pages">2.2. Valid pages</a></li>
+<li><a href="#document_types">2.3. Document types</a></li>
+<li><a href="#encodings">2.4. Encodings</a></li>
+<li><a href="#html_elements">2.5. HTML elements</a></li>
+</ul></li>
+<li><a href="#Conclusions">3. Conclusions</a></li>
+</ul>
+
+<h2 id="preparations">1. Preparations</h2>
+
+<p>Half a year has passed from the time when I conducted the before mentioned survey. So, it’s
+interesting to know, if there have been any shifts in the quality of the web pages in Estonia.
+Let’s just pull out the <a href="/2005/04/22/batchval.tar.gz">good‐old script</a> and see...</p>
+
+<p>But the first web site I noticed to have been changed is the site of
+<a href="http://validator.w3.org">W3C Validator</a>. And it came out, the script does not work
+any more. Happily, few minor changes seemed to fix everything. Although, after the survey was completed,
+I noticed the script didn't identified when a web page was <em>tentatively valid</em> – instead it
+gave error-message "A Mystery Error". Does this ruin the results of this survey?</p>
+
+<p>At the previous survey there were 94 tentatively valid pages and error‐log contained 14 error-messages
+titled "A Mystery Error" (I still don’t know what is the exact reason for this error – that’s why
+the name for the error). At the current survey there were 116 error-messages titled "A Mystery Error".
+But as 94+14=108 which is only 8 pages less than 116, then it looks like all the number of tentatively
+valid pages hasn't probably changed a lot. Was there a bit more tentatively valid web pages
+or a bit more pages which caused the error, doesn’t really matter.</p>
+
+<p><em>I think</em> it shows, that these small errors in the script do not really alter the results
+of this survey, but it’s completely yours to decide – no‐one should be forced to believe the results
+gathered with obviously buggy software.</p>
+
+
+<h3 id="web_pages_included">1.1. Web pages included</h3>
+
+<p>22,735 pages took part from this survey (taken again from the
+<a href="http://www.neti.ee/cgi-bin/serverid">Neti.ee Estonian servers list</a>), which is 830 pages
+more than in previous survey.</p>
+
+<p>The survey was conducted between 2005-08-27 11:41 and 2005-08-29 15:52 (Estonian Time).</p>
+
+
+<h2 id="results">2. Results</h2>
+
+<p>This time I only mostly list the differences between this and previous survey.</p>
+
+<h3 id="excluded_pages">2.1. Excluded pages</h3>
+
+<p>The program excluded 2542 pages before validation, so that 20,194 pages only made the W3C Validator test.
+In previous survey the number of pages excluded was 2250 (292 pages less). About hundred of the excluded pages
+were those which were tentatively valid. So what about the growth of 200?</p>
+
+<p>The main reason for excluding was (as in previous survey), that the page was redirected. The second
+main reason was not being able to connect to the server (also as in previous survey), but this time there
+were 867 of those pages, which is (compared to the previous 693) 174 pages more.</p>
+
+<p>I don’t have a good explanation for this – maybe there was some server down? I remember an incident from the
+end of spring, when one Estonian company, who offered free web hosting with the ability to use personal
+domain name and a lot of other things, suddenly quit offering the free service – maybe this has something
+to do with the number of pages out-of reach. Or it could also be that the server of this very same company
+is just down – very possible indeed...</p>
+
+<h3 id="valid_pages">2.2. Valid pages</h3>
+
+<p>The number of valid pages has risen from 436 to 440 (only 4 pages). At the same time the number of
+invalid pages has risen from 19,125 to 19,753 (628 pages!). And so <strong>the proportion of valid pages has
+fallen from 2.22% to 2.17%</strong> (or from 2.23% to 2.18% if we exclude the data of tentatively valid pages).</p>
+
+<p>In all the following comparisons I exclude the tentatively valid pages explicitly, it clearly doesn’t
+effect the outcome.</p>
+
+<p>When looking at the numbers above it might look, that the set of valid pages is fairly static – after all,
+only four valid pages more this time. But actually the changes in this set were not limited with those four pages.
+Compared to previous survey, <strong>186 pages are not any more in the set of valid pages,</strong> and in the place of those
+are <strong>190 new valid pages.</strong></p>
+
+<p>You can take a look at <a href="/2005/09/18/Loetelu_valideerunud_lehtede_nimekirja_lisandunud_lehtedest">the
+list of new valid pages.</a></p>
+
+<h3 id="document_types">2.3. Document types</h3>
+
+<p>If previously 35.29% of invalid pages had doctype specified, then now it has fallen to <strong>34.98%.</strong> Minor
+change, but indeed.</p>
+
+<p>The distribution of document types has mostly stayed the same. Only <strong>HTML 3.2 has dropped</strong> from forth place
+(481 pages) to fifth (213 pages). And HTML 4.01 Frameset has taken his place.</p>
+
+<p>When we look at only the valid pages, then the <strong>XHTML 1.0 Strict has climbed</strong> from forth place (23 pages)
+to third (31 pages) and therefore switched places with HTML 4.0 Transitional</p>
+
+<div class="joonis" id="figure1">
+<object type="image/png" data="/archive/kool/standardid-aug-2005/dtd-invalid.png">
+<table>
+<caption>Invalid pages</caption>
+<thead>
+<tr><th>Document type</th><th>Number of pages</th><th>Change</th></tr>
+</thead>
+<tbody>
+<tr><td class="nr">HTML 4.01 Transitional</td><td>3191</td><td class="nr">-165</td></tr>
+<tr><td class="nr">HTML 4.0 Transitional</td><td>1485</td><td class="nr">-384</td></tr>
+<tr><td class="nr">XHTML 1.0 Transitional</td><td>705</td><td class="nr">+163</td></tr>
+<tr><td class="nr">HTML 4.01 Frameset</td><td>222</td><td class="nr">+16</td></tr>
+<tr><td class="nr">HTML 3.2</td><td>212</td><td class="nr">-268</td></tr>
+<tr><td class="nr">XHTML 1.0 Strict</td><td>83</td><td class="nr">-7</td></tr>
+<tr><td class="nr">XHTML 1.1</td><td>55</td><td class="nr">+20</td></tr>
+</tbody>
+</table>
+</object>
+<p><span class="nr">Figure 1.</span> Changes in the use of DTD-s on invalid pages.
+The increase is marked with green and decrease with red (brighter then green).
+All the other figures in this page use the same colors in exactly the same meaning.</p>
+</div>
+
+
+<div class="joonis" id="figure2">
+<object type="image/png" data="/archive/kool/standardid-aug-2005/dtd-valid.png">
+<table>
+<caption>Valid pages</caption>
+<thead>
+<tr><th>Document type</th><th>Number of pages</th><th>Change</th></tr>
+</thead>
+<tbody>
+<tr><td class="nr">HTML 4.01 Transitional</td><td>232</td><td class="nr">-14</td></tr>
+<tr><td class="nr">XHTML 1.0 Transitional</td><td>110</td><td class="nr">+16</td></tr>
+<tr><td class="nr">XHTML 1.0 Strict</td><td>31</td><td class="nr">+8</td></tr>
+<tr><td class="nr">HTML 4.0 Transitional</td><td>24</td><td class="nr">-2</td></tr>
+<tr><td class="nr">XHTML 1.1</td><td>17</td><td class="nr">+3</td></tr>
+<tr><td class="nr">HTML 4.01 Frameset</td><td>8</td><td class="nr">-1</td></tr>
+</tbody>
+</table>
+</object>
+<p><span class="nr">Figure 2.</span> Changes in the use of DTD-s on valid pages.</p>
+</div>
+
+<p>As can be seen from above, <strong>the use of XHTML has grown and the use of HTML dropped.</strong></p>
+
+
+<h3 id="encodings">2.4. Encodings</h3>
+
+<p>The number of pages, which <strong>specify encoding</strong> has risen from 68% to <strong>72%.</strong></p>
+
+<p>The encodings popularity-table looks almost the same as in previous survey:</p>
+
+
+<div class="joonis" id="figure3">
+<object type="image/png" data="/archive/kool/standardid-aug-2005/encodings.png">
+<table>
+<caption>Encodings</caption>
+<thead>
+<tr><th>Encoding</th><th>Number of pages</th><th>Change</th></tr>
+</thead>
+<tbody>
+<tr><td class="nr">iso-8859-1</td><td>9578</td><td class="nr">+1041</td></tr>
+<tr><td class="nr">windows-1257</td><td>1599</td><td class="nr">-62</td></tr>
+<tr><td class="nr">utf-8</td><td>1389</td><td class="nr">+297</td></tr>
+<tr><td class="nr">windows-1251</td><td>871</td><td class="nr">-43</td></tr>
+<tr><td class="nr">windows-1252</td><td>514</td><td class="nr">-49</td></tr>
+<tr><td class="nr">iso-8859-4</td><td>218</td><td class="nr">+12</td></tr>
+<tr><td class="nr">iso-8859-15</td><td>165</td><td class="nr">+7</td></tr>
+<tr><td class="nr">windows-1250</td><td>68</td><td class="nr">-8</td></tr>
+<tr><td class="nr">iso-8859-2</td><td>60</td><td class="nr">+3</td></tr>
+<tr><td class="nr">iso-8859-13</td><td>16</td><td class="nr">+5</td></tr>
+<tr><td class="nr">us-ascii</td><td>15</td><td class="nr">+2</td></tr>
+<tr><td class="nr">koi8-r</td><td>14</td><td class="nr">-1</td></tr>
+<tr><td class="nr">iso8859-1</td><td>10</td><td class="nr">-2</td></tr>
+<tr><td class="nr">iso-8859-5</td><td>10</td><td class="nr">0</td></tr>
+</tbody>
+</table>
+</object>
+<p><span class="nr">Figure 3.</span> Changes in the popularity of encodings.</p>
+</div>
+
+<p>Interestingly <strong>all the windows-family encodings have lost popularity</strong> and ISO-family encodings
+gained it. But as iso-8859-1 does not <i lang="la">de jure</i> allow all Estonian characters
+and windows-1252 supplements the latter with those characters, this is not a good sign at all.</p>
+
+<p>Happily <strong>the use of utf-8 has increased quite a lot.</strong></p>
+
+
+<h3 id="html_elements">2.5. HTML elements</h3>
+
+
+<div class="joonis" id="figure4">
+<object type="image/png" data="/archive/kool/standardid-aug-2005/elements.png">
+<table>
+<caption>Elements</caption>
+<thead>
+<tr><th>Element</th><th>Percentage of pages</th><th>Change</th><th>Movement</th></tr>
+</thead>
+<tbody>
+<tr><td class="nr">html</td><td>96.99%</td><td class="nr">-0.04%</td><td></td></tr>
+<tr><td class="nr">title</td><td>96.83%</td><td class="nr">-0.04%</td><td></td></tr>
+<tr><td class="nr">head</td><td>96.38%</td><td class="nr">-0.06%</td><td></td></tr>
+<tr><td class="nr">body</td><td>93.24%</td><td class="nr">+0.02%</td><td></td></tr>
+<tr><td class="nr">meta</td><td>86.11%</td><td class="nr">+2.41%</td><td></td></tr>
+<tr><td class="nr">a</td><td>80.32%</td><td class="nr">+1.92%</td><td></td></tr>
+<tr><td class="nr">img</td><td>78.69%</td><td class="nr">+3.81%</td><td></td></tr>
+<tr><td class="nr">table</td><td>76.80%</td><td class="nr">+3.04%</td><td></td></tr>
+<tr><td class="nr">br</td><td>63.31%</td><td class="nr">+2.99%</td><td></td></tr>
+<tr><td class="nr">p</td><td>58.97%</td><td class="nr">+2.98%</td><td></td></tr>
+<tr><td class="nr">link</td><td>53.95%</td><td class="nr">+6.78%</td><td></td></tr>
+<tr><td class="nr">div</td><td>51.00%</td><td class="nr">+6.55%</td><td></td></tr>
+<tr><td class="nr">script</td><td>50.40%</td><td class="nr">+6.80%</td><td></td></tr>
+<tr><td class="nr">font</td><td>45.29%</td><td class="nr">+2.93%</td><td></td></tr>
+<tr><td class="nr">b</td><td>39.06%</td><td class="nr">+4.86%</td><td></td></tr>
+<tr><td class="nr">span</td><td>31.44%</td><td class="nr">+7.66%</td><td></td></tr>
+<tr><td class="nr">style</td><td>21.70%</td><td class="nr">-0.07%</td><td></td></tr>
+<tr><td class="nr">center</td><td>19.23%</td><td class="nr">-1.57%</td><td></td></tr>
+<tr><td class="nr">strong</td><td>17.14%</td><td class="nr">+0.59%</td><td></td></tr>
+<tr><td class="nr">map</td><td>11.47%</td><td class="nr">-0.19%</td><td></td></tr>
+<tr><td class="nr">object</td><td>10.41%</td><td class="nr">+0.75%</td><td>Up</td></tr>
+<tr><td class="nr">frameset</td><td>9.04%</td><td class="nr">-1.20%</td><td>Down</td></tr>
+<tr><td class="nr">hr</td><td>7.28%</td><td class="nr">-1.65%</td><td></td></tr>
+<tr><td class="nr">h1</td><td>6.92%</td><td class="nr">-0.56%</td><td></td></tr>
+<tr><td class="nr">ul</td><td>6.55%</td><td class="nr">+0.93%</td><td></td></tr>
+<tr><td class="nr">i</td><td>4.66%</td><td class="nr">-0.19%</td><td></td></tr>
+<tr><td class="nr">h2</td><td>3.27%</td><td class="nr">+0.28%</td><td>Up</td></tr>
+<tr><td class="nr">u</td><td>3.19%</td><td class="nr">-0.16%</td><td>Down</td></tr>
+<tr><td class="nr">iframe</td><td>2.73%</td><td class="nr">-0.04%</td><td></td></tr>
+<tr><td class="nr">h3</td><td>2.64%</td><td class="nr">+0.30%</td><td></td></tr>
+<tr><td class="nr">base</td><td>2.61%</td><td class="nr">+0.30%</td><td></td></tr>
+<tr><td class="nr">em</td><td>2.18%</td><td class="nr">+0.24%</td><td></td></tr>
+<tr><td class="nr">h4</td><td>1.03%</td><td class="nr">-0.02%</td><td></td></tr>
+<tr><td class="nr">h5</td><td>0.62%</td><td class="nr">0%</td><td></td></tr>
+<tr><td class="nr">dl</td><td>0.40%</td><td class="nr">-0.02%</td><td></td></tr>
+<tr><td class="nr">applet</td><td>0.31%</td><td class="nr">-0.09%</td><td></td></tr>
+<tr><td class="nr">ol</td><td>0.31%</td><td class="nr">-0.03%</td><td></td></tr>
+<tr><td class="nr">h6</td><td>0.23%</td><td class="nr">+0.02%</td><td></td></tr>
+</tbody>
+</table>
+</object>
+<p><span class="nr">Figure 4.</span> Changes in the popularities of various HTML elements.</p>
+</div>
+
+
+<p>The amount of pages with tables and images is growing. But <strong>the most remarkable growth
+is in the amount of pages who use <code>&lt;script&gt;</code> and/or <code>&lt;link&gt;</code>.</strong>
+At the same time the popularity of <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> has
+grown the most. Contrary to the rise of <code>&lt;link&gt;</code>, <strong><code>&lt;style&gt;</code>
+has become less popular.</strong> This clearly indicates the growing use of style sheets, and also
+the growing use of scripting.</p>
+
+<p>The use of frames (elements <code>&lt;frameset&gt;</code> and <code>&lt;iframe&gt;</code>)
+has fallen.</p>
+
+<p>The use of elements <code>&lt;center&gt;</code> and <code>&lt;hr&gt;</code> has fallen most.</p>
+
+<p>Although the use of all the other deprecated elements has fallen, <strong>the use of <code>&lt;font&gt;</code>
+has got quite a growth.</strong></p>
+
+<p>For some strange reason there are now more pages without <code>&lt;html&gt;</code>, <code>&lt;title&gt;</code>
+and <code>&lt;head&gt;</code>. Also strangely the use of <code>&lt;h1&gt;</code> has dropped, but
+at the same time the use of <code>&lt;h2&gt;</code> has gone up.</p>
+
+
+<h2 id="conclusions">3. Conclusions</h2>
+
+<p>It is good to note, that the use of stylesheets, UTF-8 and XHTML is growing. The use of old HTML
+document types (like HTML 3.2) has dropped significanly, and frames and center‐tags are being used
+less.</p>
+
+<p>On the dark side, the use of scripting is growing with a really fast rate, and the practice of
+using tables for layout and images for decoration has gained even more popularity. Also the use
+of the terrible font‐tag is still growing.</p>
+
+<p>This growing use of bad practices seems to confirm the numbers – although there are more good
+sites now, done entirely in the best spirits of valid HTML and CSS, even greater amount of pages
+continue to use all kinds of obsolete techniques.</p>
+
+<p><strong>Is this the trend in the whole world? Or does it only reflect the situation in Estonia?</strong> (Which
+sounds quite possible, as we have no laws that require government sites to pass accessibility
+tests as many other countrys do (on the good side: <a href="http://www.president.ee/et/">the home
+page of the President of Estonia</a> is valid!))</p>
+
+<p>Hopefully further studies will provide answers to these questions.</p>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

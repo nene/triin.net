@@ -1,0 +1,151 @@
+2009-08-30
+Pushing Myself
+==============
+
+**Me #1:** You haven’t updated this site for quite some time now.
+Ther’s about a year-long pause between the previous article and the
+one before it.  Are you giving up on writing.  What’s the problem?
+
+**Me #2:** Well, at the meantime I actually started a small blog
+[Stuck in Windows][stuck] at blogspot.com, to which I wrote a fair
+amount of esseys, so it’s not that I don’t feel like writing, it’s
+that there is something that is holding me back on doing it, and I
+believe it’s the techical side of it.  Mainly, the site is just a
+pain, because when I wrote the system I didn’t put any effort into
+making the site easy to administer.  And now that hurts... oh how it
+hurts whenever I think about writing a new article, I immediately
+think about the pain that this process involves and I usually give up.
+
+**#1:** But this is exactly the reason why all these free blogging
+platforms and services were created, so that bloggers didn’t have to
+mess with the technical details of blogging, allowing them to
+concentrate on the really important stuff – what they have to say.
+
+**#2:** I have seriously considered that.  The whole [Stuck in
+Windows][stuck] blog was to a certain extent an experiment of how does
+it feel to use one of these services.  But it didn’t *feel* right.
+The main problem with Blogger was the WYSIWYG editor – I clearly
+didn’t want to use a WYSIWYG and Blogger made it a pain to even post
+pure HTML.
+
+**#1:** But sure there are other blogging engines that don’t require
+WYSIWYG.
+
+**#2:** Another problem is that my site isn’t strictly a blog – it has
+a bunch of blog-style articles, but it also has some lengthy
+multy-page papers, and some HTML pages that are meant to be served as
+stand-alone pages, and then some files for just downloading.  Not to
+mention the multi-linguar aspect of some articles being in English and
+others in Estonian.  And I want to keep it that way.
+
+**#1:** So, what’s keeping you from upgrading the code behind the site
+to make the writing process smoother?
+
+**#2:** It’s the code.
+
+**#1:** Well, obviously it can not really be the code, because it was
+written by yourself, so you know it fairly well, and your programming
+skills have only grown better at the meantime.  How hard could it be
+to modify it a bit?
+
+**#2:** *A bit...* that’s the problem.  You see, when I look at the
+code, I see that it’s so horrible crap that there can’t be no “modify
+it a bit” – the whole thing needs a complete rewrite!
+
+**#1:** So how about a rewrite?
+
+**#2:** Have tried that too...  several times.
+
+**#1:** Oh...
+
+**#2:** It’s too large piece to take at one byte.  I tend to wander
+off into the path of perfect code, but come back depressed, realizing
+that there really can’t be a perfect solution, and so I put the whole
+thing on hold again.
+
+**#1:** Well... if the rewrite doesn’t work for you, then you should
+adopt the iterative approach.
+
+**#2:** But the current code is so horrible!  I can’t stand it!
+
+**#1:** No, no... you *have* managed to stand it for several years.
+
+**#2:** That’s not what I meant.  I can’t modify it...
+
+**#1:** You can handle that.  What you really need, is a schedule.
+Something to push you.  And someone to look over your work.
+
+**#2:** You mean, you – that means *me* – going to push me.  Me
+pushing me?  Not going to work.  Have tried.
+
+**#1:** Not just me.
+
+**#2:** Who else then?
+
+**#1:** Maybe nobody, but maybe the whole world...
+
+**#2:** How could that be?
+
+**#1:** Well, let’s just say I published the code of the site in
+[Github][github], and if you’re not going to fix it, then the whole
+world will laugh over you and your hopelessly bad PHP code-crap.
+
+**#2:** Hey!  How could you!
+
+**#1:** Well, I just did, and now to the schedule.
+
+**#2:** I’m not going to follow any of your schedules!
+
+**#1:** Yes you are, and because you can’t handle big pieces...
+
+**#2:** Hey!
+
+**#1:** You sayd it...  so I’ll cut it for you into chewable chunks.
+
+**#2:** ...
+
+**#1:** But first of all we should set our goals.  What would it be
+like to use this site in your ideal world?
+
+**#2:** Well... it should be tightly integrated with Emacs, so that I
+could write a whole article and publish it on this site all without
+leaving Emacs.  It should also be easy to develop it further and
+publish the updates simply by running some deploy script.  And of
+course the site itself would be with a better structure (the current
+navigation is a bit awkvard, to say the least), and of course
+localized, so that when the article is in English, the visitor
+wouldn’t have to fill in Estonian comment-form.
+
+**#1:** Alright.  I think we’ll start with the deploy script, as that
+will directly benefit the whole forthcoming development.  So your task
+will be to create a single script that will bring the website in sync
+with the changes in your local copy (that is: it will remove, add and
+update files as needed).
+
+**#2:** And how much time do I have for that?
+
+**#1:** A week should be enough.  And after you’ve succeeded you’ll
+write a blog entry of how it went and then you’ll get your next
+assignment.
+
+**#2:** And when I fail?
+
+**#1:** Then you write a blog entry of why you failed and what you
+will do on the next week to really make it happen.
+
+**#2:** And if I still fail?
+
+**#1:** Then you’re not trying hard enough, and we shall laugh over
+your oh-so-below-mediocre skills... you pussy.
+
+**#2:** Oh...
+
+**#1:** And now, go!
+
+
+
+[stuck]: http://stuck-in-windows.blogspot.com/
+[github]: http://github.com/nene/triin.net/tree/master
+
+
+

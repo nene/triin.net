@@ -1,0 +1,58 @@
+2009-09-09
+Web App Version Numbers
+=======================
+
+Application version numbers usually go like this:
+
+    (major version).(minor version).(sub-minor version)...
+
+So for example you start out with 0.1, 0.2, 0.3, moving slowly to the
+first stable release 1.0, which gets downloaded by a lot of people and
+therefore also several important bugs are found, so you do a some
+quick bugfix releases 1.0.1, 1.0.2.  But you are also working on some
+additional features and soon release them as 1.1, 1.2 and so on.
+Finally you reach to the point where the app needs serious
+architectural changes, which you release as 2.0.
+
+The version number is usually a good hint for the user.  Most
+importantly it tells him how big changes to expect from a particular
+version compared to some other version.  For example when you are
+using GreatApp 2.5.3 and you hear that 2.5.6 came out, then you are
+probably not panicking: I’m three version behind!  But when you hear
+that 3.0 came out, then you are ceartanly expecting to find a lot of
+new cool features.
+
+But with web apps, the user is always using the latest version.  This
+is a great thing, because all your important bugfixes will reach to
+each user as soon as you deploy a new release.  But because the latest
+version is always in use by all users, the changes between versions
+must be as gradual as possible, or you will risk driving your users
+mad with your constantly changing app.
+
+So, from the users perspective, web app version numbers are useless,
+because they are always using the latest version – using anything else
+is not even an option.  But from the development perspective, version
+numbers still help.
+
+* It’s a great hint when deploying a release – going from 2.3.1 to
+  2.3.2 will probably be quick and easy, but going from there to 2.4
+  might hold some surprises.
+
+* It’s also good to tag each release in your repository, so you don’t
+  have to remember the exact revision number that got released, but
+  instead can refer to something more meaningful.
+
+In my company we have so far followed a practice of “new release – new
+version”, that is, each time you do a release you increment the
+version number by one. There are two things to emphasize here:
+
+* **release** – this means no internal versions.  Only things that get
+  published get a version number.
+
+* **increment by one** – when you have implemented 7 new features, but
+  release them all together, you don’t go from 2.0 to 2.7, but just to
+  2.1.
+
+So far this system seems to have worked quite well.  Well, at least
+for a web app...
+

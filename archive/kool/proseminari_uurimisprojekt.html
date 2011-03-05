@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="et" xml:lang="et">
+<head>
+<title>Standardid ja Eesti veebimaastiku olukord nende osas</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="TPÜ Haapsalu Kolledž, Infehnoloogia osakond. Proseminaritöö. Juhendaja: Jaagup Kippar" />
+<meta name="keywords" content="valideerimine standardid CSS HTML W3C kodeeringud" />
+<meta name="date" content="2005-01-10" />
+</head>
+<body>
+
+<h1>Standardid ja Eesti veebimaastiku olukord nende osas</h1>
+
+<div class="preambula">
+<ul>
+<li>Proseminaritöö uurimisprojekt.</li>
+<li>TPÜ Haapsalu Kolledž: Infotehnoloogia osakond.</li>
+<li>Juhendaja: Jaagup Kippar.</li>
+</ul>
+<p>Käesolev dokument on saadaval ka 
+<a href="/2005/01/10/Standardid_ja_Eesti_veebimaastiku_olukord_nende_osas.pdf">PDF-formaadis</a> (152KB).</p>
+</div>
+
+<h2>Sisukord</h2>
+
+<ul>
+<li><a href="#sissejuhatus">Sissejuhatus</a></li>
+<li><a href="#probleemi_kirjeldus">1. Probleemi kirjeldus</a>
+<ul>
+<li><a href="#uuringud_eestis">1.1. Uuringud Eestis</a></li>
+<li><a href="#uuringud_mujal">1.2. Uuringud mujal</a></li>
+<li><a href="#ulesanne">1.3. Ülesanne</a></li>
+</ul></li>
+<li><a href="#materjal_ja_metoodika">2. Materjal ja metoodika</a>
+<ul>
+<li><a href="#probleemid_varasemate_uurimustega">2.1. Probleemid varasemate uurimustega</a></li>
+<li><a href="#meetmed_uuringu_parandamiseks">2.2. Meetmed uuringu parandamiseks</a></li>
+<li><a href="#toos_kasutatavad_vahendid">2.3. Töös kasutatavad vahendid</a></li>
+</ul></li>
+<li><a href="#kokkuvote">Kokkuvõte</a></li>
+<li><a href="#viited">Viited</a></li>
+</ul>
+
+<h2 id="sissejuhatus">Sissejuhatus</h2>
+
+<p>Veeb on noor meedia. Meedia, millel puuduvad selged piirid ja kammitsad. Selline 
+vabadus loob meile ühelt poolt suured võimalused oma mõtete ja ideede teostamiseks, 
+ent tõeline vabadus ei saa olla anarhia, kus igaüks lihtsalt teeb seda, mis tal pähe 
+tuleb ja ei arvesta mitte põrmugi teiste huvidega, hoomamata sealjuures, et need teiste 
+huvid võivad tegelikult olla ka tema enese huvid.</p>
+
+<p>Kui Veebi looja Tim Berners Lee 1994. aastal asutas Ülemaailmse Veebikonsortsiumi 
+(<span lang="en">World Wide Web Consortium</span> – W3C)
+(<cite><a href="http://www.w3.org/Consortium/#background" 
+title="About the World Wide Web Consortium (W3C): Background">Jacobs 2000</a></cite>), siis oli ideeks 
+tuua korda ja tasakaalu sellesse ettearvamatusse hüpertekstimaailma – nii et hundid 
+oleks söönud ja ka lambad terved – seda ideed kannab W3C tegevus kuni tänaseni.</p>
+
+<p>W3C tegevuse põhisuunaks oli ja on mitmesuguste standardite (tuntud kui W3C 
+soovitused – recommendations) väljatöötamine. Kuna veebi põhiliseks formaadiks 
+on HTML (<span lang="en">Hypertext Markup Language</span> – hüperteksti märgenduskeel), siis on kõige 
+suuremad kired keerelnud just selle märgenduskeele ümber. Alates esimesest 
+veebilehitsejast ehk brauserist nimega World Wide Web hakkasid paljud 
+brauseritootjad välja mõtlema mitmesuguseid täiendusi HTML-keelele, mis algselt ei 
+võimaldanud mitte midagi muud kui lihtsalt teksti struktureerida. Mosaic tuli välja 
+võimalusega kasutada lisaks tekstile ka pilte, Netscape tegi võimalikuks veebilehtede 
+skriptimise luues JavaScript´i nimelise programmeerimiskeele jne. Kõik see viis välja 
+selleni, mida tuntakse kui brauserite sõda (<span lang="en">browser wars</span>), mis toimus Microsoft 
+Internet Explorer´i (IE) ja Netscape Navigator´i vahel ning millest väljus 
+võitjana IE.</p>
+
+<p>Ka brauserisõdade aegu olid juba olemas W3C loodud standardid, aga brauseritootjad 
+ei hoolinud neist kas üldse mitte või proovisid nende alusel luua teatud sorti oma 
+nägemuse. Tänaseks on siiski selgeks saanud, et ilma ühtse standardita me kaugele ei 
+jõua. Ühegi veebiarendaja jaoks pole mõistlik kasutada mingi kindla brauseri 
+spetsiifilisi lahendusi, sest tehes nõnda on oht kaotada teisi brausereid kasutavad 
+kliendid. Brauseritootjad ei võistle enam mitte selles, milliseid uue funktsiooniga 
+HTML-i elemente nad välja mõtlevad vaid selles, kuivõrd hästi keegi neist toetab W3C 
+standardeid (isegi selles vallas paljukirutud Microsoft on teinud pingutusi selles 
+vallas ja paistab jätkavat 
+(<cite><a href="http://www.asp.net/whidbey/whitepapers/VSWhidbeyOverview.aspx?tabindex=0&amp;tabid=1"
+title="Preview of Web Development with Visual Studio 2005: Better Standards Support">Preview... 2004</a></cite>)). 
+Standardsete, kõigis moodsates brauserites ühtviisi töötavate (ja vanemates kenasti 
+degradeeruvate) lahenduste loomine, on hetkel lihtsam kui kunagi varem.</p>
+
+<p>Ent kas ka veebidisainerid ja programmeerijad seda endale teadvustavad? Üldine 
+praktika näitab, et enamasti mitte. Endiselt on levinuimaks brauseriks IE, mis saab 
+automaatselt iga uue Windowsi kasutaja kaaslaseks ning milleks hoolida ülejäänud 
+marginaalsest hulgast alternatiivsete brauserite kasutajatest – tühi töö ja vaev?</p>
+
+<p>Viimaste aastate jooksul on aga alternatiivsete brauserite kasutamine suurenenud 
+üha ning IE viimane versioon 6.0, millel vanust juba mitmed aastad, mõjub nende noorte 
+tegijate kõrval (kelle viimane väljalase pole ühelgi juhul vanem kui aasta), tõelise 
+vanurina. Ning mitte ainult brauserid pole põhjus kasutamaks standardset ja korrektset 
+HTML-i, ka otsingurobotid, Google´iga eesotsas, suudavad lehekülge paremini indekseerida. Kuigi 
+semantiline HTML otseselt otsingumootorite hinnangut lehest ei mõjuta 
+(<cite><a href="http://www.meyerweb.com/eric/thoughts/2004/12/18/ses-chicago-report/"
+title="SES Chicago Report">Meyer 2004</a></cite>).</p>
+
+<p>Suure ja olulise tõuke standardite kasutamise suunas on andnud ka mitmete riikide 
+valitsused, eesotsas USA-ga. Nimelt on seadustes, mis määravad tingimused riigiasutuste 
+kodulehekülgedele küllaltki kõrged nõudmised ligipääsetavuse osas, kusjuures 
+soovituslikuks meetodiks ligipääsetavuse tagamiseks on korrektne HTML-i ja CSS-i 
+(<span lang="en">Cascading Style Sheets</span> – kaskaadivad stiililehed) kasutus. 
+Hoolimata seadustest pole olukord nendes riikides veel kaugeltki kiiduväärne, 
+ehkki see paraneb järjest. Eestis puuduvad aga vastavasisulised seadused üleüldse.</p>
+
+<h2 id="probleemi_kirjeldus">1. Probleemi kirjeldus</h2>
+ 
+<h3 id="uuringud_eestis">1.1. Uuringud Eestis</h3>
+
+<p>Vaadates vaid mõningaid populaarsemaid veebilehekülgi ei saa me teha oluliselt 
+täpsemaid järeldusi kui: „Enamik Eesti veebilehti veebistandardeid ei järgi.” 
+Konkreetsemad uuringud antud valdkonnas on aga puudulikud. On küll Valdo Prausti 
+poolt 2002. aasta lõpus teostatud „Eesti riigiasutuste veebilehtede käideldavustest” 
+(<cite><a href="http://www.ria.ee/atp/print.html?id=480">Praust 2002</a>, 2003</cite>), 
+mis aga käsitleb vaid käideldavusega seotud probleeme ning sedagi 
+vaid mõnekümnel riigiasutuse leheküljel.</p>
+
+<p>Uuringuid, mis aga käsitleksid veebilehtede standarditele vastavust (valideerivust) 
+pole aga teostatud üldse, va muidugi pisemat sorti testimised, mida üks või teine 
+eraisik on oma puht isiklikust huvist teinud (näiteks 
+<a href="http://forum.planet.ee/showthread.php?t=47192" title="Veebitegijad, mis teil on enda kaitseks öelda?">minu poolt korraldatud uuring</a> 
+Eesti veebidisainifirmade avalehtede HTML-i valideerimise kohta).</p>
+
+<h3 id="uuringud_mujal">1.2. Uuringud mujal</h3>
+
+<p>Mujal maailmas on küll mõningaid uuringuid korraldatud, kuid enamasti on need 
+olnud kas liialt väikese mahuga või liialt pealispinnalised. Järgnevalt toon ära 
+uurimused, mille kohta on õnnestunud informatsiooni hankida; täpsemad arvandmed on 
+ära toodud <a href="#tabel1">tabelis 1</a>.</p>
+
+<ol>
+<li>1997 Thomas Dowling <a href="http://silver.ohiolink.edu/tdowling/validation.html">Validating HTML</a> 
+(tegemist on artikli nimega, tegelik 
+uurimus on läbi viidud enne artikli kirjutamist). Teostati 624 Põhja-Ameerika raamatukogu 
+kodulehekülge valideerimine HTML 3.2 dokumenditüübi alusel.</li>
+<li>2003 Greg Lanier <a href="http://wwwx.cs.unc.edu/Research/assist/et/projects/universal/">Universal 
+web design: a survey of web accessibility and usability</a>. 
+Uuriti 41 väljavalitud lehekülge erinevatest valdkondadest (otsingumootorid, 
+valitsusasutused, veebistandarditega seotud leheküljed, ...). Uuriti valideerivust ja 
+vastavust Section 508 ning WCAG 1.0 ligipääsetavusnõuetele ning hinnati HTML-leheküljel 
+oleva teksti ja selle esitamiseks vajamineva koodi osakaalu.</li>
+<li>2. märts 2004 Soren Johannessen <a href="http://www.ae35-unit.dk/standard/english.html">The 
+use of W3C standards in Denmark</a>. Uuriti 2033 
+Taani valitsus-, rahvus- ja munitsipaalasutuse lehekülje valideerivust. Lisaks tuvastati 
+kui paljudel lehekülgedel on olemas dokumenditüübi deklaratsioon ning erinevate 
+dokumenditüüpide osakaalud.</li>
+<li>16. märts 2004 Soren Johannessen <a href="http://www.ae35-unit.dk/standard/danishcompanies.html">Danish 
+companies and the use of W3C standards</a>. 
+Täpselt samas vormis uuring, mis eelmine. Sel korral teostatud 250 Taani äriettevõtte 
+koduleheküljel.</li>
+</ol>
+
+<div class="tabel" id="tabel1">
+<table summary="tabel uurimuste arvandmetega">
+<thead>
+<tr>
+<th>Uurimus</th>
+<th>Lehekülgede arv</th>
+<th>Valideerivaid lehti</th>
+<th>Protsent</th>
+<th>Keskmine vigade arv</th>
+</tr>
+</thead>
+<tr>
+<th>1</th>
+<td class="nr">624</td>
+<td class="nr">24</td>
+<td class="nr">3.80%</td>
+<td class="nr">20</td>
+</tr>
+<tr>
+<th>2</th>
+<td class="nr">41</td>
+<td class="nr">7</td>
+<td class="nr">17.00%</td>
+<td class="nr">109</td>
+</tr>
+<tr>
+<th>3</th>
+<td class="nr">2033</td>
+<td class="nr">62</td>
+<td class="nr">3.10%</td>
+<td class="nr">&nbsp;</td>
+</tr>
+<tr>
+<th>4</th>
+<td class="nr">250</td>
+<td class="nr">1</td>
+<td class="nr">0.40%</td>
+<td class="nr">&nbsp;</td>
+</tr>
+</table>
+
+<p><span class="nr">Tabel 1.</span> Erinevate uurimuste tulemuste võrdlus.</p>
+</div>
+
+<h3 id="ulesanne">1.3. Ülesanne</h3>
+
+<p>Kuna puudub ülevaade sellest, milline on olukord veebistandardite järgimise 
+ja seega ka lehekülgede kvaliteedi osas, siis oleks tarvis teostada uuring, mis 
+käsitleks Eesti veebilehekülgede valideerivust leheküljele määratud dokumenditüübile, 
+mis olekski antud proseminaritöö teemaks.</p>
+
+<h2 id="materjal_ja_metoodika">2. Materjal ja metoodika</h2>
+
+<h3 id="probleemid_varasemate_uurimustega">2.1. Probleemid varasemate uurimustega</h3>
+
+<p>Eelmises peatükis loetletud HTML-i valideerivuse uuringutel ilmnes mitmeid probleeme:</p>
+
+<ol>
+<li>Paljusid lehekülgi ei saanud valideerida, kuna puudus dokumenditüübi deklaratsioon.</li>
+<li>Paljusid lehekülgi ei saanud valideerida, kuna neil kas puudus kasutatava 
+kooditabeli määratlus või oli see vale.</li>
+<li>Valideerimisel mõõdeti vaid vigade arvu (kui sedagi), mis aga iseenesest pole eriti 
+heaks kriteeriumiks hindamaks lehe kvaliteeti. Põhjuseid on kolm:
+ <ol>
+ <li>Kõigest üks tilluke viga dokumendi alguses võib tekitada tuhandetesse (reeglina 
+ ühte-kahte tüüpi) vigadesse ulatuva kaskaadi.</li>
+ <li>Enamik mittejuhuslikke vigu HTML-is reeglina korduvad (näiteks kui ei teata, et 
+ piltidele tuleb kindlasti määrata alternatiivtekst, siis arvatavasti ei tehta seda 
+ ühegi pildi puhul, aga pilte võib leheküljel olla sadu).</li>
+ <li>Osad validaatori antavad veateated pole mitte vead vaid viited eelmise vea 
+ potentsiaalsele tekkekohale.</li>
+ </ol></li>
+</ol>
+
+<h3 id="meetmed_uuringu_parandamiseks">2.2.Meetmed uuringu parandamiseks</h3>
+
+<p>Vältimaks nimetatud probleeme tuleks kavandatavas uurimuses võtta kasutusele järgmised 
+meetmed:</p>
+
+<ol>
+<li>Dokumenditüübi puudumise probleemi on lahendanud hiljutine W3C validaatori uuendus, 
+mis kasutab dokumenditüübi puudumisel HTML 4.01 Transitional dokumenditüüpi, mis on kõige 
+laiahaardelisem ja ühtlasi kõige leebem dokumenditüüp. Samas peab hoolitsema selle eest, et 
+hilisemas infotöötluses oleks võimalik eristada millistel lehtedel dokumenditüübi määrang 
+puudus ja millistel oli see olemas.</li>
+
+<li>Kooditabeli määrangu puudumisel tuleks pakkuda mõnda ISO 8859 perekonda kuuluvat tabelit 
+(validaator neil vahet ei tee, sest programmi jaoks pole oluline, kas on kirjutatud „želee“ 
+või „þelee“ ja enamasti on veebilehed just mõnes sellises ühebaidises vormingus, mis aga 
+läheb vastuollu W3C validaatori poolt vaikimisi kasutatava mitmebaidise UTF-8 kodeeringuga). 
+Mõistagi tuleb hilisemast kodeeringute kasutamise analüüsist välja jätta need leheküljed, 
+millel kodeering algselt määratletud polnud.</li>
+
+<li>Valideerimisel tuleks koguda infot erinevate vigade esinemissageduste kohta, mis annaks 
+võimaluse analüüsida lisaks vigade hulgale lehel ka erinevate vigade hulka ning enimlevinud 
+vigu. Samuti saab sel teel validaatori veateadete hulgast „mitte päris vead“ välja praakida.</li>
+</ol>
+
+<p>Töö maht peaks olema võimalikult suur – plaan on käia validaatoriga üle kõik(!) www-ga 
+algavad ja .ee-ga lõppevad leheküljed. Vaatluse alla tulevad siiski vaid avalehed järgneval 
+kolmel põhjusel:</p>
+
+<ol>
+<li>Avalehe kallal lehekülje loojad reeglina kõige rohkem vaeva näinud.</li>
+<li>Üheainsa parajalt mahuka kodulehekülje kõigi alamlehtede läbikäimine võib osutuda juba 
+omaette hiigeltööks.</li>
+<li>Ka kõik teised uuringud on keskendunud vaid avalehtedele.</li>
+</ol>
+
+<h3 id="toos_kasutatavad_vahendid">2.3.Töös kasutatavad vahendid</h3>
+
+<ol>
+<li><a href="http://validator.w3.org">W3C Validaator</a> (<span lang="en">W3C Makup Validation 
+Service</span>) - valideerimise teostamiseks.</li>
+<li>Omaloodud programm – suure hulga lehekülgede validaatorile etteandmise ja 
+andmete kogumise automatiseerimiseks.</li>
+<li>Tabelitöötlusprogramm hilisemaks andmete statistiliseks analüüsimiseks.</li>
+</ol>
+
+<h2 id="kokkuvote">Kokkuvõte</h2>
+
+<p>Uurimustöö „Standardid ja Eesti veebimaastiku olukord nende osas” peaks muu 
+hulgas andma vastused järgmistele küsimustele:</p>
+
+<ol>
+<li>Kui suur osa Eesti veebilehekülgedest valideerib?</li>
+<li>Millised on levinuimad vead veebilehtede koodis?</li>
+<li>Milline on erinevate dokumenditüüpide kasutamise osakaal?</li>
+<li>Milline on erinevate kooditabelite kasutamise osakaal?</li>
+</ol>
+
+<p>Vastava mass-valideerimise programmi loomine peaks hõlbustama sarnaste uuringute 
+kordamise tulevikus ja/või teistel lehekülgedel.</p>
+
+<h2 id="viited">Viited</h2>
+
+<ul>
+<li>Dowling, T. (1997). 
+  <cite><a href="http://silver.ohiolink.edu/tdowling/validation.html">Validating HTML</a></cite>.</li>
+<li>Jacobs, I. (2000). 
+  <cite><a href="http://www.w3.org/Consortium/#background">About the World Wide Web Consortium (W3C): Background</a></cite>.</li>
+<li>Johannessen, S. (2004). 
+  <cite><a href="http://www.ae35-unit.dk/standard/danishcompanies.html">Danish companies and the use of 
+  W3C standards</a></cite>. [2004, Märts 16].</li>
+<li>Johannessen, S. (2004). 
+  <cite><a href="http://www.ae35-unit.dk/standard/english.html">The use of W3C standards in Denmark</a></cite>. [2004, Märts 2].</li>
+<li>Lanier, G. (2003). 
+  <cite><a href="http://wwwx.cs.unc.edu/Research/assist/et/projects/universal/">Universal web design: 
+  a survey of web accessibility and usability</a></cite>.</li>
+<li>Meyer, E. (2004). 
+  <cite><a href="http://www.meyerweb.com/eric/thoughts/2004/12/18/ses-chicago-report/">SES Chicago Report</a></cite>.
+  [2004, september 18]</li>
+<li>Praust, V. (2002). 
+  <cite><a href="http://www.ria.ee/atp/print.html?id=480">Eesti riigiasutuste veebilehtede käideldavustest</a></cite>.</li>
+<li>Praust, V. (2003). 
+  <cite>Eesti riigiasutuste veebilehed</cite>. Arvutimaailm 2, 38-41.</li>
+<li><cite><a href="http://www.asp.net/whidbey/whitepapers/VSWhidbeyOverview.aspx?tabindex=0&amp;tabid=1">Preview 
+  of Web Development with Visual Studio 2005: Better Standards Support</a></cite>.
+  (2004) Microsoft ASP.NET 2.0 and Visual Studio .NET „Whidbey“ Team.</li>
+<li>Saarsoo, R. (2004). 
+  <cite><a href="http://forum.planet.ee/showthread.php?t=47192">Veebitegijad, mis teil on enda kaitseks öelda?</a></cite>
+  Postitus Planet´i foorumis. [2004, märts 4].</li>
+</ul>
+
+</body>
+</html>

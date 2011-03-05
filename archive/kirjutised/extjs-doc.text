@@ -1,0 +1,201 @@
+2010-03-14
+Why ExtJS doc-comments suck?
+============================
+
+[ExtJS][] comes with some [heavy documentation][extjs-docs], all
+generated directly from source code, which contains doc-comments like
+this:
+
+    /**
+     * Get the index within the cache of the passed Record.
+     * @param {Ext.data.Record} record The Ext.data.Record object to find.
+     * @return {Number} The index of the passed Record. Returns -1 if not found.
+     */
+    indexOf : function(record){
+
+That's of course the good-old javadoc format, used by many-many
+languages nowadays, and the comment above looks perfectly readable.
+So, what's the problem?
+
+## HTML inside doc-comments
+
+The problem is then when you need to add some structure to your
+comment, you have to use HTML.  Just to start a new paragraph, you
+have to use `<p>` and when you want to add even more structure, say a
+list, the whole thing will get truly ugly:
+
+    /**
+     * Find the index of the first matching Record in this Store by a function.
+     * If the function returns <tt>true</tt> it is considered a match.
+     * @param {Function} fn The function to be called. It will be passed the following
+     * parameters:<ul>
+     * <li><b>record</b> : Ext.data.Record<p class="sub-desc">The
+     * {@link Ext.data.Record record} to test for filtering. Access field values using
+     * {@link Ext.data.Record#get}.</p></li>
+     * <li><b>id</b> : Object<p class="sub-desc">The ID of the Record passed.</p></li>
+     * </ul>
+     * @param {Object} scope (optional) The scope (<code>this</code> reference) in which
+     * the function is executed. Defaults to this Store.
+     * @param {Number} startIndex (optional) The index to start searching at
+     * @return {Number} The matched index or -1
+     */
+    findBy : function(fn, scope, start){
+
+This comment is barely readable, and that's just one of them - ExtJS
+contains hundreds, if not thousands of comments like this.  Comments
+formatted with HTML aren't easy to read, they aren't event easy to
+write.  Just look at that example - in one place `<tt>` is used to
+mark up code, in another `<code>` is used.  It even contains class
+names! So why? Why do they use HTML?
+
+Sure, [javadoc uses HTML][javadoc], but nobody is going to run this
+code through javadoc.  There's no need to be compatible with javadoc.
+Take for example [PHPDocumentor][] - a tool for parsing doc comments in
+PHP - they support creating paragraphs and lists without HTML.
+
+The only reason I can see, is that ExtJS has grown out of [YUI][],
+which also uses doc comments with HTML.  But ExtJS isn't dependent
+from YUI, so there is no reason for the documentation to be.
+
+But enough of bashing ExtJS, how could we make it better?
+
+## Markdown to the rescue
+
+So, instead of using HTML, why not some other markup languge that's
+easier to read and write.  [Markdown][] is a good candidate for this
+role.  (I'm using Markdown right now to write this blog-post).  So,
+let's write the above doc-block using Markdown:
+
+    /**
+     * Find the index of the first matching Record in this Store by a
+     * function.  If the function returns `true` it is considered a
+     * match.
+     *
+     * @param {Function} fn The function to be called.  It will be
+     * passed the following parameters:
+     *
+     * - **record** : Ext.data.Record
+     *
+     *   The {@link Ext.data.Record record} to test for filtering.
+     *   Access field values using {@link Ext.data.Record#get}.
+     *
+     * - **id** : Object
+     *
+     *   The ID of the Record passed.
+     *
+     * @param {Object} scope (optional) The scope (`this` reference)
+     * in which the function is executed. Defaults to this Store.
+     * @param {Number} startIndex (optional) The index to start
+     * searching at
+     * @return {Number} The matched index or -1
+     */
+    findBy : function(fn, scope, start){
+
+That's way more readable!  Isn't it just obvious that this is the
+right solution!
+
+It's also really easy to implement: Markdown implementations exist in
+several languages, it's just a matter of running the text-parts of
+doc-comment through a Markdown formatter.  It's actually so easy, that
+it took me just one evening to add Markdown support for one of our
+internal documentation tools (it parses doc-comments of PHP files and
+generates HTML documentation for [our][SeeMe] AJAX API).
+
+But there's more to ExtJS documentation...
+
+## Needless repetition
+
+Look at the doc-block for `Ext.data.Store.Error`:
+
+    /**
+     * @class Ext.data.Store.Error
+     * @extends Ext.Error
+     * Store Error extension.
+     * @param {String} name
+     */
+    Ext.data.Store.Error = Ext.extend(Ext.Error, {
+
+This sure looks like a violation of the DRY principle.  Isn't the
+class and it's parent obvious from the code?  Couldn't the doc-comment
+parser figure it out by himself?
+
+Here's my version:
+
+    /**
+     * @class
+     * Store Error extension.
+     * @param {String} name
+     */
+    Ext.data.Store.Error = Ext.extend(Ext.Error, {
+
+Of course you can have situations where this information isn't easily
+extractable from the code.  If that's the case, then it should be
+possible to explicitly define classname and parent classname in
+doc-comment, but it shouldn't be mandatory.
+
+Another example is events:
+
+    /**
+     * @event datachanged
+     * Fires when the data cache has changed...
+     * @param {Store} this
+     */
+    'datachanged',
+
+Or config options:
+
+    /**
+     * @cfg {Boolean} autoSave
+     * <p>Defaults to <tt>true</tt> causing the store to
+     * automatically {@link #save} records...
+     */
+    autoSave : true,
+
+And then, surprise-surprise, somehow they got it right with
+properties:
+
+    /**
+     * See the <code>{@link #baseParams corresponding configuration option}</code>
+     * for a description of this property.
+     * To modify this property see <code>{@link #setBaseParam}</code>.
+     * @property
+     */
+    this.baseParams = Ext.isObject(this.baseParams) ? this.baseParams : {};
+
+This last example makes it pretty obvious that all that repetition can
+be easily avoided.  It's just that... why isn't it avoided then?
+
+## Conclusions
+
+It's bad that ExtJS doc-comments suck.  It's not only the ExtJS team
+members who suffer, it's the whole community.  It's unwritten standard
+that when you publish ExtJS extension, you should document your code
+in ExtJS-way.  But when you try to do it, you will suffer.  And so,
+many authors just don't bother.
+
+Programmers don't like writing documentation, it's a nuisance.  You
+have to make it really-really easy, or it just won't be done.  That's
+why we have the doc-comments in the first place - to bring
+documenation as close to the code as possible.  But you aren't really
+making documenting easier, when writing it involves some clumsy markup
+language.  You really don't want to write your comments in [XML][]
+(another great idea from Microsoft).  HTML isn't much better either.
+
+Is there any hope for a change?  It doesn't look like ExtJS is going
+to do anything about it.  (Well, nobody really knows what plans they
+have.)  So our only hope is to do it by ourselves, for example by
+extending [ext-doc][] to support Markdown inside comments.
+
+I have been thinking about this for a long time.  Maybe it's time for
+me to take some action...
+
+[ExtJS]: http://www.extjs.com/
+[extjs-docs]: http://www.extjs.com/deploy/dev/docs/
+[javadoc]: http://java.sun.com/j2se/javadoc/writingdoccomments/index.html
+[PHPDocumentor]: http://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_phpDocumentor.howto.pkg.html#basics.docblock
+[YUI]: http://github.com/yui/yui3
+[Markdown]: http://daringfireball.net/projects/markdown/
+[SeeMe]: http://seeme.eu
+[XML]: http://www.winnershtriangle.com/w/Articles.XMLCommentsInCSharp.asp
+[ext-doc]: http://code.google.com/p/ext-doc/
+

@@ -1,0 +1,90 @@
+2011-03-02
+Optimizing forEach: Not so fast!
+================================
+
+[Previously][] I wrote about the idea of compiling JavaScript forEach
+function calls into equivalent for-statements that perform faster.
+
+Now I've been playing around with [my small prototype][rewriter] of
+such a compiler, and after a few initial promising successes, the
+complexity of the whole problem is really starting to hit me.
+
+Lets take a simple example:
+
+    var sum = 0;
+    array.forEach(function(x) {
+        sum += x;
+    });
+
+This kind of code is really trivial to convert, and my own little
+script produces something like that:
+
+    var sum = 0;
+    for (var $i1 = 0, $len1 = array.length; $i1 < $len1; $i1++) {
+        var x = array[$i1];
+        sum += x;
+    }
+
+Great, but let's take this a bit further, say, a nested loop over 2D
+array:
+
+    var sum = 0;
+    array.forEach(function(x) {
+        x.forEach(function(y) {
+            sum += y;
+        });
+    });
+
+That's also easy to handle.  We just have to apply the optimizer
+recursively to the loop body.  Here's the result similar to what my
+script gives:
+
+    var sum = 0;
+    for (var $i1 = 0, $len1 = array.length; $i1 < $len1; $i1++) {
+        var x = array[$i1];
+        for (var $i2 = 0, $len2 = x.length; $i2 < $len2; $i2++) {
+            var y = x[$i2];
+            sum += y;
+        }
+    }
+
+Again, everything is quite correct. Maybe a few extra variables, but
+correct nevertheless.  But now let's modify the forEach version a bit:
+
+    var sum = 0;
+    array.forEach(function(x) {
+        x.forEach(function(x) {
+            sum += x;
+        });
+    });
+
+Now the inner and outer loop variables have a same name.  And it works
+out fine, because the inner `x` nicely shadows the outer `x`.  But
+when we run this through my simple-minded compiler:
+
+    var sum = 0;
+    for (var $i1 = 0, $len1 = array.length; $i1 < $len1; $i1++) {
+        var x = array[$i1];
+        for (var $i2 = 0, $len2 = x.length; $i2 < $len2; $i2++) {
+            var x = x[$i2];
+            sum += x;
+        }
+    }
+
+**Boom!**  The shadowing closure is gone and it all fails spectacularly.
+
+So yeah... this rabbit hole seems to be much deeper that I initially
+thought.  Simply picking unlikely names for generated variables isn't
+enough to avoid conflicts.
+
+Then again, simply renaming the inner conflicting variable should
+solve the problem in this case.  One just needs to keep track of all
+the variables visible in particular function.
+
+It still feels like... how hard can it be?
+
+
+[Previously]: http://triin.net/2011/02/27/Optimizing_JavaScript_array_iteration
+[rewriter]: https://github.com/nene/rewriter
+
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Eesti Vabariigi presidendi lehekülg valideerub</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="HTML-i head ja vead Eesti Vabariigi presidendi veebileheküljel" />
+<meta name="keywords" content="riik, president" />
+<meta name="date" content="2005-09-17" />
+</head>
+<body>
+
+<h1><a href="http://www.president.ee/et/">Eesti Vabariigi presidendi lehekülg</a> valideerub!</h1>
+
+<p>Rõõm on näha ka mõni valitsusasutuse veebileht on võtnud viimaks vaevaks valideeruma hakata.
+On küll nähtud mõningaid maakondade ja linnade lehekülgi, aga kõrgemate organite lehekülgede
+juures pole ma seni veel valideerumist täheldanud.</p>
+
+<p>Lasin <a href="http://www.htmlhelp.com/tools/validator/">WDG Validaatoril</a> üle käjja
+sajast selle leheküljestiku lehest, ning selgus et 55 tükki nendest valideerusid, mis näitab,
+et siinkohal pole tegemist pelgalt sellega, et juhtumisi esileht valideerub.</p>
+
+<p>Presidendi lehekülg kasutab <i lang="en">XHTML 1 Transitional</i> dokumenditüüpi ning
+mittevalideerunud lehtede veateateid vaadates hakkab silma, et siin ja seal on alles jäänud
+veel vana HTML koodi (lõpetamata elemendid, suurte tähtedega kirjutatud elementide nimed,
+atribuutide väärtused ilma jutumärkideta…). Mõistagi kasutatakse paigutuseks ikkagi tabeleid
+ning <i lang="en">hover</i>‐effektide loomiseks JavaScripti.</p>
+
+<p>Kui koodi poole pealt on lood (arvestades mujal valitsevat olukorda) üpris head, siis
+käideldavuse osas jätab leht paljuski soovida.</p>
+
+<p>Näiteks on avalehel link sisukaardile, mis peaks aitama näiteks tekstibrauseriga
+leheküljel navigeerimist, aga selleks lingiks, mis sinna sisukaardile viib, on pilt,
+millel alernatiivtekstiks on <code>""</code>. Tulemuseks on see, et brauseriga, mis pilte
+ei näita, pole võimalik sisukaardi leheküljele pääseda. Samal kombel on alternatiivtekstiks
+märgitud tühjus ka enamikel teistel lingiks olevatel piltidel.</p>
+
+<p>Paljudes teistes maailma riikides on riigiasutuste veebilehtedele kehtestatud teatud
+elementaarsed käideldavuse nõuded – millal jõuab meie väike Eesti nii kaugele? Kas ei pidanud
+me mitte olema kusagi IT esirinnas? Noh... igatahes mitte selles osas, mis puudutab
+veebistandardeid.</p>
+
+
+
+</body>
+</html>
+

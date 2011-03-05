@@ -1,0 +1,1096 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Coding practices of web pages</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<base href="http://www.triin.net" />
+<link rel="stylesheet" type="text/css" href="/style/trinoloogialeht.css" media="screen" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Survey on over million webpages" />
+<meta name="keywords" content="CSS, HTML, XHTML, JavaScript, validation" />
+<meta name="date" content="2005-06-12" />
+</head>
+<body>
+
+<div id="sisu">
+<div class="peatykk" id="U:lemaailmne_CSS-i_vaba_pa:ev" lang="et" xml:lang="et">
+
+
+
+<h1 id="coding-practices-of-web-pages">Coding practices of web pages</h1>
+
+<div class="preambula">
+<p>This document is a shortened form of my bachelor thesis titled
+<a href="http://triin.net/2006/05/10/veebipraktikad.pdf">Coding practices of
+web pages (PDF)</a>, fully available only in estonian.</p>
+
+<p>In this paper I am going to leave out most of the details about the
+background, previous studies on the field and how the program for the research
+was constructed, and concentrate mostly on the results.</p>
+</div>
+
+<h2 id="table-of-contents">Table of contents</h2>
+
+<ul>
+<li><a href="/2006/06/12/#abstract">Abstract</a></li>
+<li><a href="/2006/06/12/#selection-of-pages">Selection of pages</a></li>
+<li><a href="/2006/06/12/#program-for-analyzing-the-code-of-web-pages">Program for analyzing the code of web pages</a></li>
+<li><a href="/2006/06/12/#running-the-program">Running the program</a></li>
+<li><a href="/2006/06/12/#http-headers">HTTP headers</a></li>
+<li><a href="/2006/06/12/#x-html">(X)HTML</a></li>
+<li><a href="/2006/06/12/#x-html-elements">(X)HTML elements</a></li>
+<li><a href="/2006/06/12/#document-types">Document types</a></li>
+<li><a href="/2006/06/12/#xhtml">XHTML</a></li>
+<li><a href="/2006/06/12/#encodings">Encodings</a></li>
+<li><a href="/2006/06/12/#markup-correctness">Markup correctness</a></li>
+<li><a href="/2006/06/12/#css">CSS</a></li>
+<li><a href="/2006/06/12/#css-properties">CSS properties</a></li>
+<li><a href="/2006/06/12/#property-color">Property <code>color</code></a></li>
+<li><a href="/2006/06/12/#property-font-size">Property <code>font-size</code></a></li>
+<li><a href="/2006/06/12/#property-font-family">Property <code>font-family</code></a></li>
+<li><a href="/2006/06/12/#property-text-decoration">Property <code>text-decoration</code></a></li>
+<li><a href="/2006/06/12/#property-font-weight">Property <code>font-weight</code></a></li>
+<li><a href="/2006/06/12/#property-width">Property <code>width</code></a></li>
+<li><a href="/2006/06/12/#property-text-align">Property <code>text-align</code></a></li>
+<li><a href="/2006/06/12/#css-units">CSS units</a></li>
+<li><a href="/2006/06/12/#colors">Colors</a></li>
+<li><a href="/2006/06/12/#image-formats">Image formats</a></li>
+<li><a href="/2006/06/12/#selectors">Selectors</a></li>
+<li><a href="/2006/06/12/#element-selectors">Element selectors</a></li>
+<li><a href="/2006/06/12/#class-selectors">Class selectors</a></li>
+<li><a href="/2006/06/12/#id-selectors">ID selectors</a></li>
+<li><a href="/2006/06/12/#at-rules">At-rules</a></li>
+<li><a href="/2006/06/12/#markup-correctness">Markup correctness</a></li>
+<li><a href="/2006/06/12/#javascript">JavaScript</a></li>
+<li><a href="/2006/06/12/#ajax"><acronym title="Asyncronous JavaScript And XML">AJAX</acronym></a></li>
+</ul>
+
+
+
+
+<h2 id="abstract">Abstract</h2>
+
+<p>The purpose of this thesis was to investigate the usage of different
+technologies in the web. A program was constructed, which gathered statistics
+about (X)HTML, CSS and JavaScript used on web pages.</p>
+
+<p>The program was run through one week and it gathered information from over
+million web pages. The links in web directory <a href="http://dmoz.org/">Open
+Directory Project</a> were used as a selection. All the gathered data was
+stored into a MySQL database and was analyzed also in there.</p>
+
+<p>The result of the work was a big set of data, which describes the situation
+in the code used on web pages as of 2006. This data may be used in comparison
+with future studies of the same subject. The most important results of the
+analyzes were the following:</p>
+
+<ul>
+<li>67% of pages used CSS,</li>
+<li>65% used JavaScript and</li>
+<li>at least 10% used Flash.</li>
+<li>2.6% of the (X)HTML used on pages was valid according to document type declaration
+(which was a lot more than 0.7%, measured on a similar selection at 2001).</li>
+<li>41% of CSS was correct according to the W3C CSS 2 recommendation.</li>
+</ul>
+
+<h2 id="selection-of-pages">Selection of pages</h2>
+
+<p>As I have already done several researches, harvesting the use of web standards
+in Estonia and by the members of World Wide Web Consortium. (See:</p>
+
+<ul>
+<li><a href="/2005/04/27/Web_Standards_in_Estonia">Web Standards in Estonia</a>,</li>
+<li><a href="/2005/09/18/Web_Standards_in_Estonia_vol_2">Web Standards in Estonia vol 2</a>,</li>
+<li><a href="/2006/03/11/Web_Standards_in_Estonia_vol_3">Web Standards in Estonia vol 3</a>,</li>
+<li><a href="/2006/03/05/Validating_sites_of_W3C_members">Validating sites of W3C members</a>.)</li>
+</ul>
+
+<p>So it was natural, that this time I wanted to do something bigger. But the
+big problem was: <strong>how do I collect a representative selection of all the
+pages in the web?</strong> The solution almost accidentally fall into my hands,
+when I found one study from 2001.</p>
+
+<p>Apparently five years ago Dagfinn Parnas from Norway conducted a survey as
+a part of he?s masters thesis (titled <a href="http://elsewhat.com/thesis/">How
+to cope with invalid HTML</a>) to find out how many pages in the web are valid
+according to their document type declaration. He validated over 2 million
+<acronym title="Uniform Resourse Identifier">URI</acronym>-s, gathered by
+the <a href="http://dmoz.org/">Open Directory Project</a> (which are freely
+downloadable in <acronym title="Resource Description Framework">RDF</acronym>
+format), and came to the conclusion, that only 0.7% of webpages use valid
+HTML.</p>
+
+<p>Five years have passed since then, and the face of the web has changed
+quite a bit (see <a href="#figure-1">figure 1</a>). So I took the opportunity
+to perform another research using the URI-s in Open Directory Project as a
+selection and tools similar to the ones Dagfinn Parnas used ? making available
+a comparison between <em>the web</em> now and then.</p>
+
+<div class="joonis" id="figure-1">
+<img src="/archive/kool/webstat/figure-1.png" alt="Releases of IE, Mozilla (Firefox), Opera and Safari since 2001 to 2006. The latest stable IE was out at the end of 2001, all the other browsers from the last year." />
+<p><span class="nr">Figure 1.</span>
+Major releases of popular browsers since 2001. Most of the current
+browsers have been under active development since then, only Microsoft
+Internet Explorer (IE) has been lagging behind. (Figure is based on the
+data of Wikipedia.)</p></div>
+
+<h2 id="program-for-analyzing-the-code-of-web-pages">Program for analyzing the code of web pages</h2>
+
+<p>Of course, to analyze the code of all these pages, I needed a program
+to automate the progress. I chose to write it in Perl, although it?s not
+my first language, but it had a lot of great libraries avaliable for
+parsing HTML and CSS. Most importantly I used the following:</p>
+
+<ul>
+<li><a href="http://search.cpan.org/~gaas/HTML-Parser-3.54/Parser.pm">HTML::Parser</a>
+from Gisle Aas ? a great tool for parsing real-world HTML.</li>
+<li><a href="http://search.cpan.org/~bjoern/CSS-SAC-0.06/SAC.pm">CSS::SAC</a>
+from Björn Höhrmann ? implementation of SAC (<a href="http://www.w3.org/TR/SAC">Simple
+API for CSS</a>) in Perl.</li>
+</ul>
+
+<p>To validate (X)HTML i used <a title="WDG Validator"
+href="http://www.htmlhelp.com/tools/validator/offline/index.html.en">offline
+HTML validator</a> provided by Web Design Group (WDG). You might wonder why I
+didn't use the well-known <a href="http://validator.w3.org">W3C Markup Validator</a>?
+First of all Dagfinn Parnas, who?s research I?m trying to replicate as closely as
+possible, used this validator, but also the WDG Validator is a way lot easier to
+install into your computer.</p>
+
+<p>As for CSS, there doesn?t seem to be no other validator available than the
+<a href="http://jigsaw.w3.org/css-validator/">W3C CSS Validator</a>. I have to
+say great thanks to Steve Ferguson, who made available a <a
+href="http://www.illumit.com/css-validator/">precompiled version of the CSS
+Validator</a> ? I tried several days to compile the validator by my own, but
+didn?t succeed.</p>
+
+<p>To store all the data to be gathered by the program, I created a MySQL
+database with 38 tables. MySQL was used as this is the database I?m most
+familiar with.</p>
+
+<p>To retrieve the URI-s from web, I used the well-known GNU Wget.</p>
+
+<p>All the Perl source code of the program is freely available for download
+and licensed under the same terms as Perl itself (which means: feel free
+to modify or do whatever you think, just don't do anything nasty). The
+installation instructions are hidden into the following tarball inside
+the file INSTALL:</p>
+
+<ul>
+<li><a href="/2006/05/10/webstat.tar.gz">webstat.tar.gz</a> ? 8 MB
+(includes W3C CSS Validator and WDG HTML Validator).</li>
+</ul>
+
+<p>Oh, and if you didn't guessed it already, you need Linux to run
+the whole thing.</p>
+
+<h2 id="running-the-program">Running the program</h2>
+
+<p>To get through as many pages as fast as possible, I installed
+the program into 17 computers in the lab. In each computer I ran
+5 instances of the program simultaneously, which makes 85 instances
+total. This meant, I had to split the file containing 4.36 million
+URI-s from Open Directory Project into 85 chunks and give each
+chunk to one program instance to download and analyze.</p>
+
+<p>All the results were stored into MySQL database, which stood
+in the 18th computer - all the other machines communicating with it.</p>
+
+<p>I was running short with my time. I had about a week to run the
+program and it wasn't enough to download and analyze all the URI-s
+I had. So I just strived for as much as I could.</p>
+
+<p>The result of about 100 hours of continuous running between 10th and
+16th of April was 1.27 million URI-s downloaded and analyzed (29%). (See
+<a href="#figure-2">figure 2</a>). Not even a half of what was
+initially planned, but still a considerable amount to make some
+statistics.</p>
+
+<div class="joonis" id="figure-2">
+<img src="/archive/kool/webstat/figure-2.png"
+alt="The initial selection was 4.36 million URI-s. 1.27 million of those were investigated by the program. Of those the program was unable to download 0.2 million URI-s. Few thousands of pages were removed from further analyzes either because they didn?t have appropriate content-type header for a web page or the HTTP status code was not 200 OK or their size was 0 bytes. At last the pages with not a single HTML element were removed ? which left only 725,984 pages for further analyzes." />
+<p><span class="nr">Figure 2.</span>
+How the initial selection of URI-s was trimmed down.</p></div>
+
+<p>Although I had trimmed down the initial selection of 4.7 million
+URI-s from Open Directory Project by removing duplicates and links
+to non-HTML pages, there were still more URI-s to be removed.</p>
+
+<p>First of all the program was unable to download few hundreds
+of thousands URI-s. At the time the program was running the internet
+connection was lost for a few hours, so I guess that counts for the
+most of these not downloaded URI-s.</p>
+
+<p>I also left aside the data about pages that had different HTTP
+status code than 200 OK (mostly 404 Not found error pages) and
+pages that were simply empty (0 bytes in size).</p>
+
+<p>I also removed a great amount of pages where the program was
+unable to find even a single HTML element. If you look again at
+<a href="#figure-2">figure 2</a>, you?ll see that there was a great
+many pages like that (about quarter of all the pages left).
+This doesn?t look normal and indeed it isn?t: I checked those
+pages to see if they really were empty ? but they weren?t. They
+were just ordinary pages, but because of some bug in the program,
+no HTML elements were found from those. I have yet to identify
+the exact bug, but only thing I can do with the gathered results,
+is to exclude those pages from all the statistical analyzes that
+follow.</p>
+
+<p>So... if you still believe, that a research with so many
+shortcomings is worth looking at, you can continue with the results.</p>
+
+
+<h2 id="http-headers">HTTP headers</h2>
+
+<p>Besides HTML, CSS and JavaScript the program also collected
+data about HTTP headers. Sure, this data only reflects those headers
+that are common on the front pages of websites, and as I said,
+all the pages with other status code than 200 OK were removed
+from further analyzes.</p>
+
+<p>First of all, lets take a look at the very first line of any
+HTTP response, typically something like this:</p>
+
+<pre>HTTP/1.1 200 OK</pre>
+
+<p><code>1.1</code> here designates the HTTP version number.
+Version 1.1 is the most recent HTTP standard, 1.0 being the previous.
+Anything below 1.0 is deprecated. As <a href="#figure-3">figure 3</a>
+clearly shows, the situation in web regarding HTTP versions is sound:
+97% of pages are served using the latest standard. Although I should
+point out, that the program dismissed all the pages with HTTP version
+below 1.0. Anyway, I?m quite sure that web browsers also don?t accept
+anything below 1.0.</p>
+
+<div class="joonis" id="figure-3">
+<img src="/archive/kool/webstat/figure-3.png" alt="97.15% of pages uses
+HTTP version 1.1. Remaining 2.85% uses version 1.0." />
+<p><span class="nr">Figure 3.</span>
+HTTP versions. Majority of pages uses the latest HTTP version 1.1.</p></div>
+
+<p>The following <a href="#figure-4">figure 4</a> shows 21 most frequently
+used HTTP headers on web pages.</p>
+
+<div class="joonis" id="figure-4">
+<img src="/archive/kool/webstat/figure-4.png" alt="" />
+<p><span class="nr">Figure 4.</span>
+Most frequently used HTTP headers.</p></div>
+
+<p>Of course 100% of pages have Content-Type header, because pages without
+that were previously removed from the selection. I?ll discuss the usage of
+Content-Type header later in the text, when I talk about the encodings
+used.</p>
+
+<p>The values of Date header are presumably uninteresting, but the Server
+header provides a lot of information regarding which HTTP servers are
+used. As can be seen from <a href="#figure-5">figure 5</a>, by far the
+most popular HTTP server is Apache, followed by Microsoft Internet
+Information Service.</p>
+
+<div class="joonis" id="figure-5">
+<img src="/archive/kool/webstat/figure-5.png" alt="" />
+<p><span class="nr">Figure 5.</span>
+Three most popular HTTP servers (based on Server headers).</p></div>
+
+<p>The previous figure is continued in <a href="#figure-6">figure 6</a>,
+magnifying the usage of rarer servers. Note that these are just the
+values of the Server header, not necessarily names of HTTP server
+softwares. For example Rapidsite is actually a web hosting service
+provider.</p>
+
+<div class="joonis" id="figure-6">
+<img src="/archive/kool/webstat/figure-6.png" alt="" />
+<p><span class="nr">Figure 6.</span>
+Lesser popular values of Server header (extension to the previous figure).</p></div>
+
+<p>The fourth header, used on almost every page, is the Connection.
+Aside from few quirks, all pages are served with either keep-alive
+or close as values of this header. <a href="#figure-7">Figure 7</a>
+shows, that the first value is used slightly more often than the
+other.</p>
+
+<div class="joonis" id="figure-7">
+<img src="/archive/kool/webstat/figure-7.png" alt="" />
+<p><span class="nr">Figure 7.</span>
+Values for the Connection header.</p></div>
+
+<p>But the HTTP headers statistics was not the main target of this
+research, it could be described more as a side-result, although a
+planned one. So, lets leave the HTTP protocol for now, and dive into
+the markup itself.</p>
+
+<h2 id="x-html">(X)HTML</h2>
+
+<p>When I already had laid out great plans for this research and
+had also begin to implement the required program, Google Inc. announced
+the results of they?re research:
+<a href="http://code.google.com/webstats/index.html">Web Authoring Statistics</a>.</p>
+
+<p>This is a <em>great</em> material, based on the data, gathered from
+over a billion (!) documents ? a thousand times larger selection, than
+the one this survey is based on. I?d suggest anyone in interest of
+web standards and HTML in particular, to have a look at the results of
+that research.</p>
+
+<p>As such a great research is available on the use of HTML elements
+and they?re attributes, I won?t repeat the information available from
+Google in here, although my program gathered the information about
+HTML elements and attributes. Instead I am going to focus on the data
+about (X)HTML pages, that the survey from Google doesn?t cover, like
+the document types and encodings most frequently used on web pages.
+But I start with the simplest thing measurable on HTML files ? the size.</p>
+
+<p>As <a href="#figure-8">figure 8</a> shows, most frequently the
+size of the web page is somewhere near 2<sup>13</sup> bytes (8KB).
+Most of the pages remain in range 2<sup>9</sup> bytes (0.5KB) to
+2<sup>16</sup> bytes (64KB).</p>
+
+<div class="joonis" id="figure-8">
+<img src="/archive/kool/webstat/figure-8.png" alt="" />
+<p><span class="nr">Figure 8.</span>
+Frequency of different filesizes. Each column in location <var>n</var>
+shows how many pages are with filesize in range 2<sup>n</sup> to 2<sup>n+1</sup>.</p></div>
+
+<p>But how big portion of the page is markup and how large is the
+real textual content of the page. <a href="#figure-9">Figure 9</a>
+shows clearly, that on most pages the markup-part dominates. An
+average page has something around 20% of text on a page. The figure
+shows a strong bias towards small percentage of text.</p>
+
+<p>Of course, many of the URI-s in the used selection may have
+pointed to the front pages of sites, instead of real content pages,
+but this is just an assumption. Actually a lot of the pages pointed
+directly to the articles of some news sites. I?m quite sure, that this
+data is not the result of using this particular selection.</p>
+
+<div class="joonis" id="figure-9">
+<img src="/archive/kool/webstat/figure-9.png" alt="" />
+<p><span class="nr">Figure 9.</span>
+Distribution of pages based on the proportion of text in source code.</p></div>
+
+<p>But what about comments? How much space do they consume?
+Apparently half of the pages (53%) don?t use comments at all (see
+<a href="#figure-10">figure 10</a>). On those pages that use,
+the comments usually stay below 10% of the page size. Anyway,
+there doesn?t seem to be any good reasons to add extensive
+comments to HTML. Although adding comments to computer code
+is usually a good practice, this hardly applies to HTML. The
+weird pages are probably the ones appearing on the right side
+of the figure, which seem to be totally commented out.</p>
+
+<div class="joonis" id="figure-10">
+<img src="/archive/kool/webstat/figure-10.png" alt="" />
+<p><span class="nr">Figure 10.</span>
+Distribution of pages by the proportion of comments.
+The logarithmic scale is used,
+as only few pages have more than 10% of comments.</p></div>
+
+<h3 id="x-html-elements">(X)HTML elements</h3>
+
+<p>The following three figures are directly compareable to the ones found from
+the first chapter of research done by Google:
+<a href="http://code.google.com/webstats/2005-12/pages.html">Web Authoring
+Statistics ? Pages and elements</a>. Actually this is exactly why they
+are presented here ? to provide a comparison with that study.
+I won?t cover the use of HTML elements in depth, because you can just
+head over to Google labs page and find a more accurate information from there.</p>
+
+<div class="joonis" id="figure-11">
+<img src="/archive/kool/webstat/figure-11.png" alt="" />
+<p><span class="nr">Figure 11.</span>
+Distribution of pages by the total number of (X)HTML elements used.
+When you compare it to the Google figure, you see, that the line is
+not that smooth, reflecting the great difference in the size of
+used selections.</p></div>
+
+<div class="joonis" id="figure-12">
+<img src="/archive/kool/webstat/figure-12.png" alt="" />
+<p><span class="nr">Figure 12.</span>
+Distribution by the number of different elements per page. Again the
+drawing from Google shows a lot smoother line; lot more similar to the
+<a href="http://en.wikipedia.org/wiki/Normal_distribution"
+title="Wikipedia article about normal distribution">normal distribution</a>.</p></div>
+
+<div class="joonis" id="figure-13">
+<img src="/archive/kool/webstat/figure-13.png" alt="" />
+<p><span class="nr">Figure 13.</span>
+Usage frequency of different (X)HTML elements.
+On the figure from Google some elements have switched places,
+but the differences aren?t significant and the general ordering of the
+elements is the same. Sadly, Google only lists 19 most popular elements,
+leaving you wonder: ?Hey! But what about <code>ul</code> and <code>h1</code>
+and many other important elements?? That?s why the figure above shows also
+many of the less popular elements.
+</p></div>
+
+<h3 id="document-types">Document types</h3>
+
+<p>Only 39.08% of pages have a Document Type Declaration (DOCTYPE).
+66.47% of pages with DOCTYPE only have the Formal Public Identifier (FPI)
+specified, lacking the System Identifier (SI ? the URI pointing to the
+<acronym title="Document Type Definition">DTD</acronym>).</p>
+
+<p>The three overwhelmingly most popular DOCTYPEs are from the
+Transitional family: HTML 4.01, HTML 4.0 and XHTML 1.0.
+(<a href="#figure-14">Figure 14</a>) The Transitional DOCTYPEs
+are so popular, that at the fourth place is a Transitional FPI,
+which is spelled incorrectly in lower case.</p>
+
+<p>The pages, that use Strict doctype, mostly use the XHTML-one.
+But Strict is still less popular than Frameset and if you add together
+the HTML 3.2 and HTML 3.2 Final, then Strict is even less popular
+from those.</p>
+
+<div class="joonis" id="figure-14">
+<img src="/archive/kool/webstat/figure-14.png" alt="" />
+<p><span class="nr">Figure 14.</span>
+Most frequent FPI-s.</p></div>
+
+<p>Based on the <a href="http://hsivonen.iki.fi/doctype/">DOCTYPE comparison
+table</a> built by Sivonen, and the gathered data about different DOCTYPEs
+usage, my calculations show, that roughly 90% of pages are rendered in
+Quirks mode (at least by IE 6). Even from the pages that specify DOCTYPE, 70%
+are rendered in Quirks mode.</p>
+
+<h3 id="xhtml">XHTML</h3>
+
+<p>15.24% of pages with DOCTYPE specify some kind of XHTML DOCTYPE. Of those
+pages 22.40% use the XML prolog. (As a sidenote: 0,29% of HTML pages also
+includes the XML prolog.)</p>
+
+<p>As W3C has recommended in Note about
+<a href="http://www.w3.org/TR/xhtml-media-types/">XHTML Media Types</a>,
+XHTML documents should be served with <code>application/xhtml+xml</code>
+Content-Type instead of the regular <code>text/html</code>. Only the XHTML
+DOCTYPEs from XHTML 1.0 family may be served as <code>text/html</code>.</p>
+
+<p>Only 0.24% of XHTML pages are served with the recommended DOCTYPE
+(the number includes also few pages served with <code>application/xml</code>
+or <code>text/xml</code>). Of course, the majority uses XHTML 1.0, where
+this is permitted, but what about other XHTML DOCTYPEs?</p>
+
+<p>Although only 4.46% of XHTML pages use some other DOCTYPE than
+XHTML 1.0, of those pages (that <em>must</em> be served as XHTML) only
+2.80% are (in my selection 54 pages out of 1930).</p>
+
+<p>The most frequent DOCTYPE served as <code>application/xhtml+xml</code>
+was XHTML 1.1, followed by XHTML 1.0 Strict and Transitional.</p>
+
+<h3 id="encodings">Encodings</h3>
+
+<p>Only 66% of pages defines character encoding in one way or another. This
+means, that the remaining 34% uses Windows-1252 encoding, which is the default
+in most browsers.</p>
+
+<p>Only 15% of all pages specify encoding in
+<acronym title="Hypertext Transfer Protocol">HTTP</acronym> header. Others
+specify it with the <code>meta</code> element, if they do it at all. Of those
+pages, that specify it in the HTTP header, 61% also specifies the encoding in
+the <code>meta</code> element.</p>
+
+<p>Windows-1252 is by far the most common encoding for web pages. Although
+<a href="#figure-15">figure 15</a> shows, that most pages specify ISO 8859-1
+as their encoding, most of the browsers use Windows-1252 although the page
+says ISO 8859-1. Anyway ? Windows-1252 is a superset of ISO 8859-1.</p>
+
+<div class="joonis" id="figure-15">
+<img src="/archive/kool/webstat/figure-15.png" alt="" />
+<p><span class="nr">Figure 15.</span>
+Distribution of pages by encoding (showing the percentages from pages that
+have encoding specified).</p></div>
+
+<p>Multibyte encodings UTF-8 and Shift_JIS are also claming their place,
+but only UTF-8 seems to be something significant, nearing 10%. Many of the
+other encodings are given in the following <a href="#figure-16">figure 16</a>.</p>
+
+<div class="joonis" id="figure-16">
+<img src="/archive/kool/webstat/figure-16.png" alt="" />
+<p><span class="nr">Figure 16.</span>
+Less popular encodings. Continuation of <a href="#figure-15">figure 15</a>.</p></div>
+
+<h3 id="markup-correctness">Markup correctness</h3>
+
+<p>First of all I have to note, that 3.50% of pages were excluded from the
+valid-or-not statistics, because of the error message ?unrecognized DOCTYPE;
+unable to check document?. This could have meant either an error in DOCTYPE
+or reference to custom DTD. Dagfinn Parnas, the author of the similar research
+in 2001, also removed the pages with this error from the analyzes.</p>
+
+<p>I tried to keep as close to the beforementioned research, so I only excluded
+pages by the criteria, that Parnas did (although it has to be said that there
+definitely had to remain some small differences in the methodology). The result
+was, that out of 1,002,350 pages 25,890 or 2.58% were valid. At 2001 the result
+from Parnas was 0.71%.</p>
+
+<p>I also used my more trimmed-down selection and calculated the percentage of
+valid pages from those. Out of 702,723 URI-s 18,373 or 2.61% were valid. Only
+0.03% difference. So I think we can conclude, that roughly <strong>2.6% of webpages
+referenced by Open Directory Project are valid</strong>. Probably this number also
+reflects quite well the situation of the web in whole - over 3 times better
+than 5 years ago (if we only talk about the percentage of valid pages).</p>
+
+<p>The following <a href="#figure-17">figure 17</a> shows how many different
+error messages per page is most common. <a href="#figure-18">Figure 18</a>
+list the most common error messages by names which are given below in the
+text.</p>
+
+<div class="joonis" id="figure-17">
+<img src="/archive/kool/webstat/figure-17.png" alt="" />
+<p><span class="nr">Figure 17.</span>
+Distribution by the number of different error messages on page. The average
+number of errors is 6.02 and mean is 6.</p></div>
+
+<div class="joonis" id="figure-18">
+<img src="/archive/kool/webstat/figure-18.png" alt="" />
+<p><span class="nr">Figure 18.</span>
+Most frequent error messages.</p></div>
+
+<ol>
+<li>There is no attribute <var>x</var> for this element (in this HTML version).</li>
+<li>Required attribute <var>x</var> not specified.</li>
+<li>Missing document type declaration.</li>
+<li>End tag for element <var>x</var> which is not open; try removing the end tag or check for improper nesting of elements.</li>
+<li>Element <var>x</var> not allowed here; check which elements this element may be contained within.</li>
+<li>End tag for <var>x</var> omitted; possible causes include a missing end tag, improper nesting of elements, or use of an element where it is not allowed.</li>
+<li>Element <var>x</var> not allowed here; possible cause is an inline element containing a block-level element.</li>
+<li>Unknown entity <var>x</var>.</li>
+<li>Element <var>x</var> not defined in this HTML version.</li>
+<li>An attribute value must be quoted if it contains any character other than letters (A-Za-z), digits, hyphens, and periods; use quotes if in doubt.</li>
+<li>Value of attribute <var>x</var> cannot be <var>y</var>; must be one of a, b, c ... .</li>
+<li>Missing a required sub-element of <var>x</var>.</li>
+<li><var>x</var> is not a member of a group specified for any attribute.</li>
+<li>Illegal character number <var>x</var>.</li>
+<li>Text is not allowed here; try wrapping the text in a more descriptive container.</li>
+<li>Duplicate specification of attribute <var>x</var>.</li>
+<li>Element <var>x</var> not allowed here; assuming missing <var>y</var> start-tag.</li>
+<li>Invalid comment declaration; check your comment syntax.</li>
+<li>Value of attribute <var>x</var> must be a single token.</li>
+<li>An attribute specification must start with a name or name token.</li>
+</ol>
+
+<h2 id="css">CSS</h2>
+
+<p>67.20% of pages uses CSS in one way or another. But how is it used?</p>
+
+<p><a href="#figure-19">Figure 19</a> shows, that most often only external
+stylesheets are used. But practically the same amount of pages use external
+stylesheets in combination with inline styles.</p>
+
+<p>63.43% of pages with CSS uses some external CSS file. But almost the
+same amount of pages (61.51%) uses inline styles.</p>
+
+<div class="joonis" id="figure-19">
+<img src="/archive/kool/webstat/figure-19.png" alt="" />
+<p><span class="nr">Figure 19.</span>
+How is CSS connected to HTML. <code>&lt;link&gt;</code> designates the use
+of external stylesheets, not only linking external sheets with
+<code>link</code> element, but also external CSS imported with
+<code>@import</code> rule.</p></div>
+
+<p>72.2% of pages with external CSS link only one CSS file, 17.9% links
+two files, 4.0% three and 3.9% four. The remaining 2% uses more than four
+external stylesheets.</p>
+
+<p><a href="#figure-20">Figure 20</a> shows how external CSS is usually
+larger in size than CSS inside HTML. Inline and embedded CSS in contrast
+follow quite similar usage pattern.</p>
+
+<div class="joonis" id="figure-20">
+<img src="/archive/kool/webstat/figure-20.png" alt="" />
+<p><span class="nr">Figure 20.</span>
+Comparison of code sizes between external, embedded and inline CSS.
+The CSS in external files is usually larger than CSS inside HTML.</p></div>
+
+<h3 id="css-properties">CSS properties</h3>
+
+<p>So, what are the most common CSS properties?
+<a href="#figure-21">Figure 21</a> gives a listing of most popular
+properties out there.</p>
+
+<div class="joonis" id="figure-21">
+<img src="/archive/kool/webstat/figure-21.png" alt="" />
+<p><span class="nr">Figure 21.</span>
+Most frequently used CSS properties.</p></div>
+
+<p>The top 5 of CSS properties consists entirely of typografical
+tools.  Not many web designers out there, who accept the browser
+default settings.  But the shorthand property <code>font</code>
+appears only in the code of 13% of CSS-using pages. I guess this is
+because <code>font</code> has the most complex syntax of all CSS2
+attributes ? even I prefer not to use it, although I know the syntax
+by heart.</p>
+
+<h4 id="property-color">Property <code>color</code></h4>
+
+<p>The word ?color? probably wasn?t the best choice for a property
+describing the color of text. <code>text-color</code> or
+<code>font-color</code> would have been more intuitive ? in the result
+set thousands of pages used either of those. Although as much as I
+tested on various browsers neither <code>text-color</code> or
+<code>font-color</code> seemed to have any effect at all.</p>
+
+<h4 id="property-font-size">Property <code>font-size</code></h4>
+
+<p>As <a href="#figure-22">figure 22</a> clearly shows, most
+pages use either pixels or points to designate the font size. And both
+of these units are considered bad practices for that purpose,
+especially points, which make no sense at all in web context.</p>
+
+<p>Another interesting thing to note from that figure is the
+significant number of pages using integer value for this property ?
+being not allowed according to W3C, this is entirely the fault of
+browser vendors, as practically all browsers interpret integer value
+for this property as if it had <code>px</code> appended.</p>
+
+<p>Looking at the font size keywords reveals, that decreasing the font
+size is clearly more common than increasing it.</p>
+
+<div class="joonis" id="figure-22">
+<img src="/archive/kool/webstat/figure-22.png" alt="" />
+<p><span class="nr">Figure 22.</span>
+What kind of values are used with the <code>font-size</code> property?
+Most pages use either pixels or points.</p></div>
+
+<h4 id="property-font-family">Property <code>font-family</code></h4>
+
+<p>Many of you have probably seen the combination:</p>
+
+<pre>font-faily: Arial, Verdana, Helvetica, sans-serif;</pre>
+
+<p>Well, these are the four <em>most</em> common font family names you
+come across in internet. (See <a href="#figure-23">figure
+23</a>.)</p>
+
+<p>From the set of generic font family names <code>sans-serif</code>,
+<code>serif</code> and <code>monospace</code> are used mostly.
+<code>cursive</code> and <code>fantasy</code> are really rare.</p>
+
+<p>If you look at the figure, you see some quite popular fonts like
+<code>times</code>, <code>new</code> and <code>roman</code>, indicating
+the lack of proper quoting in constructs like this:</p>
+
+<pre>font-family: Times New Roman, serif;</pre>
+
+<div class="joonis" id="figure-23">
+<img src="/archive/kool/webstat/figure-23.png" alt="" />
+<p><span class="nr">Figure 23.</span>
+50 commonest font family names.
+Dark bars indicate generic font family names.</p></div>
+
+<h4 id="property-text-decoration">Property <code>text-decoration</code></h4>
+
+<p>The commonest use of this property is probably removing the
+underlines from links, but adding the underline is very common
+too. (See <a href="http:#figure-24">figure 24</a>.)</p>
+
+<div class="joonis" id="figure-24">
+<img src="/archive/kool/webstat/figure-24.png" alt="" />
+<p><span class="nr">Figure 24.</span>
+Common values for <code>text-decoration</code> property.
+Note the invalid value <code>bold</code>.</p></div>
+
+<h4 id="property-font-weight">Property <code>font-weight</code></h4>
+
+<p>No real surprises here. Making text bold is more common than
+removing the boldness. Some pages also make use of the integer values
+and <code>bolder</code> and <code>lighter</code> keywords, which
+aren?t quite consistent across browsers. Three last values in <a
+href="#figure-25">figure 25</a> are invalid.</p>
+
+<div class="joonis" id="figure-25">
+<img src="/archive/kool/webstat/figure-25.png" alt="" />
+<p><span class="nr">Figure 25.</span>
+How is the <code>font-weight</code> property used?</p></div>
+
+<h4 id="property-width">Property <code>width</code></h4>
+
+<p>The situation with <code>width</code> is somewhat similar to
+<code>font-size</code> as both properties designate lengths.  Although
+points are used rarely, integer values are quite common (again
+interpreted as pixels by browsers, but invalid according to CSS
+recommendations). (See <a href="#figure-26">figure 26</a>.)</p>
+
+<div class="joonis" id="figure-26">
+<img src="/archive/kool/webstat/figure-26.png" alt="" />
+<p><span class="nr">Figure 26.</span>
+Most frequent value types of <code>width</code>.</p></div>
+
+<h4 id="property-text-align">Property <code>text-align</code></h4>
+
+<p>As the text is aligned left by default, it?s no surprise that it
+isn?t the most popular one. Maybe only the <code>justify</code> column
+in <a href="#figure-27">figure 27</a> should be less tall, as
+justification doesn?t work well in web.</p>
+
+<div class="joonis" id="figure-27">
+<img src="/archive/kool/webstat/figure-27.png" alt="" />
+<p><span class="nr">Figure 27.</span>
+The values used with <code>text-align</code> property.</p></div>
+
+<p>I could go on and on with describing all the CSS properties listed
+on <a href="#figure">figure 21</a>, but the less-popular ones aren?t
+that interesting plus the properties described above pretty much
+should give the overall picture. So instead I will continue with
+looking at CSS units in general.</p>
+
+<h3 id="css-units">CSS units</h3>
+
+<p>The following <a href="#figure-28">figure 28</a> resambles <a
+href="#figure-25">figure 25</a> which described the
+<code>font-size</code> property. The high volume of pages using points
+on the following figure is probably the result of
+<code>font-size</code> being used so heavily, that if effects the
+general statistics of CSS units.</p>
+
+<div class="joonis" id="figure-28">
+<img src="/archive/kool/webstat/figure-28.png" alt="" />
+<p><span class="nr">Figure 28.</span>
+Which units are used in CSS? Most pages only use pixels.</p></div>
+
+<h3 id="colors">Colors</h3>
+
+<p>Colors are on the majority of pages specified with <code>#rrggbb</code>
+syntax. The next in popularity is <code>#rgb</code> and almost as popular
+is the use of keywords. Most unpopular was the use of <code>rgb()</code>
+function.</p>
+
+<p>The most popular color was white, followed by black, red, blue and
+yellow.</p>
+
+<h3 id="image-formats">Image formats</h3>
+
+<p>As seen from <a href="#figure-29">figure 29</a>, most pages use GIF
+in CSS background images. JPEG is not so frequent and PNG is quite
+rare.</p>
+
+<div class="joonis" id="figure-29">
+<img src="/archive/kool/webstat/figure-29.png" alt="" />
+<p><span class="nr">Figure 29.</span>
+Image formats in CSS background images.</p></div>
+
+<h3 id="selectors">Selectors</h3>
+
+<p>Most frequently used CSS selectors are given in <a
+href="#figure-30">figure 30</a>. The list of less-popular selectors is
+continued in <a href="#figure-31">figure 31</a>.</p>
+
+<div class="joonis" id="figure-30">
+<img src="/archive/kool/webstat/figure-30.png" alt="" />
+<p><span class="nr">Figure 30.</span>
+Most frequent CSS selectors.</p></div>
+
+<p>The first figure clearly shows, that the most frequently used
+selectors are the selectors of CSS1, except the pseudoclasses
+<code>:first-letter</code> and <code>:first-line</code>, which don?t
+have a lot of use. Håkon Wium Lie mentions these constructs in he?s
+<a href="http://people.opera.com/howcome/2006/phd/#h-327">thesis about
+CSS</a> as features, that could have been left out from the
+specification without significant loss:</p>
+
+<blockquote
+cite="http://people.opera.com/howcome/2006/phd/#h-327"><p>However, the
+cost of implementing these features far outweighted the benefits of
+the visual effects they provided.</p></blockquote>
+
+<p>The element selector definitely deserves it?s place as the most
+frequently used selector ? almost 80% of pages with CSS make use of
+it. But the class selector is without no great reason about three
+times as popular as the ID selector; ID is even less popular than the
+descendant selector.</p>
+
+<p>Of course it?s no surprise, that the link-related pseudo classes
+are in the top list, <code>:hover</code> being the first as there is
+no HTML-alternative to style this status.</p>
+
+<p>All the other selectors belong to CSS2 (or even CSS3) and as these
+are not supported by the widespread IE6, webpages also make no
+significant use of those. Even the universal selector (<code>*</code>),
+the only one in CSS2 supported by IE6, gains only a little more usage
+than the child selector, which has no support in IE6.</p>
+
+<p>It will be interesting to see if and how these graphs are going to
+change when IE7 finally reaches the market.</p>
+
+<div class="joonis" id="figure-31">
+<img src="/archive/kool/webstat/figure-31.png" alt="" />
+<p><span class="nr">Figure 31.</span>
+Less frequent CSS selectors. Continues the previous figure.</p></div>
+
+<h4 id="element-selectors">Element selectors</h4>
+
+<p>As mentioned before: the main activity with stylesheets is altering
+the default look of links (color, underline). The following <a
+href="#figure-32">figure 32</a> makes this even more clear ? almost
+90% of CSS-using pages select element <code>a</code>.</p>
+
+<p><code>body</code> is on the second place, but the gathered data
+doesn?t show weather it?s there because of setting some general
+properties for the whole page (like <code>font</code> and
+<code>color</code>) or just to adjust the margin and padding of the
+body element. I?m afraid of the latter.</p>
+
+<p>I think I don?t have to mention which common practice the 50% of
+pages selecting <code>td</code> refers to.</p>
+
+<p>For some reason there is a lot of styling of <code>p</code>
+elements. The following <code>h1</code>, <code>h2</code> and
+<code>h3</code> seem to me like more appropriate targets for styling.
+But I guess if we would count all the different headings as one general
+<code>h</code> element, they would largely outweight the selecting
+of <code>p</code>, maybe even <code>td</code>.</p>
+
+<div class="joonis" id="figure-32">
+<img src="/archive/kool/webstat/figure-32.png" alt="" />
+<p><span class="nr">Figure 32.</span>
+How frequently are different elements selected with CSS.</p></div>
+
+<h4 id="class-selectors">Class selectors</h4>
+
+<p>The selection of URI-s used for this research had one significant
+problem: some larger sites were represented with a lot of URI-s
+(e.g. there were thousands of <a href="http://www.cnn.com">cnn.com</a>
+subpages) refering to pages with quite similar markup, many of them
+pointing to the exact same CSS files. One might think, that counting
+the code from one site about 10,000 times will make the results of the
+research too much a reflection of that site's code, and this thought
+certainly isn't wrong. But on the other hand, it wouldn't be quite fair
+to give to the one-page site of Bob Noname the same weight as to the
+multimillion-subpage site of microsoft.com. It's not a problem with a
+simple solution...</p>
+
+<p>But what has this all to do with class selectors? Quite a bit,
+because when you look at the <a href="#figure-33">figure 33</a>
+containing most frequently used classnames, many of them do not
+reflect the general usage of class names in web, but the number of CNN
+sites in the selection for example.</p>
+
+<p>Even with that kind of classnames removed, I don't count the data
+on that figure quite trustworthy ? some of those large pages might
+have also contained much more generic class names like
+<code>small</code> and <code>header</code> making them appear more
+frequent than they really are.</p>
+
+<p>All the shortcomings aside, you are still welcome to compare the
+results with the class names statistics of <a
+href="http://code.google.com/webstats/2005-12/classes.html">Google Web
+Authoring Statistics</a> and John Allsopp's <a
+href="http://westciv.typepad.com/dog_or_higher/2005/11/real_world_sema.html">Semantics
+in the wild</a>. But you should also note one of the main differences
+between this and those researches: this statistics is based on the
+classnames gathered from CSS files, while the others have counted
+classnames in HTML.</p>
+
+<div class="joonis" id="figure-33">
+<img src="/archive/kool/webstat/figure-33.png" alt="" />
+<p><span class="nr">Figure 33.</span>
+Most frequently used classnames. The classnames which clearly
+originate from some particular site are marked with white columns.</p></div>
+
+<h4 id="id-selectors">ID selectors</h4>
+
+<p>Happily, the big sites don't seem to make a lot of use from ID
+selectors, so the statistics shown in <a href="#figure-34">figure
+34</a> are much more trustworthy.</p>
+
+<p>The figure clearly distinguishes the top three ID names from the
+rest. <code>content</code>, <code>footer</code> and
+<code>header</code> are also in the top three of John Allsopp?s list
+of most frequent ID-s (if you exclude some quirks like
+<code>BTAMarker</code>).</p>
+
+<div class="joonis" id="figure-34">
+<img src="/archive/kool/webstat/figure-34.png" alt="" />
+<p><span class="nr">Figure 34.</span>
+Most frequently used ID-s. The ID-s which clearly
+originate from some particular site are marked with white columns.</p></div>
+
+<h3 id="at-rules">At-rules</h3>
+
+<p>Clearly the most popular at-rule is <code>@import</code>, appearing
+almost as frequently as all the others added together (See <a
+href="#figure-35">figure 35</a>.) <code>@media</code>,
+<code>@page</code> and <code>@font-face</code> are not very rear
+too.</p>
+
+<p>Interestingly many pages made use of at-rules, that aren?t part of
+CSS specifications. As much as I managed to find out, the rules like
+<code>@list</code> are Microsoft Office or some other MS product
+specific.</p>
+
+<div class="joonis" id="figure-35">
+<img src="/archive/kool/webstat/figure-35.png" alt="" />
+<p><span class="nr">Figure 35.</span>
+Relative frequency of different CSS at-rules.</p></div>
+
+<h3 id="markup-correctness">Markup correctness</h3>
+
+<p>Only <strong>40.92% of pages with CSS were using valid
+CSS2</strong>. This doesn?t mean all the other pages use invalid CSS ?
+some of them might be using CSS1, CSS2.1 or CSS3 syntax which is not
+part of CSS2. But as the previous statistics has shown: not many pages
+make use of CSS not part of CSS2.</p>
+
+<p>But what about pages that use valid (X)HTML? One would think that a
+page with valid markup will mostly contain valid CSS too. And indeed,
+in the set of pages with valid HTML, there are more pages with valid
+CSS, but the difference is not that big: only 51.39% of pages with
+valid HTML have valid CSS.</p>
+
+<p><a href="#figure-36">Figure 36</a> shows the distribution of pages
+by different CSS validator error messages per page. Happily the most
+frequent is no errors at all.</p>
+
+<div class="joonis" id="figure-36">
+<img src="/archive/kool/webstat/figure-36.png" alt="" />
+<p><span class="nr">Figure 36.</span>
+Distribution of pages by different CSS validator error messages per page.</p></div>
+
+<p>16 most frequent error messages are given in the following <a
+href="#figure-37">figure 37</a>. Explanations of the error message
+numbers are given in the following text.</p>
+
+<div class="joonis" id="figure-37">
+<img src="/archive/kool/webstat/figure-37.png" alt="" />
+<p><span class="nr">Figure 37.</span>
+Most frequent error messages of W3C CSS validator.</p></div>
+
+<ol>
+<li>Property <var>x</var> doesn't exist</li>
+<li><var>y</var> is not a <var>x</var> value</li>
+<li>Unrecognized</li>
+<li>You must put an unit after your number</li>
+<li>Parse error ? Unrecognized</li>
+<li>Attempt to find a semi-colon before the property name. add it</li>
+<li>Too many values or values are not recognized</li>
+<li>Unknown dimension : <var>x</var></li>
+<li><var>x</var> is not a valid color 3 or 6 hexadecimals numbers</li>
+<li>Generic family names are keywords, and therefore must not be
+quoted.</li>
+<li>Too few values for the property <var>x</var></li>
+<li>In CSS1, a id/class name could start with a digit (".55ft"),
+unless it was a dimension (".55in"). In CSS2, such ids/classes are
+parsed as unknown dimensions (to allow for future additions of new
+units)</li>
+<li><var>x</var> negative values are not allowed</li>
+<li>Invalid separator in shape definition. It must be a comma.</li>
+<li><var>x</var> is an incorrect operator</li>
+<li>Unknown error</li>
+</ol>
+
+
+
+
+
+<h2 id="javascript">JavaScript</h2>
+
+<p>Only a little bit less pages use JavaScript than CSS ?
+<strong>65.09%</strong> of pages (CSS was used by 67.20%).</p>
+
+<p>Although W3C mentions only 3 ways to attatch JavaScript to HTML, an
+entire 25% of pages uses also the third method: JavaScript URI-s, like
+the following:</p>
+
+<pre>&lt;a href="javascript: alert('Hello!');"&gt;JS link&lt;/a&gt;</pre>
+
+<p>On the other hand, most pages using JavaScript URI-s, also use
+other more standard methods for JavaScript attatching, which I?m going
+to discuss right now.</p>
+
+<p><a href="#figure-38">Figure 38</a> lists the combinations of
+different JavaScript attatchment methods and how much each of those is
+being used. The interesting thing is, that most common is to use all
+the methods together. Both the external JavaScript only and external
+plus inline are used only on about 10% of JavaScript pages.</p>
+
+<div class="joonis" id="figure-38">
+<img src="/archive/kool/webstat/figure-38.png" alt="" />
+<p><span class="nr">Figure 38.</span>
+How is JavaScript connected to HTML.</p></div>
+
+<p>The following <a href="#figure-39">figure 39</a> shows the
+distribution of different JavaScript attatching methods by the size of
+script code.  Similarly to CSS the scripts in external .js files are
+usually larger than the one embedded into HTML. But quite differently
+from CSS the most common way is to embed JavaScript between
+<code>script</code> tags.</p>
+
+<div class="joonis" id="figure-39">
+<img src="/archive/kool/webstat/figure-39.png" alt="" />
+<p><span class="nr">Figure 39.</span>
+Comparison of code sizes between external, embedded and inline
+JavaScript.</p></div>
+
+<h3 id="ajax"><acronym title="Asyncronous JavaScript And XML">AJAX</acronym></h3>
+
+<p>Because of some problems/bugs with the program, only the string
+<code>XMLHttpRequest</code> was looked for in JavaScript files.
+On 6125 pages this search found a match. This means that 1.90%
+of pages with JavaScript were using AJAX or similar technology.</p>
+
+<p>At this point the document ends. There should be some kind of
+conclusions chapter here, but at the moment I?m too tired to write
+one. Maybe I?ll write it in the future if I find some time for
+that. For an overview of the main points in this research you can read
+the <a href="">abstract</a>.<p>
+
+<div>
+<p>
+<span class="date">Kirjutatud 11. märtsil 2005.</span>
+<a class="kommentaarid" href="/2006/03/11/Web_Standards_in_Estonia_vol_3#kommentaarid">Avalda oma arvamust.</a>
+</p>
+</div>
+
+
+
+</div></div>
+<div id="yldinfo">
+<h1 id="trinoloogialeht">Trinoloogialeht</h1>
+<address>
+<span id="asutuse_nimi">Eesti Trinoloogide Maja.</span>
+<span id="deviis">Eesti trinoloogiahuviliste avalik kogunemiskoht.</span>
+<a href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;&#105;&#110;&#102;&#111;&#064;&#116;&#114;&#105;&#105;&#110;&#046;&#110;&#101;&#116;">&#105;&#110;&#102;&#111;&#064;&#116;&#114;&#105;&#105;&#110;&#046;&#110;&#101;&#116;</a>
+</address>
+</div>
+<div id="peamenyy">
+<h2 id="peamenüü">Peamenüü</h2>
+<ul>
+<li><strong>Hiljutine</strong></li>
+<li><a accesskey="t" title="Teadmiseks [T]" href="/teadmiseks">Teadmiseks</a></li>
+<li><a accesskey="a" title="Arhiiv [A]" href="/arhiiv">Arhiiv</a></li>
+<li><a accesskey="l" title="Looming [L]" href="/looming">Looming</a></li>
+<li><a accesskey="k" title="Kontakt [K]" href="/kontakt">Kontakt</a></li>
+</ul>
+</div>
+<div id="alammenyy">
+<h2 id="viimased-artiklid">Viimased artiklid</h2>
+<ul>
+<li><a href="/2006/05/10/database.tar">database.tar</a></li>
+<li><a href="/2006/05/10/veebipraktikad-annotatsioon.pdf">veebipraktikad-annotatsioon.pdf</a></li>
+<li><a href="/2006/05/10/veebipraktikad.pdf">veebipraktikad.pdf</a></li>
+<li><a href="/2006/05/10/webpractices-abstract.pdf">webpractices-abstract.pdf</a></li>
+<li><a href="/2006/05/10/webstat.tar.gz">webstat.tar.gz</a></li>
+<li><a href="/2006/04/04/U:lemaailmne_CSS-i_vaba_pa:ev">Ülemaailmne CSS-i vaba päev</a></li>
+<li><a href="/2006/03/27/NeXT">NeXT</a></li>
+<li><a href="/2006/03/11/Web_Standards_in_Estonia_vol_3">Web Standards in Estonia vol 3</a></li>
+<li><a href="/2006/03/05/Validating_sites_of_W3C_members">Validating sites of W3C members</a></li>
+<li><a href="/2005/12/23/Veebilehtede_kodeerimispraktikad">Veebilehtede kodeerimispraktikad</a></li>
+<li><a href="/2005/12/23/Veebilehtede_kodeerimispraktikad.pdf">Veebilehtede kodeerimispraktikad.pdf</a></li>
+<li><a href="/2005/09/18/Loetelu_valideerunud_lehtede_nimekirja_lisandunud_lehtedest">Loetelu valideerunud lehtede nimekirja lisandunud lehtedest</a></li>
+<li><a href="/2005/09/18/Web_Standards_in_Estonia_vol_2">Web Standards in Estonia vol 2</a></li>
+<li><a href="/2005/09/17/Eesti_Vabariigi_presidendi_leheku:lg_valideerub">Eesti Vabariigi presidendi lehekülg valideerub</a></li>
+<li><a href="/2005/07/22/Eesti_ja_inglise_keele_tu:pograafilised_erinevused">Eesti ja inglise keele tüpograafilised erinevused</a></li>
+</ul>
+</div>
+<div id="markup">
+<p><a href="http://www.triin.net/feed.xml" title="RSS feed - uued artiklid Triinulehel">RSS</a>,
+<a href="http://www.triin.net/comment-feed.xml" title="RSS feed - uued kommentaarid Triinulehel">RSS kommentaarid</a>,
+<a href="http://validator.w3.org/check/referer" title="Kontrolli XHTML-i valideerumist">XHTML</a>,
+<a href="http://jigsaw.w3.org/css-validator/check/referer" title="Kontrolli stiililehe valideerumist">CSS</a>,
+<a href="http://bobby.watchfire.com/" title="Kontrolli vastavust WAI AAA tasemele">AAA</a></p>
+</div>
+
+
+</body>
+</html>

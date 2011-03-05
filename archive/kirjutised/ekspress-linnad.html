@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="et" xml:lang="et">
+<head>
+<title>Pisike kaardirakendus</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Pisike kaardirakendus: tehtud proovitöö" />
+<meta name="keywords" content="CSS, JavaScript, kaart, XML" />
+<meta name="date" content="2007-06-03" />
+</head>
+<body>
+
+<h1>Pisike kaardirakendus</h1>
+
+<p>Sai tehtud <a href="http://projects.triin.net/ekspress-linnad/">väike JavaScripti-põhine
+kaardirakendus</a>. Näite puhul on salvestamise võimalus välja lülitatud. Huvilised saavad
+aga ka <a href="http://projects.triin.net/ekspress-linnad/kaardirakendus.tar.gz">kogu rakenduse lähtekoodi</a> alla
+laadida.</p>
+
+<p>Olingi juba ammu soovinud JavaScriptiga midagi huvitavat teha, kuid
+senimaani polnud tekkind otsest vajadust midagi teha. Nüüd aga sattus ette
+üks ülesanne, mille puhul paistis just JavaScriptiga lahendus kõige loomulikum.</p>
+
+<p>Tegelikult seisis ülesande kirjelduses vaid, et tuleb koostada veebirakendus,
+kus saab lisada/muuta/eemaldada linnu ja nende vahekauguseid; kuid mina muidugi
+otsustasin natukene üle pingutada.</p>
+
+<h2>Tehnilisest küljest</h2>
+
+<p>Esimesena tekkis kohe küsimus, kuidas oleks võimalik JavaScriptiga
+kaardile paigutatud kahe linna vahele sirgjoont tõmmata. Õnneks viis guugeldamine
+mind üsna ruttu täpselt mulle vajaliku <a href="http://www.p01.org/articles/DHTML_techniques/Drawing_lines_in_JavaScript/">
+JavaScriptiga joonte joonistamise õpetuse</a> juurde.</p>
+
+<p>Kõige suurem häda lahendatud, sai <a href="http://www.prototypejs.org/">prototype</a>
+appi võetud ning kogu vajalik kood valmis kirjutatud. Prototype rokib!</p>
+
+<p>PHP-le andmete edastamiseks sai otsustatud XML-i kasuks.
+PHP5 <a href="http://www.php.net/simplexml/">SimpleXML klass</a>
+tegi selle töötlemise lihtsaimast-lihtsamaks. Andmebaasiga suhtluseks mõistagi
+PEARi <a href="http://pear.php.net/package/MDB2">MDB2</a>.</p>
+
+<p>Andmete kasutajale väljastamiseks tuli aga mängu <a
+href="http://smarty.php.net/">Smarty</a>. Ma üldiselt olen igasuguste mõttetute
+mallimootorite vastu, aga Smarty on kõrgemast klassist.</p>
+
+<p>Rakendust on testitud Opera, Firefoxi, Konquerori, IE7 ja IE6-ga.
+Viimases näeb natuke nigelam välja, kuna IE6 ei toeta CSS-i <code>:hover</code>
+pseudoklassi teistel elementidel peale <code>a</code>.</p>
+
+<p>Natuke sai tehtud ka kasutatavuse testimist oma korterikaaslase peal,
+misjärel sai nuppudele lisatud abitekstid ja mõningaid käitumisi muudetud.</p>
+
+<p>Ilma JavaScripti ja CSS-ta brauserites saab küll nimekirja linnadest ja nende
+vahekaugustest näha, aga muutmine pole võimalik.</p>
+
+<h2>Lõpetuseks</h2>
+
+<p>Kindlasti on kuskil ka selline programm olemas, või siis annaks midagi
+märksa vingemat ehitada näiteks <a href="http://maps.google.com/">google maps</a>’i
+peale, aga teinekord on tore ka ise jalgratast leiutada. Eriti kui selle
+käigus midagi uut õpib.</p>
+
+</body>
+</html>

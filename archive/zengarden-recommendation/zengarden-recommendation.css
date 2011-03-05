@@ -1,0 +1,117 @@
+/* A simple design which resambles an W3C CSS Recommendation page 
+   
+   Would CSS Zen Garden had made it, if it looked like a W3C page?
+   I guess not.
+   
+   W3C logo belongs to the almighty W3C, hope they don't mind :)
+*/
+
+/* body */
+body { 
+    font-family: sans-serif;
+    background: #fff url(logo-REC.png) no-repeat fixed;
+    padding: 67px 1em 67px 70px;
+}
+
+#container {
+    background: url(w3c_home.png) no-repeat 0 18px;
+    padding-top: 100px;
+    border-top: 2px groove #ccc;
+    border-bottom: 2px groove #ccc;
+}
+
+
+/* simple elements */
+
+h1, h2, h3 { color: #005A9C }
+
+h1 { font-size: 170% }
+h2 { font-size: 140% }
+h3 { font-size: 140% }
+
+a { color: #00c }
+a:visited { color: #800080 }
+a:hover { background: #ffa }
+
+acronym { border: none; font-style: normal }
+
+
+/* Titles replaced with images */
+
+#pageHeader h1 span,
+#pageHeader h2 span,
+#preamble h3 span,
+#explanation h3 span,
+#participation h3 span,
+#benefits h3 span,
+#requirements h3 span,
+#lselect h3 span,
+#lresources h3 span
+{ display: none }
+
+#pageHeader h2,
+#preamble h3,
+#explanation h3,
+#participation h3,
+#benefits h3,
+#requirements h3,
+#lselect h3,
+#lresources h3
+{ height: 26px; background-repeat: no-repeat }
+
+#pageHeader h1 { background: url(css_zen_garden.png) no-repeat; height: 31px }
+#pageHeader h2 { background-image: url(recommendation.png) }
+#preamble h3 { background-image: url(abstract.png) }
+#explanation h3 { background-image: url(status.png) }
+#participation h3 { background-image: url(participation.png) }
+#benefits h3 { background-image: url(benefits.png) }
+#requirements h3 { background-image: url(requirements.png) }
+#lselect h3  { background-image: url(table_of_contents.png) }
+#lresources h3  { background-image: url(resources.png) }
+
+
+/* Miscellaneous */
+
+#quickSummary { border-bottom: 2px groove #ccc; padding-bottom: 1em }
+
+#explanation .p1 { font-style: italic; }
+
+#footer {
+    text-align: center;
+    position: relative;
+    top: 28em
+}
+
+
+/* lists */
+
+#lselect ul {
+    list-style-type: decimal;
+    color: #00c;
+    font-weight: bold;
+}
+
+#larchives {
+    position: absolute;
+    top: 30px;
+    left: 5%;
+    width: 90%;
+    text-align: center;
+    text-transform: lowercase;
+}
+#larchives ul {
+    list-style-type: none;
+    display: inline;
+}
+#larchives ul li {
+    display: inline;
+    padding: 0 0.5em;
+}
+#larchives h3 { display: none }
+
+#lresources ul {
+    list-style-type: decimal;
+    color: #00c;
+    font-weight: bold;
+}
+

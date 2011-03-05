@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Materjal ja metoodika</title>
+<meta http-equiv="Content-type" content="text/html; charset:utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="TÜ Haapsalu Kolledž, Infehnoloogia osakond. Proseminaritöö. Juhendaja: Jaagup Kippar" />
+<meta name="keywords" content="valideerimine standardid CSS HTML W3C kodeeringud" />
+<meta name="date" content="2005-04-22" />
+</head>
+<body>
+
+<h1 id="materjal_ja_metoodika">1. Materjal ja metoodika</h1>
+
+<h2 id="valim">1.1. Valim</h2>
+
+<p>Uurimuse jaoks valiti Neti Eesti WWW serverite nimekirjast kõik aadressid, 
+mis olid kujuga <code>www.*.ee</code> (näiteks <code>www.host.ee</code>, 
+<code>www.hk.host.ee</code>, <code>www.host.pri.ee</code> jne).</p>
+
+<p>Sarnaselt <a href="http://math.ut.ee/~veikos/magtoo/">Veiko Sangi poolt 
+teostatud uuringuga (2004)</a> kasutati vaid <code>www</code>-ga algavad 
+aadresse, sest väga paljudel juhtudel on identsed need leheküljed, mille 
+aadressidest üks algab <code>www</code>-ga ja teine mitte, näiteks 
+<code>www.host.ee=host.ee</code>. Ühtlasi pole aadressid, mis 
+<code>www</code>-ga ei alga, tihtipeale asutuse veebi avalikuks osaks 
+(<code>intranet.host.ee</code>, <code>admin.host.ee</code>, 
+<code>mail.host.ee</code>, <code>webmail.host.ee</code> jne).</p>
+
+<p>Kuna eesmärgiks oli just Eesti veebilehtede uuring, siis valiti vaid 
+<code>ee</code>-lõpulised aadressid, sest need saavad olla vaid Eesti 
+ettevõtetel, organisatsioonidel või eraisikutel. Erinevalt näiteks Veiko 
+Sangi serverikeskkonna uuringust, oli oluline, et valimisse satuksid just Eesti 
+lehed (seejuures mitte tingimata eesti keelsed lehed), mitte lihtsalt eesti 
+serverites asuvad leheküljed (<code>.com</code>, <code>.net</code>, 
+<code>.org</code> jne), mille omanikeks võivad olla ka välismaised 
+ettevõtted.</p>
+
+<p>Valideeriti vaid esilehti, kuna nendega peaksid autorid olema kõige rohkem 
+vaeva näinud ning – võrdlemise eesmärgil – kuna ka varasemad 
+valideerimise uuringud on piirdunud vaid esilehtedega. Pealegi oleks nii suure 
+hulga alamlehekülgede valideerimine osutunud ajaliselt väga mahukaks.</p>
+
+<p>Uurimuses kasutati 21 905 aadressi, mis võeti 
+<a href="http://www.neti.ee/cgi-bin/serverid">Neti Eesti serverite 
+nimekirjast</a> seisuga 11. veebruar 2005.</p>
+
+
+<h2 id="massvalideerimise_programm">1.2. Massvalideerimise programm</h2>
+
+<p>Kuna tuhandete lehtede ükshaaval validaatorile ettesöötmine ja tulemuste 
+kirjapanemine on ühe inimese jaoks kaugelt liialt suur ja vaevarikas töö, 
+siis sai loodud programm, mis ilma kõrvalise sekkumiseta saaks hakkama selle 
+massilise valideerimise protsessiga.</p>
+
+<p>Nimetatud programm vaatas üksteise järel läbi kõik talle ette antud 
+aadressid ning teostas kõigi puhul järgnevad toimingud.</p>
+
+<p>Kõigepealt üritas programm lehekülge alla laadida. Kui see õnnestus, siis 
+üritas programm veenduda, et tegemist on ikkagi veebilehega (otsides sealt 
+üldlevinud HTML-i elemente). Lisaks kontrollis programm, et tegu poleks mõne 
+veateate lehega (otsides <code>&lt;title&gt;</code> elemendist sõnu „Viga“ 
+ja „Forbidden“), et tegu poleks suletud leheküljega (fraas „Teenus 
+peatatud“), ning et tegu poleks leheküljega, mis suunab ümber teisele 
+aadressile (otsides mustrit, mis oleks sarnane HTML-le:
+„<code>&lt;meta http-equiv=&quot;refresh&quot; content=&quot;5; URL=http://foo&quot; /&gt;</code>“).</p>
+
+<p>HTTP päistes leiduvat infot programm ei kontrollinud.</p>
+
+<p>Seejärel loendas programm 38 levinuima HTML-i elemendi esinemissagedused 
+antud dokumendis ning üritas saata lehekülje W3C validaatorile 
+analüüsimiseks. Kui validaator ei saanud lehte valideerida vigase kodeeringu 
+tõttu, siis saatis programm dokumendi uuesti validaatorile ning nõudis, et too 
+kasutaks lehekülje valideerimisel ISO-8859-1 kodeeringut (reeglina seisneb 
+probleem selles, et leheküljel on kodeering määramata jäetud ning validaator 
+kasutab vaikimisi UTF-8 kodeeringut, mis aga ei luba teatud 
+baidi­kombinatsioone).</p>
+
+<p>Kui programmil oli õnnestunud validaatori käest kätte saada lehekülg, 
+millel puudusid veateated tõrgete kohta valideerimise protsessi läbiviimisel, 
+siis salvestas programm valideerimiseks kasutatud dokumenditüübi, ning kui 
+dokument sellele ei vastanud, loendas kõikide veateadete esinemiste arvud.</p>
+
+<p>Täpsema ülevaate programmist annab 
+<a href="http://triin.net/2005/04/22/Programmi_BatchVal_dokumentatsioon">lisa 1</a>.</p>
+
+
+<h2 id="uurimuse_labiviimise_aeg">1.3. Uurimuse läbiviimise aeg</h2>
+
+<p>Uurimus viidi läbi ajavahemikus 2005-02-11 17:37 kuni 2005-02-13 17:29 Eesti 
+aja järgi.</p>
+
+
+
+</body>
+</html>

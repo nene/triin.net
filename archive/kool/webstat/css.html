@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>CSS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Survey on over million webpages" />
+<meta name="keywords" content="CSS, HTML, XHTML, JavaScript, validation" />
+<meta name="date" content="2006-06-12" />
+</head>
+<body>
+
+<h1 id="css">CSS</h1>
+
+<p>67.20% of pages uses CSS in one way or another. But how is it used?</p>
+
+<p><a href="#figure-19">Figure 19</a> shows, that most often only external
+stylesheets are used. But practically the same amount of pages use external
+stylesheets in combination with inline styles.</p>
+
+<p>63.43% of pages with CSS uses some external CSS file. But almost the
+same amount of pages (61.51%) uses inline styles.</p>
+
+<div class="joonis" id="figure-19">
+<img src="/archive/kool/webstat/figure-19.png" alt="external, external + inline, inline, external + embedded + inline, embedded + inline, embedded, external + embedded" />
+<p><span class="nr">Figure 19.</span>
+How is CSS connected to HTML. <code>&lt;link&gt;</code> designates the use
+of external stylesheets, not only linking external sheets with
+<code>link</code> element, but also external CSS imported with
+<code>@import</code> rule.</p></div>
+
+<p>72.2% of pages with external CSS link only one CSS file, 17.9% links
+two files, 4.0% three and 3.9% four. The remaining 2% uses more than four
+external stylesheets.</p>
+
+<p><a href="#figure-20">Figure 20</a> shows how external CSS is usually
+larger in size than CSS inside HTML. Inline and embedded CSS in contrast
+follow quite similar usage pattern.</p>
+
+<div class="joonis" id="figure-20">
+<img src="/archive/kool/webstat/figure-20.png" alt="" />
+<p><span class="nr">Figure 20.</span>
+Comparison of code sizes between external, embedded and inline CSS.
+The CSS in external files is usually larger than CSS inside HTML.</p></div>
+
+<h2 id="css-properties">CSS properties</h2>
+
+<p>So, what are the most common CSS properties?
+<a href="#figure-21">Figure 21</a> gives a listing of most popular
+properties out there.</p>
+
+<div class="joonis" id="figure-21">
+<img src="/archive/kool/webstat/figure-21.png" alt="color, font-size, font-family, text-decoration, font-weight, background-color, width, text-align, margin-top, margin, margin-bottom, border, padding, ..." />
+<p><span class="nr">Figure 21.</span>
+Most frequently used CSS properties.</p></div>
+
+<p>The top 5 of CSS properties consists entirely of typografical
+tools.  Not many web designers out there, who accept the browser
+default settings.  But the shorthand property <code>font</code>
+appears only in the code of 13% of CSS-using pages. I guess this is
+because <code>font</code> has the most complex syntax of all CSS2
+attributes – even I prefer not to use it, although I know the syntax
+by heart.</p>
+
+<h3 id="property-color">Property <code>color</code></h3>
+
+<p>The word “color” probably wasn’t the best choice for a property
+describing the color of text. <code>text-color</code> or
+<code>font-color</code> would have been more intuitive – in the result
+set thousands of pages used either of those. Although as much as I
+tested on various browsers neither <code>text-color</code> or
+<code>font-color</code> seemed to have any effect at all.</p>
+
+<p>There is no graph for this property, but you can check out the
+values for this and many other properties from
+<a href="/2006/06/12/css-properties.txt">css-properties.txt</a>.</p>
+
+<h3 id="property-font-size">Property <code>font-size</code></h3>
+
+<p>As <a href="#figure-22">figure 22</a> clearly shows, most
+pages use either pixels or points to designate the font size. And both
+of these units are considered bad practices for that purpose,
+especially points, which make no sense at all in web context.</p>
+
+<p>Another interesting thing to note from that figure is the
+significant number of pages using integer value for this property –
+being not allowed according to W3C, this is entirely the fault of
+browser vendors, as practically all browsers interpret integer value
+for this property as if it had <code>px</code> appended.</p>
+
+<p>Looking at the font size keywords reveals, that decreasing the font
+size is clearly more common than increasing it.</p>
+
+<div class="joonis" id="figure-22">
+<img src="/archive/kool/webstat/figure-22.png" alt="px, pt, %, em, INTEGER, small, x-small, xx-small, medium, smaller, large, x-large, larger, inherit, xx-large" />
+<p><span class="nr">Figure 22.</span>
+What kind of values are used with the <code>font-size</code> property?
+Most pages use either pixels or points.</p></div>
+
+<h3 id="property-font-family">Property <code>font-family</code></h3>
+
+<p>Many of you have probably seen the combination:</p>
+
+<pre>font-faily: Arial, Verdana, Helvetica, sans-serif;</pre>
+
+<p>Well, these are the four <em>most</em> common font family names you
+come across in internet. (See <a href="#figure-23">figure
+23</a>.)</p>
+
+<p>From the set of generic font family names <code>sans-serif</code>,
+<code>serif</code> and <code>monospace</code> are used mostly.
+<code>cursive</code> and <code>fantasy</code> are really rare.</p>
+
+<p>If you look at the figure, you see some quite popular fonts like
+<code>times</code>, <code>new</code> and <code>roman</code>, indicating
+the lack of proper quoting in constructs like this:</p>
+
+<pre>font-family: Times New Roman, serif;</pre>
+
+<div class="joonis" id="figure-23">
+<img src="/archive/kool/webstat/figure-23.png" alt="Arial, Verdana, Helvetica, sans-serif, Geneva, Times, serif,  Times New Roman, New, Courier, Tahoma, Roman, Georgia, Web, ..." />
+<p><span class="nr">Figure 23.</span>
+50 commonest font family names.
+Dark bars indicate generic font family names.</p></div>
+
+<h3 id="property-text-decoration">Property <code>text-decoration</code></h3>
+
+<p>The commonest use of this property is probably removing the
+underlines from links, but adding the underline is very common
+too. (See <a href="http:#figure-24">figure 24</a>.)</p>
+
+<div class="joonis" id="figure-24">
+<img src="/archive/kool/webstat/figure-24.png" alt="none, underline, overline, line-through, blink, bold" />
+<p><span class="nr">Figure 24.</span>
+Common values for <code>text-decoration</code> property.
+Note the invalid value <code>bold</code>.</p></div>
+
+<h3 id="property-font-weight">Property <code>font-weight</code></h3>
+
+<p>No real surprises here. Making text bold is more common than
+removing the boldness. Some pages also make use of the integer values
+and <code>bolder</code> and <code>lighter</code> keywords, which
+aren’t quite consistent across browsers. Three last values in <a
+href="#figure-25">figure 25</a> are invalid.</p>
+
+<div class="joonis" id="figure-25">
+<img src="/archive/kool/webstat/figure-25.png" alt="bold, normal, INTEGER, bolder, lighter, plain, none, regular" />
+<p><span class="nr">Figure 25.</span>
+How is the <code>font-weight</code> property used?</p></div>
+
+<h3 id="property-width">Property <code>width</code></h3>
+
+<p>The situation with <code>width</code> is somewhat similar to
+<code>font-size</code> as both properties designate lengths.  Although
+points are used rarely, integer values are quite common (again
+interpreted as pixels by browsers, but invalid according to CSS
+recommendations). (See <a href="#figure-26">figure 26</a>.)</p>
+
+<div class="joonis" id="figure-26">
+<img src="/archive/kool/webstat/figure-26.png" alt="px, %, INTEGER, auto, em, pt, in" />
+<p><span class="nr">Figure 26.</span>
+Most frequent value types of <code>width</code>.</p></div>
+
+<h3 id="property-text-align">Property <code>text-align</code></h3>
+
+<p>As the text is aligned left by default, it’s no surprise that it
+isn’t the most popular one. Maybe only the <code>justify</code> column
+in <a href="#figure-27">figure 27</a> should be less tall, as
+justification doesn’t work well in web.</p>
+
+<div class="joonis" id="figure-27">
+<img src="/archive/kool/webstat/figure-27.png" alt="center, left, right, justify, none" />
+<p><span class="nr">Figure 27.</span>
+The values used with <code>text-align</code> property.</p></div>
+
+<p>I could go on and on with describing all the CSS properties listed
+on <a href="#figure">figure 21</a>, but the less-popular ones aren’t
+that interesting plus the properties described above pretty much
+should give the overall picture. So instead I will continue with
+looking at CSS units in general.</p>
+
+<p>But for those of you with in-depth interest to CSS properties and
+their values, <a href="/2006/06/12/css-properties.txt">css-properties.txt</a>
+contains all the property-value combinations that appeared in the selection
+more than 1000 times.</p>
+
+<h2 id="css-units">CSS units</h2>
+
+<p>The following <a href="#figure-28">figure 28</a> resambles <a
+href="#figure-25">figure 25</a> which described the
+<code>font-size</code> property. The high volume of pages using points
+on the following figure is probably the result of
+<code>font-size</code> being used so heavily, that if effects the
+general statistics of CSS units.</p>
+
+<div class="joonis" id="figure-28">
+<img src="/archive/kool/webstat/figure-28.png" alt="px, pt, %, em, cm, in, ex, mm, pc, ms, s" />
+<p><span class="nr">Figure 28.</span>
+Which units are used in CSS? Most pages only use pixels.</p></div>
+
+<h2 id="colors">Colors</h2>
+
+<p>Colors are on the majority of pages specified with <code>#rrggbb</code>
+syntax. The next in popularity is <code>#rgb</code> and almost as popular
+is the use of keywords. Most unpopular was the use of <code>rgb()</code>
+function.</p>
+
+<p>The most popular color was white, followed by black, red, blue and
+yellow.</p>
+
+<h2 id="image-formats">Image formats</h2>
+
+<p>As seen from <a href="#figure-29">figure 29</a>, most pages use GIF
+in CSS background images. JPEG is not so frequent and PNG is quite
+rare.</p>
+
+<div class="joonis" id="figure-29">
+<img src="/archive/kool/webstat/figure-29.png" alt="GIF, JPEG, PNG" />
+<p><span class="nr">Figure 29.</span>
+Image formats in CSS background images.</p></div>
+
+<h2 id="selectors">Selectors</h2>
+
+<p>Most frequently used CSS selectors are given in <a
+href="#figure-30">figure 30</a>. The list of less-popular selectors is
+continued in <a href="#figure-31">figure 31</a>.</p>
+
+<div class="joonis" id="figure-30">
+<img src="/archive/kool/webstat/figure-30.png" alt="E, .class, :hover, :visited, :link, :active, E F, #id, *, E > F, ?, :focus, :?, [foo='bar']" />
+<p><span class="nr">Figure 30.</span>
+Most frequent CSS selectors.</p></div>
+
+<p>The first figure clearly shows, that the most frequently used
+selectors are the selectors of CSS1, except the pseudoclasses
+<code>:first-letter</code> and <code>:first-line</code>, which don’t
+have a lot of use. Håkon Wium Lie mentions these constructs in he’s
+<a href="http://people.opera.com/howcome/2006/phd/#h-327">thesis about
+CSS</a> as features, that could have been left out from the
+specification without significant loss:</p>
+
+<blockquote
+cite="http://people.opera.com/howcome/2006/phd/#h-327"><p>However, the
+cost of implementing these features far outweighted the benefits of
+the visual effects they provided.</p></blockquote>
+
+<p>The element selector definitely deserves it’s place as the most
+frequently used selector – almost 80% of pages with CSS make use of
+it. But the class selector is without no great reason about three
+times as popular as the ID selector; ID is even less popular than the
+descendant selector.</p>
+
+<p>Of course it’s no surprise, that the link-related pseudo classes
+are in the top list, <code>:hover</code> being the first as there is
+no HTML-alternative to style this status.</p>
+
+<p>All the other selectors belong to CSS2 (or even CSS3) and as these
+are not supported by the widespread IE6, webpages also make no
+significant use of those. Even the universal selector (<code>*</code>),
+the only one in CSS2 supported by IE6, gains only a little more usage
+than the child selector, which has no support in IE6.</p>
+
+<p>It will be interesting to see if and how these graphs are going to
+change when IE7 finally reaches the market.</p>
+
+<div class="joonis" id="figure-31">
+<img src="/archive/kool/webstat/figure-31.png" alt="[foo='bar'], E + F, [foo], :first-child, ::after, ::before, [foo^='bar'], :last-child, :first-letter, :not(), [foo~='bar'], :lang(), ..." />
+<p><span class="nr">Figure 31.</span>
+Less frequent CSS selectors. Continues the previous figure.</p></div>
+
+<h3 id="element-selectors">Element selectors</h3>
+
+<p>As mentioned before: the main activity with stylesheets is altering
+the default look of links (color, underline). The following <a
+href="#figure-32">figure 32</a> makes this even more clear – almost
+90% of CSS-using pages select element <code>a</code>.</p>
+
+<p><code>body</code> is on the second place, but the gathered data
+doesn’t show weather it’s there because of setting some general
+properties for the whole page (like <code>font</code> and
+<code>color</code>) or just to adjust the margin and padding of the
+body element. I’m afraid of the latter.</p>
+
+<p>I think I don’t have to mention which common practice the 50% of
+pages selecting <code>td</code> refers to.</p>
+
+<p>For some reason there is a lot of styling of <code>p</code>
+elements. The following <code>h1</code>, <code>h2</code> and
+<code>h3</code> seem to me like more appropriate targets for styling.
+But I guess if we would count all the different headings as one general
+<code>h</code> element, they would largely outweight the selecting
+of <code>p</code>, maybe even <code>td</code>.</p>
+
+<div class="joonis" id="figure-32">
+<img src="/archive/kool/webstat/figure-32.png" alt="a, body, td, p, h1, h2, h3, li, ul, h4, div, table, th, input, img, select, form, h5, span, textarea, tr, hr, h6, blockquote, ol, html, b, label, ..." />
+<p><span class="nr">Figure 32.</span>
+How frequently are different elements selected with CSS.</p></div>
+
+<h3 id="class-selectors">Class selectors</h3>
+
+<p>The selection of URI-s used for this research had one significant
+problem: some larger sites were represented with a lot of URI-s
+(e.g. there were thousands of <a href="http://www.cnn.com">cnn.com</a>
+subpages) refering to pages with quite similar markup, many of them
+pointing to the exact same CSS files. One might think, that counting
+the code from one site about 10,000 times will make the results of the
+research too much a reflection of that site's code, and this thought
+certainly isn't wrong. But on the other hand, it wouldn't be quite fair
+to give to the one-page site of Bob Noname the same weight as to the
+multimillion-subpage site of microsoft.com. It's not a problem with a
+simple solution...</p>
+
+<p>But what has this all to do with class selectors? Quite a bit,
+because when you look at the <a href="#figure-33">figure 33</a>
+containing most frequently used classnames, many of them do not
+reflect the general usage of class names in web, but the number of CNN
+sites in the selection for example.</p>
+
+<p>Even with that kind of classnames removed, I don't count the data
+on that figure quite trustworthy – some of those large pages might
+have also contained much more generic class names like
+<code>small</code> and <code>header</code> making them appear more
+frequent than they really are.</p>
+
+<p>All the shortcomings aside, you are still welcome to compare the
+results with the class names statistics of <a
+href="http://code.google.com/webstats/2005-12/classes.html">Google Web
+Authoring Statistics</a> and John Allsopp's <a
+href="http://westciv.typepad.com/dog_or_higher/2005/11/real_world_sema.html">Semantics
+in the wild</a>. But you should also note one of the main differences
+between this and those researches: this statistics is based on the
+classnames gathered from CSS files, while the others have counted
+classnames in HTML.</p>
+
+<div class="joonis" id="figure-33">
+<img src="/archive/kool/webstat/figure-33.png" alt="small, header, ... , footer, white, nav, link, title, byline, caption, h3, menu, black, ... , text, copyright, ... , boxtitle, text2, maintext, text1, ..." />
+<p><span class="nr">Figure 33.</span>
+Most frequently used classnames. The classnames which clearly
+originate from some particular site are marked with white columns.</p></div>
+
+<h3 id="id-selectors">ID selectors</h3>
+
+<p>Happily, the big sites don't seem to make a lot of use from ID
+selectors, so the statistics shown in <a href="#figure-34">figure
+34</a> are much more trustworthy.</p>
+
+<p>The figure clearly distinguishes the top three ID names from the
+rest. <code>content</code>, <code>footer</code> and
+<code>header</code> are also in the top three of John Allsopp’s list
+of most frequent ID-s (if you exclude some quirks like
+<code>BTAMarker</code>).</p>
+
+<div class="joonis" id="figure-34">
+<img src="/archive/kool/webstat/figure-34.png" alt="content, footer, header, subnav, container, logo, menu, main, top, subhead, loginregister, nav, ..." />
+<p><span class="nr">Figure 34.</span>
+Most frequently used ID-s. The ID-s which clearly
+originate from some particular site are marked with white columns.</p></div>
+
+<h2 id="at-rules">At-rules</h2>
+
+<p>Clearly the most popular at-rule is <code>@import</code>, appearing
+almost as frequently as all the others added together (See <a
+href="#figure-35">figure 35</a>.) <code>@media</code>,
+<code>@page</code> and <code>@font-face</code> are not very rear
+too.</p>
+
+<p>Interestingly many pages made use of at-rules, that aren’t part of
+CSS specifications. As much as I managed to find out, the rules like
+<code>@list</code> are Microsoft Office or some other MS product
+specific.</p>
+
+<div class="joonis" id="figure-35">
+<img src="/archive/kool/webstat/figure-35.png" alt="@import, @media, @page, @font-face, @charset, @list, @pagesection1, @meta" />
+<p><span class="nr">Figure 35.</span>
+Relative frequency of different CSS at-rules.</p></div>
+
+<h2 id="markup-correctness">Markup correctness</h2>
+
+<p>Only <strong>40.92% of pages with CSS were using valid
+CSS2</strong>. This doesn’t mean all the other pages use invalid CSS –
+some of them might be using CSS1, CSS2.1 or CSS3 syntax which is not
+part of CSS2. But as the previous statistics has shown: not many pages
+make use of CSS not part of CSS2.</p>
+
+<p>But what about pages that use valid (X)HTML? One would think that a
+page with valid markup will mostly contain valid CSS too. And indeed,
+in the set of pages with valid HTML, there are more pages with valid
+CSS, but the difference is not that big: only 51.39% of pages with
+valid HTML have valid CSS.</p>
+
+<p><a href="#figure-36">Figure 36</a> shows the distribution of pages
+by different CSS validator error messages per page. Happily the most
+frequent is no errors at all.</p>
+
+<div class="joonis" id="figure-36">
+<img src="/archive/kool/webstat/figure-36.png" alt="A quickly falling graph" />
+<p><span class="nr">Figure 36.</span>
+Distribution of pages by different CSS validator error messages per page.</p></div>
+
+<p>16 most frequent error messages are given in the following <a
+href="#figure-37">figure 37</a>. Explanations of the error message
+numbers are given in the following text.</p>
+
+<div class="joonis" id="figure-37">
+<img src="/archive/kool/webstat/figure-37.png" alt="Error messages 1, 2, 3 and 4 are by large the most common ones." />
+<p><span class="nr">Figure 37.</span>
+Most frequent error messages of W3C CSS validator.</p></div>
+
+<ol>
+<li>Property <var>x</var> doesn't exist</li>
+<li><var>y</var> is not a <var>x</var> value</li>
+<li>Unrecognized</li>
+<li>You must put an unit after your number</li>
+<li>Parse error – Unrecognized</li>
+<li>Attempt to find a semi-colon before the property name. add it</li>
+<li>Too many values or values are not recognized</li>
+<li>Unknown dimension : <var>x</var></li>
+<li><var>x</var> is not a valid color 3 or 6 hexadecimals numbers</li>
+<li>Generic family names are keywords, and therefore must not be
+quoted.</li>
+<li>Too few values for the property <var>x</var></li>
+<li>In CSS1, a id/class name could start with a digit (".55ft"),
+unless it was a dimension (".55in"). In CSS2, such ids/classes are
+parsed as unknown dimensions (to allow for future additions of new
+units)</li>
+<li><var>x</var> negative values are not allowed</li>
+<li>Invalid separator in shape definition. It must be a comma.</li>
+<li><var>x</var> is an incorrect operator</li>
+<li>Unknown error</li>
+</ol>
+
+
+</body>
+</html>

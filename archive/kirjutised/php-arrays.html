@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>PHP Arrays: the Good, the Bad, the Future</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Rene Saarsoo" />
+<meta name="description" content="Good and and bad sides of arrays in PHP and what are the hopes for changes in the future" />
+<meta name="keywords" content="PHP, array, language design" />
+<meta name="date" content="2008-06-27" />
+</head>
+<body>
+
+
+<h1>PHP Arrays: the Good, the Bad, the Future</h1>
+
+<h2>The Good</h2>
+
+<p>The single best thing about PHP (the language) is the implementation of arrays.
+In all other similar languages (Perl, Python, Ruby, JavaScript)
+you always have to make decision:</p>
+
+<ul>
+<li><p>create normal array, which you can access sequentially, but where
+you can only use numeric indexes.</p></li>
+<li><p>create associative array, where you can use non-numeric indexes,
+but which you can't access sequentially.</p></li>
+</ul>
+
+<p>In PHP you never have to make this decision -- you just always
+create an array and depending on how you use it, it will behave as
+associative array or as sequential array.</p>
+
+<p>If there is anything worth copying from PHP by other languages,
+then this unification of normal and associative arrays is ceartanly
+one of those things.</p>
+
+<p>Of course it's not all fun and joy as <a href="http://pankaj-k.net/weblog/2008/03/did_you_know_that_each_integer.html">arrays in PHP eat quite
+a bit of memory.</a>
+But from the ease-of-use perspective for the programmer,
+PHP arrays are pretty damn good.</p>
+
+<h2>The Bad</h2>
+
+<p>But although PHP arrays have all those great properties, they
+are still pain in the ass to use.</p>
+
+<p>Let's look at an example. This is how you declare an array in
+Perl, Python, Ruby, JavaScript, ML, Haskell and probably in many
+other languages:</p>
+
+<pre><code>[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+</code></pre>
+
+<p>This is how you do the same in C++ and Java:</p>
+
+<pre><code>{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
+</code></pre>
+
+<p>And from the historical perspective, here is the same in ALGOL:</p>
+
+<pre><code>((1, 2, 3), (4, 5, 6), (7, 8, 9))
+</code></pre>
+
+<p>And here we have Lisp, which is famous for it's lack of syntax,
+but with pretty good semantic sugar for arrays:</p>
+
+<pre><code>'((1 2 3) (4 5 6) (7 8 9))
+</code></pre>
+
+<p>Compare all these to "the PHP way" of doing things:</p>
+
+<pre><code>array(array(1, 2, 3), array(4, 5, 6), array(7, 8, 9))
+</code></pre>
+
+<p>How in the hell did they came up with this syntax???</p>
+
+<p>Probably <a href="http://wiki.osdc.org.il/index.php/Larry_Wall_-_Present_Continuous%2C_Future_Perfect">like Larry Wall
+put it:</a></p>
+
+<blockquote>
+  <p>I thought of a way to do it so it must be right.</p>
+</blockquote>
+
+<h2>The Future</h2>
+
+<p>So is there any hope for this clumsy syntax to change in the future?
+PHP6 maybe?</p>
+
+<p>Well, I guess no. There was <a href="http://wiki.php.net/rfc/shortsyntaxforarrays">a proposal for alternative short syntax
+for arrays</a>, but it was voted down.</p>
+
+<p>Like they say on the gate to PHP:</p>
+
+<blockquote>
+  <p>Abandon all hope, ye who enter here.</p>
+</blockquote>
+
+
+
+
+</body>
+</html>
