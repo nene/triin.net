@@ -73,7 +73,16 @@ class Commentator
         }
         return $err;
     }
-    
+
+    function CheckTooManyLinks($comment)
+    {
+        if (preg_match("/(<a\b.*){3,}/si", $comment))
+        {
+            $err.= "<p>Kommentaaris on liiga palju linke, tundub nagu spämm.</p>";
+        }
+        return $err;
+    }
+
     function CheckSpam($challenge, $response)
     {
         $resp = recaptcha_check_answer(
@@ -94,6 +103,7 @@ class Commentator
         $err.=$this->CheckName($this->mName);
         $err.=$this->CheckHomepage($this->mHomepage);
         $err.=$this->CheckEmail($this->mEmail);
+        $err.=$this->CheckTooManyLinks($this->mComment);
         $err.=$this->CheckSpam($this->mRcChallenge, $this->mRcResponse);
         $this->mError.= $err;
         return (strlen($err)==0);
