@@ -1,0 +1,99 @@
+2011-09-30
+Mixed feelings about JavaScript
+===============================
+
+Let me say it out clear: there is no Mixed type in JavaScript.
+
+Some time ago our code contained a lot of comments that documented
+function parameters as Mixed. For example:
+
+    /**
+     * Adds item to container.
+     * @param {Mixed} item Any type of item you wish to add.
+     */
+    function add(item) {
+
+Then somebody came and told me: there is no Mixed type in JavaScript.
+Oh yeah, I realized, a variable can't be of type X when there is no
+such type. How silly of me.
+
+But how to document such an anything-goes parameter then?  Luckily
+enough, everything in JavaScript is an object, all inheriting from
+Object.  So if I just specify the type as Object, it will essentially
+mean that the value can be any JavaScript object.
+
+And so I did. Replacing all the occurrences of Mixed with Object.
+Well... not all.  Often the variable wasn't of anything-goes type,
+rather an alteration between a select few types.  Like it could have
+been either Number or String, but the author was too lazy, so he just
+wrote Mixed.
+
+Oh what a happy man I was when I went through and corrected all these
+bogus type definitions.  And I made [JSDuck][] throw a warning when it
+sees Mixed or any other unknown type.  All was well...
+
+...and then it came haunting me.
+
+You know, everything really inherits from Object in JavaScript:
+
+    > Object.prototype.foo = 123
+    123
+    > "hello".foo
+    123
+    > (5).foo
+    123
+
+But everything doesn't quite act like an object:
+
+    > x = "hello"
+    "hello"
+    > x.foo = 123
+    123
+    > x.foo
+    undefined
+    > x instanceof Object
+    false
+    > x instanceof String
+    false
+
+Therefore there is quite a bit difference between a function that
+accepts an Object:
+
+    /**
+     * Copies properties of second object into first one.
+     * @param {Object} obj1
+     * @param {Object} obj2
+     */
+    function merge(obj1, obj2) {
+        for (var i in obj2) {
+            obj1[i] = obj2[2];
+        }
+    }
+
+and a function that accepts any value:
+
+    /**
+     * Wraps item inside array if it's not an array already.
+     * @param {Object} obj
+     * @return {Array}
+     */
+    function toArray(obj) {
+        return obj instanceof Array ? obj : [obj];
+    }
+
+But you can't tell the difference if you look at the documented
+parameter types.  That's not good.  The role of the documentation
+should be to tell you, which is which.
+
+Let me repeat it again: there is no Mixed type in JavaScript.  But
+this doesn't mean the Mixed type can't have it's place in the
+documentation.
+
+One should be careful though. Use of Mixed should be the last resort,
+reserved for cases where you really accept any value whatsoever.
+
+With that being said, I'm reintroducing the support of Mixed type into
+[JSDuck][].
+
+
+[JSDuck]: https://github.com/senchalabs/jsduck
