@@ -1,0 +1,91 @@
+2011-10-19
+Meta Regular Expression
+=======================
+
+As part of [JSDuck][] I needed to write a lexer for JavaScript source
+code. This consisted mostly of writing regular expressions to
+recognize various JavaScript tokens: identifiers, numbers, strings,
+... and regular expressions.  That's of course a meta regular
+expression - a regular expression to match a regular expression. It
+turned out to be trickier than I thought.
+
+First off the `/` character can be the beginning of comment, regex or
+a division operator.  I've already covered this part in [an earlier
+blog post][road], so I'm going to continue from there, assuming we
+already know that `/` is a beginning of regex. So what would a
+meta-regex look like? Let's take the most naive approach possible:
+
+    %r{/.*?/[gim]*}
+
+I'm using special regex delimiters of Ruby `%r{ ... }` to avoid
+escaping the `/` characters, keeping the regex more readable.
+Thankfully to our lexer the regular expression in JavaScript can only
+be delimited by `/`.
+
+This meta-regex probably matches about 80% of regexes in the wild. It
+even supports optional modifiers. But it fails as soon as the regex
+contains an escaped `/` like this one:
+
+    /foo\/bar/
+
+Fortunately this is a pretty standard problem.  We would stumble upon
+a similar one when writing a regex to match a string where the
+delimiters can also be escaped.  So here's a solution:
+
+    %r{/([^/\\]|\\.)*/[gim]*}
+
+The text between regex delimiters can consist of:
+
+  * Any character except `/` and `\`.
+  * An escape character `\` followed by any other character.
+
+This is quite neat and compact, and one would think that it covers all
+possible JavaScript regular expressions. And indeed, it's going to
+probably cover about 99.9% of all regular expressions in the wild. But
+I wouldn't be talking about this if I hadn't stumbled upon a valid
+regex that it didn't cover:
+
+    /[/]/
+
+That's right, inside a character set `[...]` the only meta-characters
+that need to be escaped are `]` and `\`, meaning that the regex
+delimiter can also be there without needing to be escaped.
+
+Now that's going to get a bit ugly, as we need to use different
+matching rules between character set delimiters.  Here's a regex to
+match only the character set part of a regex:
+
+    %r{\[([^\]\\]|\\.)*\]}
+
+This should look familiar, as we repeat the pattern we already used
+above.  The text between charset delimiters can consist of:
+
+  * Any character except `[` and `\`.
+  * An escape character `\` followed by any other character.
+
+It might hurt your eyes, but it's quite simple really.
+
+Now all that's left to do, is merge this into the whole meta-regex:
+
+    META_REGEX = %r{
+      /               (?# beginning    )
+      (
+        [^/\[\\]      (?# any character except \ / [    )
+        |
+        \\.           (?# an escaping \ followed by any character    )
+        |
+        \[ ([^\]\\]|\\.)* \]    (?# [...] containing any characters including /    )
+                                (?# except \ ] which have to be escaped    )
+      )*
+      /[gim]*         (?# ending + modifiers    )
+    }x
+
+Here I'm using the `x` modifier to ignore the whitespace and I'm also
+documenting the whole thing with comments.
+
+I'm hoping this now finally covers 100% of JavaScript regular
+expressions.  But this meta regular expression is complex, things
+might go wrong when they aren't simple...
+
+[JSDuck]: https://github.com/senchalabs/jsduck
+[road]: http://triin.net/2011/01/25/The_road_to_JsDuck
