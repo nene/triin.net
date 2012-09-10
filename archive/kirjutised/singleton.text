@@ -1,0 +1,135 @@
+2012-09-10
+Singletons in Ruby
+==================
+
+Ruby provides a nice builtin module that lets easily turn your class
+into a singleton:
+
+    require 'singleton'
+
+    class MyClass
+      include Singleton
+
+      def say
+        puts "Hello"
+      end
+    end
+
+    MyClass.instance.say  # ---> "hello"
+
+## Problem
+
+But I'm not quite happy with that.  I'm not talking about the general
+wide overuse of the singleton pattern.  What bothers me, is that the
+fact of `MyClass` being a singleton is just an implementation detail
+and it shouldn't change how I'm interfacing with this class.
+
+For example, I might decide that instead of having a singleton I'd
+just like to have a class with static methods:
+
+    class MyClass
+      def self.say
+        puts "Hello"
+      end
+    end
+
+Nice.  But now I have to go through all of my code and replace all the
+uses of `MyClass.instance.say` with `MyClass.say`.
+
+That's not good.  The rest of my code shouldn't care if `MyClass` is
+implemented as a singleton or not.
+
+Additionally I like my lines short.  For me `MyClass.say` looks much
+cleaner and simpler to understand than `MyClass.instance.say`.
+
+Maybe in Java and friends that's the best you can do, but in Ruby
+there sure is some better way.
+
+## Solution
+
+So, after fiddling around a bit with some ruby meta-programming, I
+came up with my own improved version of the Singleton module:
+
+
+    require 'singleton'
+
+    module MySingleton
+      def self.included(base)
+        base.class_eval do
+          # Include the builtin Singleton module
+          include ::Singleton
+
+          # Redirect calls from MyClass.method to MyClass.instance.method
+          def self.method_missing(meth, *args, &block)
+            self.instance.send(meth, *args, &block)
+          end
+        end
+      end
+    end
+
+You use it just like the standard Singleton:
+
+    require 'my_singleton'
+
+    class MyClass
+      include MySingleton
+
+      def say
+        puts "Hello"
+      end
+    end
+
+With the important difference of how you call the methods on your
+instance:
+
+    MyClass.say  # ---> "hello"
+
+Oh, and if you need it, you can still use the old way of calling out
+the singleton.  This will still work:
+
+    MyClass.instance.say  # ---> "hello"
+
+
+## Extra
+
+I have always found static methods in ruby to be too painful to
+define.  You need to prefix all the static methods with `self.`:
+
+    class MyClass
+
+      def self.foo
+      end
+
+      def self.bar
+      end
+
+      def self.baz
+      end
+
+    end
+
+And then, when you decide to change them all into instance methods,
+you'll need to remove all the `self.` prefixes.  Not good at all.
+
+But with our new Singleton implementation we can just turn this same
+class into a singleton and make it behave as a class with static
+methods:
+
+    class MyClass
+      include MySingleton
+
+      def foo
+      end
+
+      def bar
+      end
+
+      def baz
+      end
+
+    end
+
+And when you change your mind, you just remove that one line and
+you've got a nice instantiable class again.
+
+A win-win I would say.
