@@ -12,7 +12,7 @@ class StaticData
         $start = date('U', mktime(-12,0,0,04,05,date('Y')));
         $end = date('U', mktime(36,0,0,04,05,date('Y')));
         $z = date('Z') * -1;
-        $now = time() + $z;	
+        $now = time() + $z;
         if ( $now >= $start && $now <= $end )
         {
             return true;
@@ -22,7 +22,7 @@ class StaticData
             return false;
         }
     }
-    
+
     function GetStyles()
     {
         // if it's annual CSS Naked Day (april the 5th, don't show styles :) )
@@ -37,30 +37,30 @@ class StaticData
         }
         return $out;
     }
-    
+
     function GetEncoding()
     {
         return '<meta http-equiv="content-type" content="text/html; charset='.$this->mEncoding.'" />'."\n";
     }
-    
+
     function GetBase()
     {
         return '<base href="'.$this->mBase.'" />'."\n";
     }
-    
+
     function GetOpenId()
     {
         return
 			'<link rel="openid.server" href="http://www.myopenid.com/server" />'."\n".
 			'<link rel="openid.delegate" href="http://rene.saarsoo.myopenid.com/" />'."\n";
     }
-    
+
     function GetRss()
     {
         return '<link rel="alternate" type="application/rss+xml" title="Triinulehe artiklid" href="http://www.triin.net/feed.xml" />'."\n".
                '<link rel="alternate" type="application/rss+xml" title="Triinulehe kommentaarid" href="http://www.triin.net/comment-feed.xml" />'."\n";
     }
-    
+
     function GetShortcutIcon()
     {
         return '<link rel="Shortcut Icon" type="image/png" href="'.$this->mShortcutIcon.'" />'."\n";
@@ -111,5 +111,28 @@ pageTracker._trackPageview();
 EOHTML;
     }
 
+    function GetPrettifyCss() {
+return <<<EOHTML
+<link href="/prettify/prettify.css" type="text/css" rel="stylesheet" />
+EOHTML;
+    }
+
+    function GetPrettifyJs() {
+return <<<EOHTML
+<script type="text/javascript" src="/prettify/prettify.js"></script>
+<script type="text/javascript">
+(function(){
+    var pres = document.getElementsByTagName("pre");
+    for (var i=0, len=pres.length; i<len; i++) {
+        var code = pres[i].getElementsByTagName("code")[0];
+        if (code) {
+            code.className = "prettyprint";
+        }
+    }
+    prettyPrint();
+})();
+</script>
+EOHTML;
+    }
 }
 ?>

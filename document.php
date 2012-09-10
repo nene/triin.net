@@ -18,14 +18,14 @@ function datetime_to_est($datetime, $rahva=false, $time=true)
     $MM = ltrim(substr($datetime, 5, 2), '0');
     $DD = ltrim(substr($datetime, 8, 2), '0');
     $HHMM = substr($datetime, 11, 5);
-    
+
     if (date('Y-m-d')==substr($datetime, 0, 10))
     {
         $day = "täna";
     }else{
         $day = "$DD. ".$kuud[$MM-1]." $YYYY";
     }
-    
+
     if ($time)
     {
         return $day." kell $HHMM";
@@ -33,7 +33,7 @@ function datetime_to_est($datetime, $rahva=false, $time=true)
         return $day;
     }
 }
-    
+
 
 
 class Document
@@ -46,7 +46,7 @@ class Document
     var $mSubMenu;
     var $mNext;
     var $mPrevious;
-    
+
     /**
         Document
         Konstruktor
@@ -55,8 +55,8 @@ class Document
     {
         $this->mStatic=new StaticData();
     }
-    
-    
+
+
     function AddArchive($fileName, $commentCount=0, $url='', $comments='N')
     {
         if (preg_match('/\.text$/', $fileName)) {
@@ -67,12 +67,12 @@ class Document
         $this->mChapters[count($this->mChapters)-1]->Load();
         $this->mArchiveCount++;
     }
-    
+
     function AddBasicChapter($content, $id='')
     {
         $this->mChapters[] = new Chapter($content, $id);
     }
-    
+
     function AddComments($id, $commentPosition='before', $formInfo='', $preview='', $error='' )
     {
         $this->mChapters[] = new Comments($id, $commentPosition);
@@ -82,7 +82,7 @@ class Document
         $this->mChapters[$ch_id]->AddErrorMessage($error);
         $this->mChapters[$ch_id]->Load();
     }
-    
+
     function AddMainMenu($selected = '')
     {
         $this->mMainMenu = new Menu(
@@ -97,8 +97,8 @@ class Document
             $selected,
             true);
     }
-    
-    
+
+
     function AddSubMenu($selected = '', $category='', $groupId=0)
     {
         if ($groupId>0)
@@ -114,39 +114,39 @@ class Document
             $query = "SELECT * FROM archive ORDER BY date DESC, name LIMIT 15";
         }
         $result = mysql_query($query);
-        
+
         while ($row = mysql_fetch_array($result))
         {
             $menu[$row['name']] = '/'.str_replace('-', '/', $row['date']).'/'.UrlVars::real2url($row['name']);
         }
-        
+
         $this->mSubMenu = new Menu(
             $menu,
             $heading,
             'alammenyy',
             $selected);
     }
-    
+
     function SetTitle($title)
     {
         $this->mTitle = $title;
     }
-    
+
     function SetNext($next)
     {
-        $this->mNext = $next;   
+        $this->mNext = $next;
     }
 
     function SetPrevious($previous)
     {
-        $this->mPrevious = $previous;   
+        $this->mPrevious = $previous;
     }
-            
+
     function OutputTitle()
     {
         echo '<title>'.$this->mTitle."</title>\n";
-    }            
-    
+    }
+
     function OutputMetaInfo()
     {
         if ($this->mArchiveCount==1)
@@ -160,7 +160,7 @@ class Document
             }
         }
     }
-    
+
     function OutputSisu()
     {
         echo "<div id=\"sisu\">\n";
@@ -182,7 +182,7 @@ EOHTML;
         $this->OutputNextPrevious();
         echo "</div>\n";
     }
-    
+
     function OutputMenus()
     {
         if (gettype($this->mMainMenu)=='object')
@@ -194,7 +194,7 @@ EOHTML;
             echo $this->mSubMenu->GetContent();
         }
     }
-    
+
     function OutputNextPrevious()
     {
         if (strlen($this->mPrevious)>0 || strlen($this->mNext)>0)
@@ -217,40 +217,42 @@ EOHTML;
             echo "</div>\n";
         }
     }
-    
+
     function Out()
     {
         echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\n";
         echo "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n";
         echo "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"et\" lang=\"et\">\n";
         echo "<head>\n";
-        
+
         $this->OutputTitle();
         //echo $this->mStatic->getBase();
         echo $this->mStatic->GetEncoding();
         echo $this->mStatic->GetStyles();
+        echo $this->mStatic->GetPrettifyCss();
         echo $this->mStatic->GetShortcutIcon();
         echo $this->mStatic->GetRss();
         echo $this->mStatic->GetOpenId();
         $this->OutputMetaInfo();
-        
+
         echo "</head>\n";
         echo "<body>\n";
-        
+
         $this->OutputSisu();
-        
+
         echo $this->mStatic->GetGeneralInfo();
-        
+
         $this->OutputMenus();
-        
+
         echo $this->mStatic->GetMarkupInfo();
-        
+
+        echo $this->mStatic->GetPrettifyJs();
         echo $this->mStatic->GetGoogleAnalyticsJs();
-        
+
         echo "</body>\n";
         echo "</html>\n";
     }
-    
+
 }
 
 ?>
