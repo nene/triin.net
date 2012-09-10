@@ -1,0 +1,195 @@
+2012-04-10
+Test distance - testing at the right level of abstraction
+=========================================================
+
+So here's a metric for you:
+
+> **Test distance** - the measure of how far from app code your test code is.
+
+To see what I mean by it, let's take a journey from Galactic distances
+down to the very microscopic ones...
+
+
+## 1. In a separate project (Galactical distance)
+
+Sometimes tests are kept in a completely separate repository from the
+main source code tree.  Looks crazy?  Indeed...  Most likely the
+project manager was clueless.  But there are specific situations where
+this kind of arrangement might make sense.  For example when your
+tests apply for many projects, like the ACID tests for browsers.
+
+Advantages:
+
+- Keeps the tests independent from a specific project.
+
+Disadvantages:
+
+- Very hard to keep tests in sync (if possible at all).
+- Inconvenient to even run the tests.
+
+
+## 2. In a separate directory (Flying distance)
+
+The most widespread practice is to have your app code and test code as
+a separate directory-trees which closely mimic each-other:
+
+    src/
+      foo.rb
+      bar.rb
+    test/
+      foo_test.rb
+      bar_test.rb
+
+But the common practice is an odd one.  It's tedious to rename
+`foo_test.rb` every time you rename `foo.rb`, and it's inconvenient to
+look up the corresponding test file from a completely separate
+directory.
+
+The actual big advantage of this strategy is the ability to have your
+tests structured completely differently from code.  For example you
+could have a full directory of tests to ensure one very complex
+function works as needed, or you could have one test file to cover the
+behavior of a group of classes.
+
+Advantages:
+
+- Keeps the tests file-hierarchy independent from the code.
+- Easy to exclude tests from production version.
+- Well-supported by tools.
+
+Disadvantages:
+
+- Easy to forget about updating the tests when you update code.
+- Tedious to keep the structure of `src/` and `test/` dir in sync.
+- Tedious to look up the test from a separate directory.
+
+
+## 3. In a separate file (Driving distance)
+
+If you really want to have a test file for every code file, then
+here's a possible structure for you:
+
+    src/
+      foo.rb
+      foo_test.rb
+      bar.rb
+      bar_test.rb
+
+I've never really seen it used in practice.  Most devs like to keep
+some distance between the code and tests and this seems to cross that
+line.  It also has a bit of a clobbered feeling, and the number of
+files in your src/ dir will double.
+
+But this way it's much harder to forget about the tests.  You don't
+have to take on a journey to a different directory tree to get to your
+tests - they are right there.
+
+Advantages:
+
+- Easy to look up the corresponding test file of a normal source file.
+- Easy to keep the file structure of tests and code in sync.
+
+Disadvantages:
+
+- Clobbers the main `src/` dir with tests.
+
+
+## 4. Inside a file (Grabbing distance)
+
+To really solve the syncronisation of code and test files we need to
+get rid of the test files.  The solution: put tests inside the code.
+For example let's have the test code at the end of the file:
+
+    function foo() {
+    }
+    function bar() {
+    }
+    ...
+    function test_foo() {
+    }
+    function test_bar() {
+    }
+
+All the file-management problems now go away.  When you open up the
+code, you simultaneously open up the tests.
+
+I've seen this practice sometimes used in Haskell.  Also `@test`
+annotations in Java allow for a relatively convenient way to achieve
+this.  In a compiled languages this whole approach makes much more
+sense - the code for test functions is simply eliminated at compile
+time.
+
+Though, if you put the tests at the end of the file, you might need to
+scroll up and down between the code and tests, which could end up
+being really tedious.  While if you put the test methods right next to
+real methods, your code might become way too messy.
+
+Advantages:
+
+- There's no file structure of tests to keep in sync, only the tests
+  themselves.
+
+Disadvantages:
+
+- Mixed up code and tests.
+- Some build system needed to remove tests from production version.
+- Inconvenience of switching between code and tests.
+
+
+## 5. Right next to the function (Microscopic distance)
+
+To avoid creating indistinguishable mix of app code and test code, we
+can embed the tests inside comments.  Here's a style example from
+[Functional JS libarary][funjs] which uses that approach throughout
+its code:
+
+    /**
+     * Returns its argument coerced to a function.
+     * >> lambda('1+')(2) -> 3
+     * >> lambda(function(n){return n+1})(2) -> 3
+     */
+    Functional.lambda = function(object) {
+        return object.toFunction();
+    }
+
+This takes on a literal-programming feel as tests will become an
+actual part of the documentation.
+
+Advantages:
+
+- Very little effort needed in keeping tests in sync.
+- Convenient for writing the simplest tests.
+- Tests form a part of the documentation.
+
+Disadvantages:
+
+- A tool needed to extract tests from comments.
+- Only suitable for writing very simple tests.
+- Tests might clutter the comments.
+
+
+## To sum up
+
+There are some general tendencies here.  When testing at hight
+distance you have a lot of flexibility in organizing your tests, but
+it's quite hard to keep your tests in sync with your app code.  When
+you go down to smaller distances, it becomes much easier to keep
+things in sync, but you start to lose flexibility up to the point
+where you can only write very limited assertion-like tests.
+
+Additionally as you go to smaller distances, you will need more
+specific tools to help you in keeping the app code and test code
+separate.
+
+But I'm not here to tell you what the right distance is.  You might be
+just fine with the usual flying distance.  Or maybe the microscopic
+approach suits you the best.  You could also test from several
+different distances at the same time.  Like always, don't be slave to
+any methodology and knowing your options choose what suits you the
+best.
+
+But make sure you don't fall entirely into the zeroth category that I
+didn't mention (but I think you can quess what that is).
+
+
+[funjs]: http://osteele.com/sources/javascript/functional/
