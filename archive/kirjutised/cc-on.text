@@ -1,0 +1,117 @@
+2011-11-02
+The Magic of IE, Chapter 385: Conditional Compilation
+=====================================================
+
+Recently Rob Hogan reported in [Sencha forum][forum], that the
+uncompressed source code of Ext JS fails to load in IE.  For some
+strange reason IE chokes at the following code:
+
+    someObj = {
+        //@private
+        someProp: "foo"
+    }
+
+Giving an error message `Expected ':'`. And the strangest thing is,
+when you add just one space to comment:
+
+    someObj = {
+        // @private
+        someProp: "foo"
+    }
+
+IE will parse it just fine.
+
+Doesn't it just make you cheer to the wonderful and magical IE?
+
+Thankfully Rob was kind enough to track down the issue to another
+library he was using. That happened to use another amazing feature of
+IE: [Conditional Compilation][cc] (CC).  Most people know about IE
+conditional comments for HTML, this is pretty much the same, but for
+JavaScript.
+
+The greatness is turned off by default. You need to enable it with:
+
+    //@cc_on
+
+After this there's no turning back - all the comments following this
+declaration will be subject to CC.
+
+The thing supports simple if statements and some variables:
+
+    /*@cc_on
+      @set @version = @_jscript_version
+      @if (@_win32)
+        document.write("You are running 32 bit IE " + @version);
+      @elif (@win_16)
+        document.write("You are running 16 bit IE " + @version);
+      @else @*/
+        document.write("You are running another browser or an old IE.");
+    /*@end @*/
+
+That's pretty much all the syntax there is. But this doesn't quite
+explain why `//@private` should cause any trouble as there is no
+`@private` statement.
+
+Still, there is a bit more syntax:
+
+    var isMSIE = /*@cc_on!@*/false;
+
+That's some nifty JavaScript from [Dean Edwards][sniff] which evaluates
+to true if browser is IE. When CC is already turned on, it can be
+abbreviated to:
+
+    var isMSIE = /*@!@*/false;
+
+Nice. So now I have a theory of what `//@private` does: it outputs
+the identifier `private` into the document.  Let's test that:
+
+    //@ alert
+    ("Hello world");
+
+I run the program and get a nice "Hello world" popup. Great! Now
+let's try without the space:
+
+    //@alert
+    ("Hello world");
+
+I run it and... oh... IE says: `Function expected`.
+
+Oh man! IE just had us again. What kind of amazing logic is he
+following?
+
+After some more reading about conditional compilation I come to the
+conclusion that @private is a variable. But those CC variables can
+have only two types of values: Boolean or Number.
+
+So let's see what kind of value //@private yields:
+
+    var foo = //@private
+    alert(foo);
+
+And it outputs... `NaN`.
+
+Isn't it just neat how all undefined variables are initialized to
+`NaN`.  Now it all makes perfect sense. This code:
+
+    someObj = {
+        //@private
+        someProp: "foo"
+    }
+
+would be seen by IE as:
+
+    someObj = {
+        NaN someProp: "foo"
+    }
+
+And `NaN` happens to be a valid key in object literal, because the key
+can be either identifier, String or Number... and `NaN` (Not a Number)
+obviously is a Number. Well... obviously if you have been programming
+in JavaScript for way too long.
+
+Thank you all for reading. This was chapter 385 from my book "The
+Magic of IE" which I will never write.
+
+[forum]: http://www.sencha.com/forum/showthread.php?135037-API-Documentation-Content-Bugs&p=661590&viewfull=1#post661590
+[cc]: http://en.wikipedia.org/wiki/Conditional_comment#Conditional_comments_in_JScript
+[sniff]: http://dean.edwards.name/weblog/2007/03/sniff/
