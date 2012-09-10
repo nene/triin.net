@@ -1,0 +1,85 @@
+2012-04-02
+Live preview of JavaScript code
+===============================
+
+After watching [this amazing talk of Bret Victor][bret] I felt an
+immediate need to implement some of his demos in JavaScript.
+
+After a bunch of trial and error I came up with [this prototype][js].
+
+![Screenshot of JS](/archive/kirjutised/live-preview-js.png)
+
+It's far from what Bret would want us to aim for, but toying around
+with this primitive tool made me feel what an amazing effect immediate
+feedback can have on your coding.  The initial code you see there is
+the direct result of me playing around with the tool... and I really
+wouldn't have written this script without having a really-really fast
+feedback loop.  The whole process felt much more like playing than
+programming.
+
+
+## A word about implementation
+
+The main trick is to avoid flickering of the preview area.  Like when
+I'm at the middle of typing I don't want the preview to blank out
+because of a syntax error.
+
+This is accomplished by having two iframes.  The first iframe contains
+the latest working preview.  When code is modified a new hidden iframe
+is created and the code is executed inside it.  Only when the
+execution succeeds will the old iframe be replaced with new one.
+
+Basic computer graphics really - you draw in the buffer and then
+repaint.
+
+## Taking it further
+
+So this was nice, but toying around with plain JavaScript is not
+particularly interesting.  So what I wanted to do instead was to use
+this technique for building Sencha Touch UI-s.  This is obviously a
+very graphical task, so the approach should suit it well.
+
+Here's my attempt: [Sencha Touch live prototyping][touch].
+
+![Screenshot of JS](/archive/kirjutised/live-preview-touch.png)
+
+But there are problems...
+
+Most importantly Sencha Touch is not as lightweight as plain
+JavaScript.  It takes a fraction of a second to load the whole
+framework, but it's a large enough fraction to be noticable, and the
+worst part is that it blocks.  It blocks, it blocks, and it blocks...
+
+Even when JavaScript runs inside an iframe it still blocks everything
+on the whole page.  And when the page freezes while you are typing,
+it's really offputting.
+
+I tried, I tried, and I tried... but there seems to be no way to make
+it not block.
+
+Of course there is one way to run JavaScipt in non-blocking way - web
+workers.  But web workers can't access DOM, so for our purposes they
+are pretty much useless.
+
+
+## This leaves us with cheating...
+
+The first obvious thing would be to avoid loading the whole Touch
+framework every single time.  Just clean up the DOM and run the code
+again.  It's far from being a correct approach, variables might get
+left lying around in the global namespace, but if it works 99% of time
+it might be good enough.
+
+Unfortunately Touch doesn't like if you run its setup code multiple
+times.  Naah!  But there has to be a workaround...
+
+It can be made faster...
+
+There's hope...
+
+Always...
+
+[bret]: http://vimeo.com/36579366
+[js]: http://triin.net/temp/live-examples/js.html
+[touch]: http://triin.net/temp/live-examples/index.html
+
