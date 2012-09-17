@@ -1,0 +1,108 @@
+2012-09-17
+Why not support this valid JavaScript?
+======================================
+
+Every once in a while I get asked why doesn't [JSDuck][] support a
+certain character in the names of various entities. The character is
+usually some punctuation like the dot (`.`) or dash (`-`). The names
+in question are the names of classes and class members (methods,
+properties, events, etc).
+
+So why doesn't JSDuck allow you to document a class named
+`My.Special-Class` or method named `my+method`? Why doesn't the
+freaking tool just get out of the way and allow you to do what you
+want? Supporting just one more character can't be so hard - why not
+simply do it?
+
+Three reasons:
+
+- It's not sensible
+- It's troublesome to implement
+- It's not just JSDuck
+
+[JSDuck]: https://github.com/senchalabs/jsduck/
+
+## It's not sensible
+
+The problem here is that JavaScript, unlike most other object-oriented
+languages, doesn't require the names of object properties and methods
+to be proper identifier names. Objects are just hash tables - any
+string is a valid key, and therefore also a valid method/property
+name.
+
+So when I implement support for dash and dot, the next user comes
+along and asks why doesn't JSDuck support colon? Then the third one
+comes and asks to support spaces. Soon we're talking about supporting
+the whole Unicode including Egyptian hieroglyphs.
+
+![A tourist studying Egyptian hieroglyphs](/archive/kirjutised/hieroglyphs.jpg)
+
+We need to practice some moderation. Thankfully JavaScript itself
+gives us some guidance on this: although we can name methods with any
+imaginable string, like so:
+
+    window["My class"]["ho-ho-hoo!"]();
+
+only when using proper identifier names will they be convenient to
+use:
+
+    MyClass.hoHoHoo();
+
+So, by only allowing proper identifier names, JSDuck is asking you to
+take the sensible route.
+
+The main thing here is that JSDuck is opinionated. It wants you to
+write your code in a certain way. And if you want to do things
+differently it's going to be painful. In that case you might have
+chosen the wrong tool.
+
+## It's troublesome to implement
+
+In addition to the above, supporting the whole range of possible
+characters is far from easy to implement. Even adding support for just
+one more punctuation character is a considerable amount of work.
+
+![Hard working woman](/archive/kirjutised/hard-work.jpg)
+
+There's a lot of convenience that derives from the assumption that
+class and member names are always proper identifier names.  It allows
+us to use the same names in URL-s, HTML id-s and other generated code
+without a need to do additional escaping.
+
+For example when supporting dot in member names, we need to ensure we
+encode the dot somehow when using the name inside HTML id attribute,
+because the following is not valid:
+
+    <p id="ho.ho.hoo">
+
+JSDuck is already doing this kind of escaping to support the `$`
+character which is valid in JavaScript identifiers but invalid as HTML
+id.  So an identifier `$foo` becomes `S-foo` in HTML.  Not a prettiest
+solution, but it's a mandatory thing for a JavaScript documentation
+tool to support.
+
+But supporting all kinds of other characters is just complicating the
+code base while helping only a rary minority of users who want to do
+some weird things.
+
+## It's not just JSDuck
+
+Finally, using non-identifier names for classes and members is just
+asking for trouble.  Even if JSDuck implements a support for it, you
+will soon face some other tool which also chokes on your
+unconventional code.  Sure, you can have a slash (`/`) in your class
+names, but good luck with your filesystem if you want to save it into
+a file with the same name.
+
+![German shepherd jumping through a ring of fire](/archive/kirjutised/brave-dog.jpg)
+
+But in the end there's nothing to stop you.  Go ahead, write the
+craziest JavaScript possible.  I do encourage you.  It's the land of
+the wild and brave.  But it's not the land of great tooling support.
+
+<small>
+Photo credits:
+Het Leven, 1927, [Copying Egyptian hieroglyphs](http://www.flickr.com/photos/nationaalarchief/4796120646/);
+Lewis W. Hine, 1920, [Woman with Machine](http://www.flickr.com/photos/george_eastman_house/3334094336/);
+George Jackman, [Ten lords a' leaping](http://www.flickr.com/photos/george_eastman_house/3334094336/).
+</small>
