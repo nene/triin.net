@@ -1,0 +1,78 @@
+2013-02-14
+Private parameters
+==================
+
+I'm sure you've seen code like this:
+
+    /**
+     * Loads HTML files from given URL-s.
+     * @param {String[]} urls The URL-s to load.
+     * @param {Object[]} alreadyLoaded For internal use only!
+     */
+    function loadPages(urls, alreadyLoaded) {
+        alreadyLoaded = alreadyLoaded || [];
+        if (urls.length == 0) return alreadyLoaded;
+        var url = urls.pop();
+        var page = load(url);
+        alreadyLoaded.push(page);
+        return loadPages(urls, alreadyLoaded);
+    }
+
+What I'd like to draw your attention to, is this second parameter -
+the parameter that you're not supposed to use, a private parameter.
+
+Everybody knows about private methods - they are well respected
+citisens of OOP landscape.  Similarly we have private instance
+variables.  All good means of encapsulation.
+
+But what about private parameters?  Nobody talks about such things,
+but in my day-to-day work I see them popping up every now and then in
+various different codebases.  How should I treat them.  Are they a
+pattern or an anti-pattern?
+
+We can definitely rewrite the above example, so that it doesn't use
+any private variables:
+
+    /**
+     * Loads HTML files from given URL-s.
+     * @param {String[]} urls The URL-s to load.
+     */
+    function loadPages(urls) {
+        return loadPagesRecursive(urls, []);
+    }
+
+    function loadPagesRecursive(urls, alreadyLoaded) {
+        if (urls.length == 0) return alreadyLoaded;
+        var url = urls.pop();
+        var page = load(url);
+        alreadyLoaded.push(page);
+        return loadPagesRecursive(urls, alreadyLoaded);
+    }
+
+Now the public `loadPages` acts as a simpler interface in front of a
+private and more complex `loadPagesRecursive` method.  We have
+effectively transformed our private parameter into a private method.
+
+That's actually how we would have written it in the first place in a
+language like Java that doesn't directly support optional parameters -
+forcing you to define a separate method when you need a different
+number of parameters.
+
+Of course Java is mainly a great example of a very verbose language.
+Optional parameters are such a useful language feature, nobody ever
+argues against them. And private parameters sure are a very convenient
+thing too - the first code examples was shorter, there was just one
+method, no need to think up a name for our silly helper method.
+
+But what kind of convenience are we talking about in here? It's the
+convenience of the library author - he's convenience of writing
+less code.
+
+With optional parameters, there's also the convenience of a library
+user - without optional parameters he would need to pass in the
+default values by himself, introducing lots of hairy duplication.
+
+But private parameters provide absolutely no help for the user.  Quite
+the contrary - he is forced to learn about this parameter that he is
+forbidden from using.
+
