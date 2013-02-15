@@ -1,4 +1,4 @@
-2013-02-14
+2013-02-15
 Private parameters
 ==================
 
@@ -65,7 +65,7 @@ thing too - the first code examples was shorter, there was just one
 method, no need to think up a name for our silly helper method.
 
 But what kind of convenience are we talking about in here? It's the
-convenience of the library author - he's convenience of writing
+convenience of the library author - his convenience of writing
 less code.
 
 With optional parameters, there's also the convenience of a library
@@ -74,5 +74,32 @@ default values by himself, introducing lots of hairy duplication.
 
 But private parameters provide absolutely no help for the user.  Quite
 the contrary - he is forced to learn about this parameter that he is
-forbidden from using.
+forbidden from using.  Basically the private parameter is an
+implementation detail which we are revealing to the user.
 
+Also, because not a single language that I know of supports the
+concept of private parameters, one has to rely on documentation to
+convey the meaning of these parameters being private.  In the simplest
+case one could just skip documenting these parameters - when the
+documentation says there's just two parameters (although the method
+actually takes three) the user never needs to bother his head with our
+secret third parameter.  But that logic breaks down as soon as
+somebody looks at the source code - then he will see the undocumented
+third parameters and wonder wether this was just forgotten to be
+documented.
+
+At that point one might want to turn to his documentation tool for
+help on documenting these private paramters, but at this point I will
+say: STOP.
+
+I feel like we've seen enough evidence already to conclude that
+private parameters are an anti-pattern.  And [JSDuck][], which is an
+opinionated little duck, simply won't support such a nasty thing.
+
+Instead JSDuck will provide you a warning when he sees you haven't
+documented all your parameters, to help in keeping your code and
+comments in sync.
+
+Quack.
+
+[JSDuck]: https://github.com/senchalabs/jsduck
