@@ -51,8 +51,9 @@ class StaticData
     function GetOpenId()
     {
         return
-			'<link rel="openid.server" href="http://www.myopenid.com/server" />'."\n".
-			'<link rel="openid.delegate" href="http://rene.saarsoo.myopenid.com/" />'."\n";
+            '<link rel="me" href="https://github.com/nene"/ title="GitHub">'."\n".
+            '<link rel="openid.server" href="https://indieauth.com/openid" />'."\n".
+            '<link rel="openid.delegate" href="http://triin.net/" />'."\n";
     }
 
     function GetRss()
